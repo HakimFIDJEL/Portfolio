@@ -40,11 +40,10 @@ html {
 
 header {
   position: fixed;
-  z-index: 10;
+  z-index: 9999;
   top: 0;
   height: 80px;
   width: 100%;
-  background-color: transparent;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -258,6 +257,17 @@ section#last-projects .content-container {
   overflow: hidden;
   position: relative;
 }
+section#last-projects .content-container .switch-cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  backdrop-filter: blur(0px);
+  z-index: 3;
+  pointer-events: none;
+  transition: all 0.5s ease-in-out;
+}
 section#last-projects .content-container .selector-container {
   position: absolute;
   bottom: 40px;
@@ -265,23 +275,89 @@ section#last-projects .content-container .selector-container {
   right: 0;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  z-index: 4;
+}
+section#last-projects .content-container .selector-container .arrow {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-weight: 300;
+  cursor: pointer;
+  position: absolute;
+  display: none;
+  opacity: 0;
+}
+section#last-projects .content-container .selector-container .arrow.right {
+  right: 45px;
+}
+section#last-projects .content-container .selector-container .arrow.left {
+  left: 45px;
+}
+section#last-projects .content-container .selector-container .arrow svg {
+  transition: transform 0.2s ease-out;
+}
+section#last-projects .content-container .selector-container .arrow.right:hover svg {
+  transform: translateX(4px);
+}
+section#last-projects .content-container .selector-container .arrow.left:hover svg {
+  transform: translateX(-4px);
 }
 section#last-projects .content-container .selector-container .selector {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 30px;
+  opacity: 0;
 }
 section#last-projects .content-container .selector-container .selector li {
   list-style: none;
   width: 20px;
   height: 20px;
 }
+section#last-projects .content-container .selector-container .selector li input[type=radio] {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  height: 14px;
+  width: 14px;
+  border-radius: 50%;
+  background-color: white;
+  cursor: pointer;
+  position: relative;
+}
+@keyframes circleAnimation {
+  0% {
+    clip-path: circle(0% at 50% 50%);
+  }
+  50% {
+    clip-path: circle(50% at 50% 50%);
+  }
+  100% {
+    clip-path: circle(100% at 50% 50%);
+  }
+}
+section#last-projects .content-container .selector-container .selector li input[type=radio]::before {
+  content: "";
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background-color: transparent;
+  z-index: -1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  clip-path: circle(0% at 50% 50%);
+}
+section#last-projects .content-container .selector-container .selector li input[type=radio]:checked::before {
+  outline: 2px solid white;
+  animation: circleAnimation 0.5s ease-out forwards;
+}
 section#last-projects .content-container .switch-container {
   overflow: visible;
   display: flex;
-  transition: transform 0.75s ease-out;
+  transition: transform 0.5s ease-out;
 }
 section#last-projects .content-container .switch-container .switch-box {
   width: 100vw;
@@ -313,7 +389,7 @@ section#last-projects .content-container .switch-container .switch-box .content 
   position: absolute;
   z-index: 2;
   bottom: 24%;
-  left: 40px;
+  left: 45px;
   backdrop-filter: blur(10px);
   display: flex;
   flex-direction: column;

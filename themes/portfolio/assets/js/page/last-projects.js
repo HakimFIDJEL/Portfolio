@@ -4,6 +4,9 @@ $(document).ready(function()
     let container = $('#last-projects .content-container');
     let switch_container = container.find('.switch-container');
     let switch_container_children = switch_container.children();
+    let switch_cover = container.find('.switch-cover');
+   
+    let selector = container.find('.selector');
 
     let currentChildren = switch_container_children.first();
     let isInContainer = false;
@@ -13,7 +16,9 @@ $(document).ready(function()
 
     let balises = $(".selector li");
 
-    var header = $('header');
+    var iteration = 0;
+    var isIterating = false;
+
 
     $(document).on('click', '.selector li', function()
     {
@@ -35,6 +40,27 @@ $(document).ready(function()
         }, 600);
     });
 
+    $(document).on('click', '.selector-container .left', function()
+    {
+        let index = getCurrentSlide();
+        if(index == 0)
+        {
+            return;
+        }
+        prevSlide();
+    });
+
+    $(document).on('click', '.selector-container .right', function()
+    {
+        let index = getCurrentSlide();
+        if(index == switch_container_children.length - 1)
+        {
+            return;
+        }
+        nextSlide();
+    });
+
+
 
     // Détecte si on est dans le carousel ou pas
     $(window).scroll(function()
@@ -51,81 +77,133 @@ $(document).ready(function()
             if(!isOut)
             {
                 $("body").css("overflow", "hidden");
-                header.animate({
-                    top: -100,
-                }, 350);
+                
                 
 
-                
+                toggleHeader();
                 $(window).scrollTop(container.offset().top);
+                checkSlides();
 
-
+                appear(index);
+                $(switch_container_children[index]).addClass('active');
                 
               
-                // Première fois qu'on arrive dans le container - première animation
-                if(index == 0 && !$(switch_container_children[0]).hasClass('active'))
-                {
-                    $(switch_container_children[0]).addClass('active');
-                    appear(0);
-                }
+                
             }
         }
         else
         {
             $("body").css("overflow", "auto");
-            header.animate({
-                top: 0,
-            }, 500);
+            
         }
     });
 
     // Gestion du scroll
     $(window).on('wheel', function(event)
     {
+
+
+        // Reset si jamais il arrête de scroll
+        if(!isIterating && isInContainer)
+        {
+            isIterating = true;
+            setTimeout(function()
+            {
+                isIterating = false;
+                iteration = 0;
+                switch_cover.css('backdrop-filter', 'blur(0px)');
+            }, 500);
+        }
+
+
         
         let index = getCurrentSlide();
+        // Si je suis dans le container
         if(isInContainer)
         {
+          
+
             let delta = event.originalEvent.deltaY;
+            // Si je scroll vers le bas
             if(delta > 0)
             {
+                // Si je suis sur le dernier slide
                 if(index == switch_container_children.length - 1)
                 {
-                    isInContainer = false;
-                    isOut = true;
-                    $("body").css("overflow", "auto");
-                    header.animate({
-                        top: 0,
-                    }, 500);
+                    // Si j'ai assez scroll
+                    if(iteration > 2)
+                    {
+                        isInContainer = false;
+                        isOut = true;
+                        $("body").css("overflow", "auto");
+                        selectorDisappear();
+                        disappear(index);
+                        toggleHeader();
+                    }
+                    else 
+                    {
+                        iteration++;
+                        switch_cover.css('backdrop-filter', 'blur('+iteration*2+'px)');
+                    }
                 }
+                // Si je suis sur un autre slide
                 else 
                 {
-                    isInContainer = true;
-                    isOut = false;
-                    $(window).scrollTop(container.offset().top);
-
-                    nextSlide();
+                    // Si j'ai assez scroll
+                    if(iteration > 2)
+                    {
+                        isInContainer = true;
+                        isOut = false;
+                        $(window).scrollTop(container.offset().top);
+                        iteration = 0;
+                        nextSlide();
+                    }
+                    else 
+                    {
+                        iteration++;
+                        switch_cover.css('backdrop-filter', 'blur('+iteration*2+'px)');
+                    }
                 }
             }
+            // Si je scroll vers le haut
             else
             {
+                // Si je suis sur le premier slide
                 if(index == 0)
                 {
-                    isInContainer = false;
-                    isOut = false;
-                    $("body").css("overflow", "auto");
-                    header.animate({
-                        top: 0,
-                    }, 500);
+                    // Si j'ai assez scroll
+                    if(iteration > 2)
+                    {
+                        isInContainer = false;
+                        isOut = false;
+                        $("body").css("overflow", "auto");
+                        selectorDisappear();
+                        disappear(0);
+                        toggleHeader();
+                    }
+                    else 
+                    {
+                        iteration++;
+                        switch_cover.css('backdrop-filter', 'blur('+iteration*2+'px)');
+                    }
                 }
+                // Si je suis sur un autre slide
                 else
                 {
                     isInContainer = true;
                     isOut = false;
                     $(window).scrollTop(container.offset().top);
-
-
-                    prevSlide();
+                    // Si j'ai assez scroll
+                    if(iteration > 2)
+                    {
+                        iteration = 0;
+                        prevSlide();
+                    }
+                    else 
+                    {
+                        iteration++;
+                        switch_cover.css('backdrop-filter', 'blur('+iteration*2+'px)');
+                    }
                 }
             }
         }
@@ -141,6 +219,9 @@ $(document).ready(function()
         let title = $(slide).find('.title');
         let text = $(slide).find('.text');
 
+        checkSlides();
+
+
         setTimeout(function()
         {
             subtitle.animate({
@@ -166,6 +247,7 @@ $(document).ready(function()
         }, 100);
 
         
+        
     }
 
     function disappear(index)
@@ -178,12 +260,12 @@ $(document).ready(function()
 
         setTimeout(function()
         {
-            subtitle.animate({
+            text.animate({
                 top: 30,
                 opacity: 0,
             }, 400, function()
             {
-                subtitle.css('top', '-30px');
+                text.css('top', '-30px');
             });
         }, 0);
 
@@ -196,25 +278,21 @@ $(document).ready(function()
             {
                 title.css('top', '-30px');
             });
-        }, 50);
+        }, 25);
 
         setTimeout(function()
         {
-            text.animate({
+            subtitle.animate({
                 top: 30,
                 opacity: 0,
             }, 400, function()
             {
-                text.css('top', '-30px');
+                subtitle.css('top', '-30px');
             });
-        }, 100);
+        }, 50);
     }
 
    
-
-    
-
-    
 
     function nextSlide()
     {
@@ -274,10 +352,14 @@ $(document).ready(function()
 
 
         switch_container.css('transform', 'translateX(-' + index * 100 + '%)');
+        switch_cover.css('backdrop-filter', 'blur(0px)');
+
+
     }
 
     function getCurrentSlide()
     {
+
         let children = switch_container.children();
         let index = 0;
         children.each(function(i, e)
@@ -290,6 +372,70 @@ $(document).ready(function()
         return index;
     }
 
+    function checkSlides() {
+        let index = getCurrentSlide();
+    
+        const arrow_left = container.find('.left');
+        const arrow_right = container.find('.right');
+        const switch_container_children_length = switch_container_children.length;
+    
+        function showArrow(arrow, opacity, display) {
+            arrow.stop(true, true).css('display', display).animate({ opacity: opacity }, 1000);
+        }
+        function hideArrow(arrow, opacity, display) {
+            arrow.stop(true, true).animate({ opacity: opacity }, 1000, function(){arrow.css('display', display);});
+        }
+    
+        if (selector.css('opacity') == '0') {
+            selector.animate({ opacity: 1 }, 1000);
+        }
+    
+        if (index == 0) {
+            hideArrow(arrow_left, 0, 'none');
+            if (arrow_right.css('display') == 'none') {
+                showArrow(arrow_right, 1, 'flex');
+            }
+        } else if (index == switch_container_children_length - 1) {
+            if (arrow_left.css('display') == 'none') {
+                showArrow(arrow_left, 1, 'flex');
+            }
+            hideArrow(arrow_right, 0, 'none');
+        } else {
+            if (arrow_left.css('display') == 'none') {
+                showArrow(arrow_left, 1, 'flex');
+            }
+            if (arrow_right.css('display') == 'none') {
+                showArrow(arrow_right, 1, 'flex');
+            }
+        }
+    }
+    
+
+    function selectorDisappear()
+    {
+        let arrow_left = container.find('.left');
+        let arrow_right = container.find('.right');
+
+        console.log('disappear');
+
+        selector.animate({
+            opacity: 0,
+        }, 1000);
+
+        arrow_left.animate({
+            opacity: 0,
+        }, 1000, function()
+        {
+            arrow_left.css('display', 'none');
+        });
+        arrow_right.animate({
+            opacity: 0,
+        }, 1000, function()
+        {
+            arrow_right.css('display', 'none');
+        });
+
+    }
 
 
 });
