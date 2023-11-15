@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Favicon à mettre -->
+    <title>Mon portfolio</title>
+
+
+    {% partial 'include/links' %}
+
+
+</head>
+    <body>
+        <!-- {% partial 'elements/preloader' %} -->
+        
+        {% partial 'elements/header' %}
+        {% partial'elements/mouse-cursor' %}
+        
+        <main>
+            {% page %}
+        </main>
+        
+        
+        {% partial 'elements/footer' %}
+
+    {% partial 'include/scripts' %}
+    </body>
+</html>

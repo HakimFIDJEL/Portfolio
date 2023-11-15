@@ -1,0 +1,76 @@
+
+$color1: #FFFFFF;
+$color2: #F0F0F0;
+$color3: #1C1D1F;
+$color4: #333333;
+$color5: #2C3E50;
+
+// Normal
+@font-face {
+    font-family: 'Karla';
+    src: url('../font/Karla/static/Karla-Regular.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+// Bold
+@font-face {
+    font-family: 'Karla';
+    src: url('../font/Karla/static/Karla-Bold.ttf');
+    font-weight: bold;
+    font-style: normal;
+}
+// Semi Bold
+@font-face {
+    font-family: 'Karla';
+    src: url('../font/Karla/static/Karla-SemiBold.ttf');
+    font-weight: 600;
+    font-style: normal;
+}
+// Medium
+@font-face {
+    font-family: 'Karla';
+    src: url('../font/Karla/static/Karla-Medium.ttf');
+    font-weight: 500;
+    font-style: normal;
+}
+// Light
+@font-face {
+    font-family: 'Karla';
+    src: url('../font/Karla/static/Karla-Light.ttf');
+    font-weight: 300;
+    font-style: normal;
+}
+
+*
+{
+    padding: 0;
+    margin: 0;
+    font-family: 'Karla';
+}
+
+html 
+{
+    scroll-behavior: smooth;
+}
+
+
+
+@import './partials/elements/header.scss';
+@import './partials/elements/footer.scss';
+@import './partials/elements/mouse-cursor.scss';
+@import './partials/elements/preloader.scss';
+
+@import './partials/page/home.scss';
+@import './partials/page/all-projects.scss';
+@import './partials/page/last-projects.scss';
+@import './partials/page/about.scss';
+@import './partials/page/contact.scss';
+
+.dummy-container 
+{
+    width: 100%;
+    height: 200px;
+    background-color: white;
+}
+
+

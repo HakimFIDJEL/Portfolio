@@ -1,0 +1,225 @@
+section#last-projects
+{
+    background-color: $color3;
+    color : $color1;
+
+    .header-container
+    {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+
+        @keyframes continuous-scroll-title
+        {
+            0% {
+                transform: translate(0, 0);
+            }
+            100% {
+                transform: translate(-100%, 0);
+            }
+        }
+
+        .slide-title
+        {
+            margin: 55px 0;
+            font-size: 80px;
+            font-weight: bold;
+            text-transform: uppercase;
+            width: 100%;
+            
+            white-space: nowrap;
+
+            display: flex;
+            overflow: hidden;
+            .group
+            {
+                animation : continuous-scroll-title 10s linear infinite;
+            }
+        }
+        .text-container
+        {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            padding: 60px 40px;
+            box-sizing: border-box;
+
+            .text 
+            {
+                font-size: 22px;
+                text-transform: uppercase;
+                font-weight: 300;
+            }
+
+            .click-to-scroll
+            {
+                display: flex;
+                align-items: flex-start;
+                gap: 30px;
+                .scroll-text
+                {
+                    font-size: 22px;
+                    line-height: 16px;
+                    text-transform: uppercase;
+                    font-weight: 300;
+                }
+            }
+        }
+    }
+
+
+    .content-container
+    {
+        width: 100vw;
+        height: 100vh;
+        background-color: $color3; 
+
+        overflow: hidden;
+        position: relative;
+
+        .selector-container
+        {
+            position: absolute;
+            bottom: 40px;
+            left: 0;
+            right: 0;
+            
+            display: flex;
+            align-items:center;
+            justify-content: space-between;
+
+            .selector 
+            {
+
+                display :flex;
+                align-items: center;
+                justify-content: center;
+                gap : 30px;
+    
+                
+                    
+                li 
+                {
+                    list-style: none;
+                    width: 20px;
+                    height: 20px;
+                }
+            }
+
+            
+        }
+
+
+        .switch-container
+        {
+            overflow: visible;
+            display: flex;
+
+            transition : transform 0.75s ease-out;
+            
+
+           
+
+            .switch-box
+            {
+                width: 100vw;
+                height: 100vh;
+                flex-shrink : 0;
+                position: relative;
+
+                
+
+                .background
+                {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    z-index: 0;
+
+                    pointer-events: none;
+                }
+
+                .cover 
+                {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    z-index: 1;
+
+                    opacity: 0.5;
+                    background: linear-gradient(223.43deg, rgba(15, 23, 42, 0) 58.22%, #0F172A 88.25%);
+
+                    pointer-events: none;
+                }
+
+                .content
+                {
+                    position: absolute;
+                    z-index: 2;
+                    bottom: 24%;
+                    left: 40px;
+
+                    backdrop-filter: blur(10px);
+                
+                    display: flex;
+                    flex-direction: column;
+                    max-width: 400px;
+
+                    .title 
+                    {
+                        position: relative;
+                        font-size: 64px;
+                        color: #ffffff;
+                        font-weight: bold;
+                        line-height: 80px;
+                        text-transform: uppercase;
+                        opacity: 0;
+                        top: -40px;
+                    }
+                    .subtitle, .text
+                    {
+                        font-size: 16px;
+                        position: relative;
+                        font-weight: light;
+                        color: #ffffff;
+                        opacity: 0;
+                        top: -40px;
+                    }
+                    .subtitle 
+                    {
+                        text-transform: uppercase;
+                    }
+
+                    
+
+                }
+
+
+
+                &:nth-child(1)
+                {
+                    background-color: red;
+                }
+                &:nth-child(2)
+                {
+                    background-color: blue;
+                }
+                &:nth-child(3)
+                {
+                    background-color: green;
+                }
+                &:nth-child(4)
+                {
+                    background-color: yellow;
+                }
+
+            }
+        }
+    }
+}
