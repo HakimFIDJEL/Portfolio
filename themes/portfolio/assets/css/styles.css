@@ -50,11 +50,20 @@ header {
   box-sizing: border-box;
   padding: 0 45px;
 }
+header.appear {
+  animation: header-appear 0.5s ease-in-out forwards;
+}
+header.disappear {
+  animation: header-disappear 0.5s ease-in-out forwards;
+}
 header .socials, header .nav {
   display: flex;
   align-items: center;
   list-style: none;
   gap: 36px;
+}
+header .socials a, header .socials path, header .nav a, header .nav path {
+  transition: 0.3s ease-out;
 }
 @keyframes nav-link-flip {
   0% {
@@ -74,6 +83,22 @@ header .socials, header .nav {
   100% {
     transform: translateY(0px);
     opacity: 1;
+  }
+}
+@keyframes header-appear {
+  0% {
+    top: -100px;
+  }
+  100% {
+    top: 0px;
+  }
+}
+@keyframes header-disappear {
+  0% {
+    top: 0px;
+  }
+  100% {
+    top: -100px;
   }
 }
 header .nav li {
@@ -195,6 +220,265 @@ section#home .container .line {
   animation: home-slide 0.5s ease-in-out 1.4s forwards;
 }
 
+section#all-projects {
+  color: #FFFFFF;
+  background-color: #2C3E50;
+}
+section#all-projects .header-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+}
+section#all-projects .header-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 200px;
+  background: linear-gradient(to bottom, #1C1D1F, #2C3E50);
+}
+@keyframes continuous-scroll-title {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(-100%, 0);
+  }
+}
+section#all-projects .header-container .slide-title {
+  margin: 55px 0 200px;
+  font-size: 80px;
+  font-weight: bold;
+  text-transform: uppercase;
+  width: 100%;
+  white-space: nowrap;
+  display: flex;
+  overflow: hidden;
+  position: sticky;
+  top: 50%;
+}
+section#all-projects .header-container .slide-title .group {
+  animation: continuous-scroll-title 10s linear infinite;
+}
+section#all-projects .header-container .text-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 400px 40px 60px 40px;
+  box-sizing: border-box;
+}
+section#all-projects .header-container .text-container .text {
+  font-size: 22px;
+  text-transform: uppercase;
+  font-weight: 300;
+}
+section#all-projects .header-container .click-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px 25px 40px;
+  box-sizing: border-box;
+  position: relative;
+}
+section#all-projects .header-container .click-container::after {
+  position: absolute;
+  content: "";
+  right: 40px;
+  left: 40px;
+  bottom: 0;
+  height: 1px;
+  background-color: #d9d9d9;
+}
+section#all-projects .header-container .click-container .click-to-scroll {
+  display: flex;
+  align-items: flex-start;
+  gap: 30px;
+}
+section#all-projects .header-container .click-container .click-to-scroll .scroll-text {
+  font-size: 16px;
+  line-height: 16px;
+  text-transform: uppercase;
+  font-weight: 300;
+}
+section#all-projects .content-container {
+  background-color: #2C3E50;
+}
+section#all-projects .content-container .selector-container {
+  box-sizing: border-box;
+  margin: 80px 40px 0 40px;
+  display: flex;
+  gap: 40px;
+}
+section#all-projects .content-container .selector-container .options-container {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  width: 0px;
+  opacity: 0;
+  overflow: hidden;
+}
+section#all-projects .content-container .selector-container .options-container.appear {
+  animation: options-container-appear 0.2s ease-in-out forwards;
+}
+section#all-projects .content-container .selector-container .options-container.disappear {
+  animation: options-container-disappear 0.2s ease-in-out forwards;
+}
+section#all-projects .content-container .selector-container .options-container .option {
+  box-sizing: border-box;
+  padding: 4px 12px;
+  border-radius: 30px;
+  transition: 0.3s ease-out;
+  cursor: pointer;
+}
+section#all-projects .content-container .selector-container .options-container .option:hover {
+  background-color: #333333;
+}
+section#all-projects .content-container .selector-container .options-container .option.hide {
+  display: none;
+}
+@keyframes options-container-appear {
+  0% {
+    opacity: 0;
+    width: 0px;
+  }
+  100% {
+    opacity: 1;
+    width: 100%;
+  }
+}
+@keyframes options-container-disappear {
+  0% {
+    opacity: 1;
+    width: 100%;
+  }
+  100% {
+    opacity: 0;
+    width: 0px;
+  }
+}
+section#all-projects .content-container .selector-container .selected {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  gap: 60px;
+  padding: 4px 0;
+  cursor: pointer;
+}
+section#all-projects .content-container .selector-container .selected::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background-color: #FFFFFF;
+  transition: 0.2s ease-out;
+}
+section#all-projects .content-container .selector-container .selected.open::after {
+  left: 100%;
+}
+section#all-projects .content-container .selector-container .selected.open .arrow {
+  transform: rotate(-90deg);
+}
+section#all-projects .content-container .selector-container .selected.closed::after {
+  left: 0;
+}
+section#all-projects .content-container .selector-container .selected.closed .arrow {
+  transform: rotate(0deg);
+}
+section#all-projects .content-container .selector-container .selected .text {
+  text-transform: uppercase;
+  font-size: 24px;
+  font-weight: 300;
+}
+section#all-projects .content-container .selector-container .selected .arrow {
+  transition: 0.1s ease-out;
+}
+section#all-projects .content-container .container {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 40px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+section#all-projects .content-container .container .group-container {
+  width: 640px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+  margin: 80px 0;
+  opacity: 0;
+  filter: blur(10px);
+  transform: scale(0.9);
+}
+section#all-projects .content-container .container .group-container.appear {
+  animation: group-appear 0.5s ease-in-out forwards;
+}
+section#all-projects .content-container .container .group-container.disappear {
+  animation: group-disappear 0.2s ease-in-out forwards;
+}
+@keyframes group-appear {
+  0% {
+    opacity: 0;
+    filter: blur(10px);
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0px);
+    transform: scale(1);
+  }
+}
+@keyframes group-disappear {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+}
+section#all-projects .content-container .container .group-container .img-container {
+  width: 100%;
+  height: 400px;
+  background-color: white;
+  transition: 0.4s ease-out;
+  cursor: pointer;
+}
+section#all-projects .content-container .container .group-container .img-container:hover {
+  transform: scale(1.05);
+}
+section#all-projects .content-container .container .group-container .text-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px 0;
+  box-sizing: border-box;
+}
+section#all-projects .content-container .container .group-container .text-container .title {
+  font-weight: 500;
+  font-size: 20px;
+  text-transform: uppercase;
+  color: #FFFFFF;
+}
+section#all-projects .content-container .container .group-container .text-container .subtitle {
+  font-weight: 300;
+  font-size: 16px;
+  opacity: 0.7;
+  text-transform: uppercase;
+  color: #FFFFFF;
+}
+
 section#last-projects {
   background-color: #1C1D1F;
   color: #FFFFFF;
@@ -285,8 +569,14 @@ section#last-projects .content-container .selector-container .arrow {
   font-weight: 300;
   cursor: pointer;
   position: absolute;
-  display: none;
   opacity: 0;
+  top: 30px;
+}
+section#last-projects .content-container .selector-container .arrow.appear {
+  animation: selector-appear 0.5s ease-out forwards;
+}
+section#last-projects .content-container .selector-container .arrow.disappear {
+  animation: selector-disappear 0.5s ease-out forwards;
 }
 section#last-projects .content-container .selector-container .arrow.right {
   right: 45px;
@@ -308,7 +598,15 @@ section#last-projects .content-container .selector-container .selector {
   align-items: center;
   justify-content: center;
   gap: 30px;
+  position: relative;
+  top: 30px;
   opacity: 0;
+}
+section#last-projects .content-container .selector-container .selector.appear {
+  animation: selector-appear 0.5s ease-out forwards;
+}
+section#last-projects .content-container .selector-container .selector.disappear {
+  animation: selector-disappear 0.5s ease-out forwards;
 }
 section#last-projects .content-container .selector-container .selector li {
   list-style: none;
@@ -353,6 +651,26 @@ section#last-projects .content-container .selector-container .selector li input[
 section#last-projects .content-container .selector-container .selector li input[type=radio]:checked::before {
   outline: 2px solid white;
   animation: circleAnimation 0.5s ease-out forwards;
+}
+@keyframes selector-appear {
+  0% {
+    opacity: 0;
+    top: 30px;
+  }
+  100% {
+    opacity: 1;
+    top: 0;
+  }
+}
+@keyframes selector-disappear {
+  0% {
+    opacity: 1;
+    top: 0;
+  }
+  100% {
+    opacity: 0;
+    top: 30px;
+  }
 }
 section#last-projects .content-container .switch-container {
   overflow: visible;
@@ -416,6 +734,44 @@ section#last-projects .content-container .switch-container .switch-box .content 
 section#last-projects .content-container .switch-container .switch-box .content .subtitle {
   text-transform: uppercase;
 }
+section#last-projects .content-container .switch-container .switch-box .content.appear .subtitle {
+  animation: content-appear 0.5s ease-out forwards;
+}
+section#last-projects .content-container .switch-container .switch-box .content.appear .title {
+  animation: content-appear 0.5s ease-out 0.2s forwards;
+}
+section#last-projects .content-container .switch-container .switch-box .content.appear .text {
+  animation: content-appear 0.5s ease-out 0.4s forwards;
+}
+section#last-projects .content-container .switch-container .switch-box .content.disappear .text {
+  animation: content-disappear 0.5s ease-out forwards;
+}
+section#last-projects .content-container .switch-container .switch-box .content.disappear .title {
+  animation: content-disappear 0.5s ease-out 0.2s forwards;
+}
+section#last-projects .content-container .switch-container .switch-box .content.disappear .subtitle {
+  animation: content-disappear 0.5s ease-out 0.4s forwards;
+}
+@keyframes content-appear {
+  0% {
+    opacity: 0;
+    top: -40px;
+  }
+  100% {
+    opacity: 1;
+    top: 0px;
+  }
+}
+@keyframes content-disappear {
+  0% {
+    opacity: 1;
+    top: 0px;
+  }
+  100% {
+    opacity: 0;
+    top: 40px;
+  }
+}
 section#last-projects .content-container .switch-container .switch-box:nth-child(1) {
   background-color: red;
 }
@@ -426,7 +782,7 @@ section#last-projects .content-container .switch-container .switch-box:nth-child
   background-color: green;
 }
 section#last-projects .content-container .switch-container .switch-box:nth-child(4) {
-  background-color: yellow;
+  background-color: orange;
 }
 
 .dummy-container {

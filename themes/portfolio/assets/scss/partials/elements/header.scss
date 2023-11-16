@@ -7,6 +7,13 @@ header
     height: 80px;
     width: 100%;
 
+  
+    // backdrop-filter: blur(20px);
+
+
+     
+      
+
 
 
     display: flex;
@@ -15,12 +22,26 @@ header
     box-sizing: border-box;
     padding: 0 45px;
 
+    &.appear
+    {
+        animation: header-appear 0.5s ease-in-out forwards;
+    }
+    &.disappear
+    {
+        animation: header-disappear 0.5s ease-in-out forwards;
+    }
+
     .socials , .nav
     {
         display: flex;
         align-items: center;
         list-style: none;
         gap : 36px;
+
+        a, path 
+        {
+            transition: 0.3s ease-out;
+        }
     }
 
     @keyframes nav-link-flip
@@ -44,6 +65,23 @@ header
         100% {
             transform: translateY(0px);
             opacity: 1;
+        }
+    }
+
+    @keyframes header-appear {
+        0%{
+            top : -100px;
+        }
+        100%{
+            top : 0px;
+        }
+    }
+    @keyframes header-disappear {
+        0%{
+            top : 0px;
+        }
+        100%{
+            top : -100px;
         }
     }
     

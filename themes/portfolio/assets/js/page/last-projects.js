@@ -214,82 +214,37 @@ $(document).ready(function()
     function appear(index)
     {
         let slide = switch_container_children[index];
-
-        let subtitle = $(slide).find('.subtitle');
-        let title = $(slide).find('.title');
-        let text = $(slide).find('.text');
+        let content = $(slide).find('.content');
 
         checkSlides();
 
-
-        setTimeout(function()
-        {
-            subtitle.animate({
-                top: 0,
-                opacity: 1,
-            }, 400);
-        }, 0);
-
-        setTimeout(function()
-        {
-            title.animate({
-                top: 0,
-                opacity: 1,
-            }, 400);
-        }, 50);
-
-        setTimeout(function()
-        {
-            text.animate({
-                top: 0,
-                opacity: 1,
-            }, 400);
-        }, 100);
-
         
-        
+
+        $(content).children().each(function(i, e)
+        {
+            $(e).css('opacity', '0');
+            $(e).css('top', '-40px');
+        });
+        $(content).removeClass('disappear');
+        $(content).addClass('appear');
+
     }
 
     function disappear(index)
     {
         let slide = switch_container_children[index];
 
-        let subtitle = $(slide).find('.subtitle');
-        let title = $(slide).find('.title');
-        let text = $(slide).find('.text');
+        let content = $(slide).find('.content');
 
-        setTimeout(function()
-        {
-            text.animate({
-                top: 30,
-                opacity: 0,
-            }, 400, function()
-            {
-                text.css('top', '-30px');
-            });
-        }, 0);
+        checkSlides();
 
-        setTimeout(function()
+        $(content).children().each(function(i, e)
         {
-            title.animate({
-                top: 30,
-                opacity: 0,
-            }, 400, function()
-            {
-                title.css('top', '-30px');
-            });
-        }, 25);
-
-        setTimeout(function()
-        {
-            subtitle.animate({
-                top: 30,
-                opacity: 0,
-            }, 400, function()
-            {
-                subtitle.css('top', '-30px');
-            });
-        }, 50);
+            $(e).css('opacity', '1');
+            $(e).css('top', '0px');
+        });
+        $(content).removeClass('appear');
+        $(content).addClass('disappear');
     }
 
    
@@ -374,39 +329,43 @@ $(document).ready(function()
 
     function checkSlides() {
         let index = getCurrentSlide();
+
+        switch_container_children.each(function(i, e)
+        {
+            $(e).removeClass('appear');
+            $(e).addClass('disappear');
+        });
+
     
         const arrow_left = container.find('.left');
         const arrow_right = container.find('.right');
         const switch_container_children_length = switch_container_children.length;
-    
-        function showArrow(arrow, opacity, display) {
-            arrow.stop(true, true).css('display', display).animate({ opacity: opacity }, 1000);
-        }
-        function hideArrow(arrow, opacity, display) {
-            arrow.stop(true, true).animate({ opacity: opacity }, 1000, function(){arrow.css('display', display);});
-        }
-    
-        if (selector.css('opacity') == '0') {
-            selector.animate({ opacity: 1 }, 1000);
-        }
+        
+        $(selector).removeClass('disappear');
+        $(selector).addClass('appear');
     
         if (index == 0) {
-            hideArrow(arrow_left, 0, 'none');
-            if (arrow_right.css('display') == 'none') {
-                showArrow(arrow_right, 1, 'flex');
+
+            if(arrow_left.css('opacity') != 0)
+            {
+                $(arrow_left).removeClass('appear');
+                $(arrow_left).addClass('disappear');
             }
+            $(arrow_right).removeClass('disappear');
+            $(arrow_right).addClass('appear');
+            
         } else if (index == switch_container_children_length - 1) {
-            if (arrow_left.css('display') == 'none') {
-                showArrow(arrow_left, 1, 'flex');
-            }
-            hideArrow(arrow_right, 0, 'none');
+            $(arrow_right).removeClass('appear');
+            $(arrow_right).addClass('disappear');
+
+            $(arrow_left).removeClass('disappear');
+            $(arrow_left).addClass('appear');
         } else {
-            if (arrow_left.css('display') == 'none') {
-                showArrow(arrow_left, 1, 'flex');
-            }
-            if (arrow_right.css('display') == 'none') {
-                showArrow(arrow_right, 1, 'flex');
-            }
+            $(arrow_left).removeClass('disappear');
+            $(arrow_left).addClass('appear');
+
+            $(arrow_right).removeClass('disappear');
+            $(arrow_right).addClass('appear');
         }
     }
     
@@ -416,24 +375,19 @@ $(document).ready(function()
         let arrow_left = container.find('.left');
         let arrow_right = container.find('.right');
 
-        console.log('disappear');
 
-        selector.animate({
-            opacity: 0,
-        }, 1000);
+        setTimeout(function()
+        {
+            $(selector).removeClass('appear');
+            $(selector).addClass('disappear');
 
-        arrow_left.animate({
-            opacity: 0,
-        }, 1000, function()
-        {
-            arrow_left.css('display', 'none');
-        });
-        arrow_right.animate({
-            opacity: 0,
-        }, 1000, function()
-        {
-            arrow_right.css('display', 'none');
-        });
+            $(arrow_left).removeClass('appear');
+            $(arrow_left).addClass('disappear');
+
+            $(arrow_right).removeClass('appear');
+            $(arrow_right).addClass('disappear');
+        }, 10);
+
 
     }
 
