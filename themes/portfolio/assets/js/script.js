@@ -1,5 +1,6 @@
 var body = $('body');
 var header = $('header');
+var last_projects_status = true;
 
 $(document).ready(function()
 {
@@ -8,8 +9,15 @@ $(document).ready(function()
     $(window).on('wheel', function(e)
     {
         toggleHeader();
+    });
 
-
+    $(document).on('click', '.go-to', function()
+    {
+        deactivateLastProjects();
+        setTimeout(function()
+        {
+            activateLastProjects();
+        }, 1000);
     });
 
 
@@ -66,3 +74,11 @@ function headerDark()
     header.find('svg path').css('fill', '#333333');
 }
 
+function deactivateLastProjects()
+{
+    last_projects_status = false;
+}
+function activateLastProjects()
+{
+    last_projects_status = true;
+}

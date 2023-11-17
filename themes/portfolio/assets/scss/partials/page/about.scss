@@ -1,0 +1,385 @@
+section#about
+{
+    width: 100vw;
+    
+    position: relative;
+
+    
+    .experience-container
+    {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 100px 40px;
+        background-color : $color2;
+
+        .accordeon-container
+        {
+            .accordeon
+            {
+                border-bottom: 1px solid $color3;
+
+                &.active 
+                {
+                    .group-content
+                    {
+                        height: 100px;
+                    }
+                    .group-title .arrow 
+                    {
+                        transform: rotate(90deg);
+                    }
+                    .group-title::after 
+                    {
+                        left: 5%;
+                        right: 5%;
+                    }
+                }
+
+                &:last-child 
+                {
+                    border-bottom: none;
+                }
+                
+                .group-title 
+                {
+
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    padding: 50px 60px 50px 40px;
+                    box-sizing: border-box;
+                    position: relative;
+
+                    &::after 
+                    {
+                        content: '';
+                        position: absolute;
+                        bottom: 0;
+                        left: 50%;
+                        right: 50%;
+                        height: 1px;
+                        background-color: $color3;
+                        transition: 0.3s ease-out;
+                    }
+
+                    .title 
+                    {
+                        font-size: 24px;
+                        font-weight: bold;
+                        color: $color3;
+                        text-transform: uppercase;
+                    }
+
+                    .arrow
+                    {
+                        position: relative;
+                        box-sizing: border-box;
+
+                        width: 50px;
+                        height: 50px;
+
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+
+                        transition: 0.3s ease-out;
+                        cursor: pointer;
+
+                        &:hover 
+                        {
+                            &::after 
+                            {
+                                opacity: 0.2;
+                            }
+                        }
+
+
+                        &::after 
+                        {
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            bottom: 0;
+                            right: 0;
+                            content: '';
+                            border-radius: 50%;
+                            background-color : $color5;
+                            opacity: 0.1;
+                            transition: 0.3s ease-out;
+                        }
+
+                        
+                    }
+                }
+                .group-content
+                {
+                    background-color: lightgreen;
+                    height: 0px;
+                    width: 100%;
+                    box-sizing: border-box;
+
+                    transition: 0.3s ease-out;
+                }
+            }
+        }
+        .cv-container
+        {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: $color3;
+
+            
+            box-sizing: border-box;
+            overflow: hidden;
+            position: relative;
+
+            cursor: pointer;
+
+            &:hover 
+            {
+                a 
+                {
+                    transform: scale(1.05);
+                }
+                &::before 
+                {
+                    transform: scale(2);
+                }
+            }
+            
+            &::before 
+            {
+                position: absolute;
+                content: '';
+                top: 0px;;
+                left: 0;
+                bottom: 0px;
+                right: 0;
+                background-color: $color4;
+                border-radius: 50%;
+                transform: scale(0);
+
+                transition: 0.5s ease-out;
+            }
+
+            a
+            {
+                
+                background-color: $color3;
+                color: white;
+                text-decoration: none;
+                font-size: 24px;
+                font-weight: 300;
+                text-transform: uppercase;
+                transition: 0.3s ease-out;
+                z-index: 1;
+                background-color: transparent;
+
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                padding: 50px;
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+
+    .hero-container
+    {
+        @keyframes about-slide
+        {
+            0%
+            {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            100%
+            {
+                opacity: 1;
+                transform: translateX(0%);
+            }
+        }
+
+        height: 100vh;
+        width: 100%;
+        position: relative;
+        .click-container 
+        {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+    
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+    
+            padding: 0 40px 25px 40px;
+            box-sizing: border-box;
+    
+    
+           
+            .click-to-scroll
+            {
+                display: flex;
+                align-items: flex-start;
+                gap: 30px;
+                color: $color3;
+                text-decoration: none;
+                cursor: pointer;
+                &:hover 
+                {
+                    .scroll-text::before 
+                    {
+                        width: 100%;
+                        left: 0;
+                    }
+    
+                    &.first 
+                    {
+                        .scroll-icon 
+                        {
+                            transform: rotate(-45deg);
+                        }
+                    }
+                    &.second 
+                    {
+                        .scroll-icon 
+                        {
+                            transform: rotate(45deg);
+                        }
+                    }
+    
+                    
+                }
+                .scroll-icon 
+                {
+                    transition: 0.3s ease-out;
+                }
+                .scroll-text
+                {
+                    font-size: 16px;
+                    line-height: 16px;
+                    text-transform: uppercase;
+                    font-weight: 300;
+                    position: relative;
+    
+                    &::before 
+                    {
+                        transition: 0.3s ease-out;
+                        content : '';
+                        position: absolute;
+                        
+                        width: 0;
+                        right: 0;
+    
+                        bottom: -8px;
+                        height: 1px;
+                        background-color: $color3;
+    
+                        
+                    }
+                }
+            }
+        }
+    
+        .title-container 
+        {
+            position: absolute;
+            bottom: 20vh;
+            left: 30px;
+    
+            .title, .name
+            {
+                font-size: 96px;
+                font-weight: bold;
+                color: $color3;
+                text-transform: uppercase;  
+            }
+            .line 
+            {
+                display: flex;
+                .subtitle
+                {
+                    margin-top: 22px;
+                    line-height: 20px;
+                    margin-right: 20px;
+                    font-size: 16px;
+                    color: $color3;
+                    font-weight: 300;
+                    text-transform: uppercase;
+                }
+            }
+    
+            .title 
+            {
+                opacity: 0;
+                transform: translateY(-30px);
+                animation: about-slide 0.5s ease-in-out forwards 0s;
+            }
+            .line
+            {
+                opacity: 0;
+                transform: translateY(-30px);
+                animation: about-slide 0.5s ease-in-out 0s forwards;
+            }
+        }
+    }
+
+    .text-block
+    {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 100px 70px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        background-color: $color3;
+
+        .text 
+        {
+            text-align: center;
+
+            color: white;
+            text-transform: uppercase;
+            font-size: 54px;
+            font-weight: bold;
+
+            span 
+            {
+                position: relative;
+                cursor: pointer;
+                &::after 
+                {
+                    content: '';
+                    position: absolute;
+                    bottom: 0px;
+                    left: 0;
+                    width: 100%;
+                    height: 2px;
+                    background-color: white;
+
+                    transition: 0.3s ease-out;
+                }
+                &:hover 
+                {
+                    &::after
+                    {
+                        bottom: 50%;
+                        height: 4px;
+                    }
+                }
+            }
+
+        }
+
+    }
+
+   
+}

@@ -16,8 +16,25 @@ $(document).ready(function()
 
     let balises = $(".selector li");
 
-    var iteration = 0;
     var isIterating = false;
+    var lastScrollTime = 0;
+
+    // $(document).on('click', '.go-to', function()
+    // {
+
+    //     let ref = $(this).data('ref');
+    //     goTo(switch_container_children.length - 1);
+    //     while(true)
+    //     {
+    //         if(getCurrentSlide() == switch_container_children.length - 1)
+    //         {
+    //             isOut = true;
+    //             isInContainer = false;
+    //             $(window).scrollTop($(ref).offset().top);
+    //             break;
+    //         }
+    //     }
+    // })
 
 
     $(document).on('click', '.selector li', function()
@@ -70,25 +87,19 @@ $(document).ready(function()
         let containerBottom = containerTop + container.height();
         let index = getCurrentSlide();
 
-        // Si le haut de la fenêtre est dans le cadre et que 
-        if(scroll >= containerTop && scroll <= (containerTop + 500) )
+
+        if(scroll >= containerTop && scroll <= (containerTop + 500)  && last_projects_status)
         {
             isInContainer = true;
             if(!isOut)
             {
                 $("body").css("overflow", "hidden");
-                
-                
-
                 toggleHeader();
                 $(window).scrollTop(container.offset().top);
                 checkSlides();
 
                 appear(index);
                 $(switch_container_children[index]).addClass('active');
-                
-              
-                
             }
         }
         else
@@ -98,117 +109,205 @@ $(document).ready(function()
         }
     });
 
-    // Gestion du scroll
-    $(window).on('wheel', function(event)
-    {
 
+    $(window).on('wheel', function(event) {
+        let now = Date.now();
 
-        // Reset si jamais il arrête de scroll
-        if(!isIterating && isInContainer)
+        
+    
+        if (isInContainer && (!isIterating || now - lastScrollTime > 1000)) 
         {
             isIterating = true;
+            lastScrollTime = now;
+            
+
+                let index = getCurrentSlide();
+                // Si je suis dans le container
+                if(isInContainer)
+                {
+                    let delta = event.originalEvent.deltaY;
+                    
+                    // Si je scroll vers le bas
+                    if(delta > 0)
+                    {
+                        // Si je suis sur le dernier slide
+                        if(index == switch_container_children.length - 1)
+                        {
+                            // Si j'ai assez scroll
+                            
+                                isInContainer = false;
+                                isOut = true;
+                                $("body").css("overflow", "auto");
+                                selectorDisappear();
+                                disappear(index);
+                                toggleHeader();
+                        }
+                        // Si je suis sur un autre slide
+                        else 
+                        {
+                            // Si j'ai assez scroll
+                            
+                            isInContainer = true;
+                            isOut = false;
+                            $(window).scrollTop(container.offset().top);
+                            iteration = 0;
+                            nextSlide();
+                            
+                        }
+                    }
+                    // Si je scroll vers le haut
+                    else
+                    {
+                        // Si je suis sur le premier slide
+                        if(index == 0)
+                        {
+                            // Si j'ai assez scroll
+                            
+                                isInContainer = false;
+                                isOut = false;
+                                $("body").css("overflow", "auto");
+                                selectorDisappear();
+                                disappear(0);
+                                toggleHeader();
+                    
+                        }
+                        // Si je suis sur un autre slide
+                        else
+                        {
+                            isInContainer = true;
+                            isOut = false;
+                            $(window).scrollTop(container.offset().top);
+                           
+                                prevSlide();
+                           
+                        }
+                    }
+                    
+                    
+            
+                }
+        }
+        else {
+            switch_cover.css('backdrop-filter', 'blur(4px)');
             setTimeout(function()
             {
-                isIterating = false;
-                iteration = 0;
                 switch_cover.css('backdrop-filter', 'blur(0px)');
             }, 500);
+
+            
         }
-
-
-        
-        let index = getCurrentSlide();
-        // Si je suis dans le container
-        if(isInContainer)
-        {
-          
-
-            let delta = event.originalEvent.deltaY;
-            // Si je scroll vers le bas
-            if(delta > 0)
-            {
-                // Si je suis sur le dernier slide
-                if(index == switch_container_children.length - 1)
-                {
-                    // Si j'ai assez scroll
-                    if(iteration > 2)
-                    {
-                        isInContainer = false;
-                        isOut = true;
-                        $("body").css("overflow", "auto");
-                        selectorDisappear();
-                        disappear(index);
-                        toggleHeader();
-                    }
-                    else 
-                    {
-                        iteration++;
-                        switch_cover.css('backdrop-filter', 'blur('+iteration*2+'px)');
-                    }
-                }
-                // Si je suis sur un autre slide
-                else 
-                {
-                    // Si j'ai assez scroll
-                    if(iteration > 2)
-                    {
-                        isInContainer = true;
-                        isOut = false;
-                        $(window).scrollTop(container.offset().top);
-                        iteration = 0;
-                        nextSlide();
-                    }
-                    else 
-                    {
-                        iteration++;
-                        switch_cover.css('backdrop-filter', 'blur('+iteration*2+'px)');
-                    }
-                }
-            }
-            // Si je scroll vers le haut
-            else
-            {
-                // Si je suis sur le premier slide
-                if(index == 0)
-                {
-                    // Si j'ai assez scroll
-                    if(iteration > 2)
-                    {
-                        isInContainer = false;
-                        isOut = false;
-                        $("body").css("overflow", "auto");
-                        selectorDisappear();
-                        disappear(0);
-                        toggleHeader();
-                    }
-                    else 
-                    {
-                        iteration++;
-                        switch_cover.css('backdrop-filter', 'blur('+iteration*2+'px)');
-                    }
-                }
-                // Si je suis sur un autre slide
-                else
-                {
-                    isInContainer = true;
-                    isOut = false;
-                    $(window).scrollTop(container.offset().top);
-                    // Si j'ai assez scroll
-                    if(iteration > 2)
-                    {
-                        iteration = 0;
-                        prevSlide();
-                    }
-                    else 
-                    {
-                        iteration++;
-                        switch_cover.css('backdrop-filter', 'blur('+iteration*2+'px)');
-                    }
-                }
-            }
-        }
-        
+       
     });
+    
+    
+
+
+    // // Gestion du scroll
+    // $(window).on('wheel', function(event)
+    // {
+    //     // Reset si jamais il arrête de scroll
+    //     if(!isIterating && isInContainer)
+    //     {
+    //         isIterating = true;
+    //         setTimeout(function()
+    //         {
+    //             isIterating = false;
+    //             iteration = 0;
+    //             switch_cover.css('backdrop-filter', 'blur(0px)');
+    //         }, 500);
+    //     }
+
+
+    //     let index = getCurrentSlide();
+    //     // Si je suis dans le container
+    //     if(isInContainer)
+    //     {
+    //         let delta = event.originalEvent.deltaY;
+    //         // Si je scroll vers le bas
+    //         if(delta > 0)
+    //         {
+    //             // Si je suis sur le dernier slide
+    //             if(index == switch_container_children.length - 1)
+    //             {
+    //                 // Si j'ai assez scroll
+    //                 if(iteration > 2)
+    //                 {
+    //                     isInContainer = false;
+    //                     isOut = true;
+    //                     $("body").css("overflow", "auto");
+    //                     selectorDisappear();
+    //                     disappear(index);
+    //                     toggleHeader();
+    //                 }
+    //                 else 
+    //                 {
+    //                     iteration++;
+    //                     switch_cover.css('backdrop-filter', 'blur('+iteration*2+'px)');
+    //                 }
+    //             }
+    //             // Si je suis sur un autre slide
+    //             else 
+    //             {
+    //                 // Si j'ai assez scroll
+    //                 if(iteration > 2)
+    //                 {
+    //                     isInContainer = true;
+    //                     isOut = false;
+    //                     $(window).scrollTop(container.offset().top);
+    //                     iteration = 0;
+    //                     nextSlide();
+    //                 }
+    //                 else 
+    //                 {
+    //                     iteration++;
+    //                     switch_cover.css('backdrop-filter', 'blur('+iteration*2+'px)');
+    //                 }
+    //             }
+    //         }
+    //         // Si je scroll vers le haut
+    //         else
+    //         {
+    //             // Si je suis sur le premier slide
+    //             if(index == 0)
+    //             {
+    //                 // Si j'ai assez scroll
+    //                 if(iteration > 2)
+    //                 {
+    //                     isInContainer = false;
+    //                     isOut = false;
+    //                     $("body").css("overflow", "auto");
+    //                     selectorDisappear();
+    //                     disappear(0);
+    //                     toggleHeader();
+    //                 }
+    //                 else 
+    //                 {
+    //                     iteration++;
+    //                     switch_cover.css('backdrop-filter', 'blur('+iteration*2+'px)');
+    //                 }
+    //             }
+    //             // Si je suis sur un autre slide
+    //             else
+    //             {
+    //                 isInContainer = true;
+    //                 isOut = false;
+    //                 $(window).scrollTop(container.offset().top);
+    //                 // Si j'ai assez scroll
+    //                 if(iteration > 2)
+    //                 {
+    //                     iteration = 0;
+    //                     prevSlide();
+    //                 }
+    //                 else 
+    //                 {
+    //                     iteration++;
+    //                     switch_cover.css('backdrop-filter', 'blur('+iteration*2+'px)');
+    //                 }
+    //             }
+    //         }
+    //     }
+        
+    // });
 
 
     function appear(index)
@@ -341,8 +440,14 @@ $(document).ready(function()
         const arrow_right = container.find('.right');
         const switch_container_children_length = switch_container_children.length;
         
-        $(selector).removeClass('disappear');
-        $(selector).addClass('appear');
+        if(!isOut)
+        {
+            $(selector).removeClass('disappear');
+            $(selector).addClass('appear');
+        }
+        
+
+        
     
         if (index == 0) {
 
@@ -355,6 +460,8 @@ $(document).ready(function()
             $(arrow_right).addClass('appear');
             
         } else if (index == switch_container_children_length - 1) {
+         
+
             $(arrow_right).removeClass('appear');
             $(arrow_right).addClass('disappear');
 
