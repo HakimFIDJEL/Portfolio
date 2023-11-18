@@ -311,8 +311,6 @@ $(document).ready(function()
         balises.eq(index).addClass('active');
         $(balises[index]).find('input').prop('checked', true);
     }
-    
-
-
+ 
 });
 
