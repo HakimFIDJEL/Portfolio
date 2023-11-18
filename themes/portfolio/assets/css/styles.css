@@ -861,6 +861,145 @@ section#about {
   width: 100vw;
   position: relative;
 }
+section#about .block-group-title {
+  text-transform: uppercase;
+  width: 100%;
+  font-size: 20px;
+  font-weight: 300;
+  color: #1C1D1F;
+  border-bottom: 1px solid #1C1D1F;
+  padding: 4px 0;
+}
+section#about .about-container {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 20px 40px 100px 40px;
+  background-color: #F0F0F0;
+}
+section#about .about-container .content-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 160px 40px 160px 60px;
+  gap: 120px;
+}
+section#about .about-container .content-container .image {
+  width: 225px;
+  height: 225px;
+  background-color: white;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+section#about .about-container .content-container .text-container .text {
+  font-size: 40px;
+  font-weight: bold;
+  color: #1C1D1F;
+  text-transform: uppercase;
+}
+section#about .about-container .content-container .text-container .small-text {
+  font-size: 24px;
+  font-weight: 300;
+  color: #1C1D1F;
+  text-transform: uppercase;
+  float: right;
+}
+section#about .competences-container {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 20px 40px 100px 40px;
+  background-color: #F0F0F0;
+}
+section#about .competences-container .content-container {
+  width: 100%;
+  padding: 40px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+section#about .competences-container .content-container .block-container {
+  width: 45%;
+  display: flex;
+  align-items: flex-start;
+  gap: 80px;
+  flex-direction: column;
+}
+section#about .competences-container .content-container .block-container .wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+section#about .competences-container .content-container .block-container .wrapper .logo {
+  height: 100px;
+  width: 100px;
+  background-color: #1C1D1F;
+  flex-shrink: 0;
+}
+section#about .competences-container .content-container .block-container .wrapper .text .title {
+  font-size: 28px;
+  line-height: 40px;
+  font-weight: bold;
+  color: #1C1D1F;
+  text-transform: uppercase;
+}
+section#about .competences-container .content-container .block-container .wrapper .text .subtitle {
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 22px;
+  color: #1C1D1F;
+}
+section#about .competences-container .content-container .skills-container {
+  width: 45%;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 20px;
+}
+section#about .competences-container .content-container .skills-container .skill {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  align-items: center;
+}
+section#about .competences-container .content-container .skills-container .skill .name {
+  background-color: #1C1D1F;
+  height: 100%;
+  width: 20%;
+  font-size: 16px;
+  font-weight: 300;
+  color: white;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+section#about .competences-container .content-container .skills-container .skill .progression-container {
+  width: 80%;
+  height: 100%;
+  background-color: white;
+  position: relative;
+}
+section#about .competences-container .content-container .skills-container .skill .progression-container .progression {
+  height: 100%;
+  width: 80%;
+  opacity: 0.7;
+  background-color: #1C1D1F;
+  transition: 0.3s ease-out;
+}
+section#about .competences-container .content-container .skills-container .skill .progression-container .pourcentage {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 10px;
+  font-size: 16px;
+  color: #1C1D1F;
+  opacity: 0.7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 section#about .experience-container {
   width: 100%;
   box-sizing: border-box;
@@ -938,7 +1077,7 @@ section#about .experience-container .accordeon-container .accordeon .group-conte
   height: 0px;
   width: 100%;
   box-sizing: border-box;
-  transition: 0.3s ease-out;
+  transition: 0.4s ease-in;
 }
 section#about .experience-container .cv-container {
   display: flex;
