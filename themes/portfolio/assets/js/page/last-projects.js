@@ -16,7 +16,21 @@ $(document).ready(function()
     {
         let index = $(this).index();
         let balises = selector_container.find('.selector li');
-        $(window).scrollTop($('.dummy-project').eq(index).offset().top);
+
+        if(index == 0)
+        {
+            $(window).scrollTop($('.dummy-project').eq(index).offset().top + 20);
+        }
+        else if (index == $('.dummy-project').length - 1)
+        {
+            $(window).scrollTop($('.dummy-project').eq(index).offset().top - 20);
+        }
+        else 
+        {
+            $(window).scrollTop($('.dummy-project').eq(index).offset().top);
+        }
+
+
 
         
         balises.each(function(i, e)
@@ -33,7 +47,7 @@ $(document).ready(function()
         {
             return;
         }
-        $(window).scrollTop($('.dummy-project').eq(index - 1).offset().top);
+        $(window).scrollTop($('.dummy-project').eq(index - 1).offset().top + 20);
     });
 
     $(document).on('click', '.selector-container .right', function()
@@ -43,7 +57,7 @@ $(document).ready(function()
         {
             return;
         }
-        $(window).scrollTop($('.dummy-project').eq(index + 1).offset().top);
+        $(window).scrollTop($('.dummy-project').eq(index + 1).offset().top - 20);
     });
 
    
