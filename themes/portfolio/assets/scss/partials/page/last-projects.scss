@@ -122,215 +122,39 @@ section#last-projects
 
     .content-container
     {
-        width: 100vw;
-        height: 100vh;
+        
         background-color: $color3; 
 
         overflow: hidden;
         position: relative;
-        
-
-        .switch-cover
-        {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-
-            backdrop-filter: blur(0px);
-
-            z-index: 3;
-
-            pointer-events: none;
-            transition: all 0.50s ease-in-out;
-        }
-
-        .selector-container
-        {
-            position: absolute;
-            bottom: 40px;
-            left: 0;
-            right: 0;
-            
-            display: flex;
-            align-items:center;
-            justify-content: center;
-
-            z-index : 4;
-
-            .arrow
-            {
-                display :flex;
-                align-items: center;
-                gap : 20px;
-                font-weight: 300;
-                cursor: pointer;
-
-                position: absolute;
-                
-                opacity: 0;
-                top: 30px;
-
-                &.appear
-                {
-                    animation: selector-appear 0.5s ease-out forwards;
-                }
-                &.disappear
-                {
-                    animation: selector-disappear 0.5s ease-out forwards;
-                }
-
-                &.right 
-                {
-                    right: 45px;
-                }
-                &.left
-                {
-                    left: 45px;
-                }
-                svg 
-                {
-                    transition: transform 0.2s ease-out;
-                }
-                &.right:hover
-                {
-                    
-                    svg 
-                    {
-                        transform: translateX(4px);
-                    }
-                }
-                &.left:hover
-                {
-                    svg 
-                    {
-                        transform: translateX(-4px);
-                    }
-                }
-            }
-
-            .selector 
-            {
-
-                display :flex;
-                align-items: center;
-                justify-content: center;
-                gap : 30px;
-                position: relative;
-
-                top: 30px;
-                opacity : 0;
-
-                &.appear
-                {
-                    animation: selector-appear 0.5s ease-out forwards;
-                }
-                &.disappear
-                {
-                    animation: selector-disappear 0.5s ease-out forwards;
-                }
-    
-                
-                    
-                li 
-                {
-                    list-style: none;
-                    width: 20px;
-                    height: 20px;
-
-                    input[type="radio"] 
-                    {
-                        appearance: none;
-                        -webkit-appearance: none;
-                        -moz-appearance: none;
-                        height: 14px;
-                        width: 14px;
-                        border-radius: 50%;
-                        background-color: white;
-                        cursor: pointer;
-                        position: relative;
-                        
-                    }
-                      
-                    @keyframes circleAnimation {
-                    0% {
-                        clip-path: circle(0% at 50% 50%);
-                    }
-                    50% {
-                        clip-path: circle(50% at 50% 50%);
-                    }
-                    100% {
-                        clip-path: circle(100% at 50% 50%);
-                    }
-                }
-                      
-                      
-
-                      input[type="radio"]::before {
-                        content: '';
-                        position: absolute;
-                        width: 22px;
-                        height: 22px;
-                        border-radius: 50%;
-                        background-color: transparent;
-
-                        z-index: -1;
-
-                        top: 50%;
-                        left: 50%;
-                        transform: translate(-50%, -50%);
-
-                        clip-path: circle(0% at 50% 50%);
-                      }
-                      
-                      input[type="radio"]:checked::before {
-                        outline : 2px solid white;
-                        animation : circleAnimation 0.5s ease-out forwards;
-
-                      }
-                      
-                }
-
-               
-            }
-
-            @keyframes selector-appear
-            {
-                0%{
-                    opacity: 0;
-                    top: 30px;
-                }
-                100%{
-                    opacity: 1;
-                    top: 0;
-                }
-            }
-            @keyframes selector-disappear
-            {
-                0%{
-                    opacity: 1;
-                    top: 0;
-                }
-                100%{
-                    opacity: 0;
-                    top: 30px;
-                }
-            }
-
-            
-        }
-
 
         .switch-container
         {
             overflow: visible;
             display: flex;
+            width: 100vw;
+            height: 100vh;
+
 
             transition : transform 0.50s ease-out;
-            
 
-            
+            position: absolute;
+
+            &.active 
+            {
+                position: fixed;
+                top: 0;
+            }
+            &.top 
+            {
+                top: 0;
+                bottom: auto;
+            }
+            &.bottom 
+            {
+                top: auto;
+                bottom: 0;
+            }
 
             .switch-box
             {
@@ -412,15 +236,15 @@ section#last-projects
                     {
                         .subtitle
                         {
-                            animation: content-appear 0.5s ease-out forwards;
+                            animation: content-appear 0.5s ease-out 0.5s forwards;
                         }
                         .title 
                         {
-                            animation: content-appear 0.5s ease-out 0.2s  forwards;
+                            animation: content-appear 0.5s ease-out 0.7s  forwards;
                         }
                         .text
                         {
-                            animation: content-appear 0.5s ease-out 0.4s forwards;
+                            animation: content-appear 0.5s ease-out 0.9s forwards;
                         }  
                     }
 
@@ -486,5 +310,207 @@ section#last-projects
 
             }
         }
+        
+
+        .switch-cover
+        {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+
+            backdrop-filter: blur(0px);
+
+            z-index: 3;
+
+            pointer-events: none;
+            transition: all 0.50s ease-in-out;
+        }
+
+        .selector-container
+        {
+            position: fixed;
+            bottom: 40px;
+            left: 0;
+            right: 0;
+            
+            display: flex;
+            align-items:center;
+            justify-content: center;
+
+            z-index : 4;
+
+            .arrow
+            {
+                display :flex;
+                align-items: center;
+                gap : 20px;
+                font-weight: 300;
+                cursor: pointer;
+
+                position: absolute;
+                
+                opacity: 0;
+                top: 30px;
+
+                &.appear
+                {
+                    animation: selector-appear 0.5s ease-out 0.5s forwards;
+                }
+                &.disappear
+                {
+                    animation: selector-disappear 0.5s ease-out  forwards;
+                }
+
+                &.right 
+                {
+                    right: 45px;
+                }
+                &.left
+                {
+                    left: 45px;
+                }
+                svg 
+                {
+                    transition: transform 0.2s ease-out;
+                }
+                &.right:hover
+                {
+                    
+                    svg 
+                    {
+                        transform: translateX(4px);
+                    }
+                }
+                &.left:hover
+                {
+                    svg 
+                    {
+                        transform: translateX(-4px);
+                    }
+                }
+            }
+
+            .selector 
+            {
+
+                display :flex;
+                align-items: center;
+                justify-content: center;
+                gap : 30px;
+                position: relative;
+
+                top: 30px;
+                opacity : 0;
+
+
+                &.appear
+                {
+                    animation: selector-appear 0.5s ease-out 0.5s forwards;
+                }
+                &.disappear
+                {
+                    animation: selector-disappear 0.5s ease-out  forwards;
+                }
+    
+                
+                    
+                li 
+                {
+                    list-style: none;
+                    width: 20px;
+                    height: 20px;
+
+                    input[type="radio"] 
+                    {
+                        appearance: none;
+                        -webkit-appearance: none;
+                        -moz-appearance: none;
+                        height: 14px;
+                        width: 14px;
+                        border-radius: 50%;
+                        background-color: white;
+                        cursor: pointer;
+                        position: relative;
+                        
+                    }
+                      
+                    @keyframes circleAnimation {
+                    0% {
+                        clip-path: circle(0% at 50% 50%);
+                    }
+                    50% {
+                        clip-path: circle(50% at 50% 50%);
+                    }
+                    100% {
+                        clip-path: circle(100% at 50% 50%);
+                    }
+                }
+                      
+                      
+
+                      input[type="radio"]::before {
+                        content: '';
+                        position: absolute;
+                        width: 22px;
+                        height: 22px;
+                        border-radius: 50%;
+                        background-color: transparent;
+
+                        z-index: -1;
+
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+
+                        clip-path: circle(0% at 50% 50%);
+                      }
+                      
+                      input[type="radio"]:checked::before {
+                        outline : 2px solid white;
+                        animation : circleAnimation 0.5s ease-out  forwards;
+
+                      }
+                      
+                }
+
+               
+            }
+
+            @keyframes selector-appear
+            {
+                0%{
+                    opacity: 0;
+                    top: 30px;
+                }
+                100%{
+                    opacity: 1;
+                    top: 0;
+                }
+            }
+            @keyframes selector-disappear
+            {
+                0%{
+                    opacity: 1;
+                    top: 0;
+                }
+                100%{
+                    opacity: 0;
+                    top: 30px;
+                }
+            }
+
+            
+        }
+
+
+        
+    }
+
+    .dummy-project
+    {
+        width: 100vw;
+        height: 100vh;
     }
 }

@@ -54,7 +54,7 @@ header.appear {
   animation: header-appear 0.5s ease-in-out forwards;
 }
 header.disappear {
-  animation: header-disappear 0.5s ease-in-out forwards;
+  animation: header-disappear 0.5s ease-in-out 0.5s forwards;
 }
 header .socials, header .nav {
   display: flex;
@@ -590,11 +590,136 @@ section#last-projects .header-container .text-container .click-to-scroll .scroll
   background-color: #FFFFFF;
 }
 section#last-projects .content-container {
-  width: 100vw;
-  height: 100vh;
   background-color: #1C1D1F;
   overflow: hidden;
   position: relative;
+}
+section#last-projects .content-container .switch-container {
+  overflow: visible;
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  transition: transform 0.5s ease-out;
+  position: absolute;
+}
+section#last-projects .content-container .switch-container.active {
+  position: fixed;
+  top: 0;
+}
+section#last-projects .content-container .switch-container.top {
+  top: 0;
+  bottom: auto;
+}
+section#last-projects .content-container .switch-container.bottom {
+  top: auto;
+  bottom: 0;
+}
+section#last-projects .content-container .switch-container .switch-box {
+  width: 100vw;
+  height: 100vh;
+  flex-shrink: 0;
+  position: relative;
+}
+section#last-projects .content-container .switch-container .switch-box .background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+section#last-projects .content-container .switch-container .switch-box .cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  opacity: 0.5;
+  background: linear-gradient(223.43deg, rgba(15, 23, 42, 0) 58.22%, #0F172A 88.25%);
+  pointer-events: none;
+}
+section#last-projects .content-container .switch-container .switch-box .content {
+  position: absolute;
+  z-index: 2;
+  bottom: 24%;
+  left: 45px;
+  backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+}
+section#last-projects .content-container .switch-container .switch-box .content .title {
+  position: relative;
+  font-size: 64px;
+  color: #ffffff;
+  font-weight: bold;
+  line-height: 80px;
+  text-transform: uppercase;
+  opacity: 0;
+  top: -40px;
+}
+section#last-projects .content-container .switch-container .switch-box .content .subtitle, section#last-projects .content-container .switch-container .switch-box .content .text {
+  font-size: 16px;
+  position: relative;
+  font-weight: light;
+  color: #ffffff;
+  opacity: 0;
+  top: -40px;
+}
+section#last-projects .content-container .switch-container .switch-box .content .subtitle {
+  text-transform: uppercase;
+}
+section#last-projects .content-container .switch-container .switch-box .content.appear .subtitle {
+  animation: content-appear 0.5s ease-out 0.5s forwards;
+}
+section#last-projects .content-container .switch-container .switch-box .content.appear .title {
+  animation: content-appear 0.5s ease-out 0.7s forwards;
+}
+section#last-projects .content-container .switch-container .switch-box .content.appear .text {
+  animation: content-appear 0.5s ease-out 0.9s forwards;
+}
+section#last-projects .content-container .switch-container .switch-box .content.disappear .text {
+  animation: content-disappear 0.5s ease-out forwards;
+}
+section#last-projects .content-container .switch-container .switch-box .content.disappear .title {
+  animation: content-disappear 0.5s ease-out 0.2s forwards;
+}
+section#last-projects .content-container .switch-container .switch-box .content.disappear .subtitle {
+  animation: content-disappear 0.5s ease-out 0.4s forwards;
+}
+@keyframes content-appear {
+  0% {
+    opacity: 0;
+    top: -40px;
+  }
+  100% {
+    opacity: 1;
+    top: 0px;
+  }
+}
+@keyframes content-disappear {
+  0% {
+    opacity: 1;
+    top: 0px;
+  }
+  100% {
+    opacity: 0;
+    top: 40px;
+  }
+}
+section#last-projects .content-container .switch-container .switch-box:nth-child(1) {
+  background-color: red;
+}
+section#last-projects .content-container .switch-container .switch-box:nth-child(2) {
+  background-color: blue;
+}
+section#last-projects .content-container .switch-container .switch-box:nth-child(3) {
+  background-color: green;
+}
+section#last-projects .content-container .switch-container .switch-box:nth-child(4) {
+  background-color: orange;
 }
 section#last-projects .content-container .switch-cover {
   position: absolute;
@@ -608,7 +733,7 @@ section#last-projects .content-container .switch-cover {
   transition: all 0.5s ease-in-out;
 }
 section#last-projects .content-container .selector-container {
-  position: absolute;
+  position: fixed;
   bottom: 40px;
   left: 0;
   right: 0;
@@ -628,7 +753,7 @@ section#last-projects .content-container .selector-container .arrow {
   top: 30px;
 }
 section#last-projects .content-container .selector-container .arrow.appear {
-  animation: selector-appear 0.5s ease-out forwards;
+  animation: selector-appear 0.5s ease-out 0.5s forwards;
 }
 section#last-projects .content-container .selector-container .arrow.disappear {
   animation: selector-disappear 0.5s ease-out forwards;
@@ -658,7 +783,7 @@ section#last-projects .content-container .selector-container .selector {
   opacity: 0;
 }
 section#last-projects .content-container .selector-container .selector.appear {
-  animation: selector-appear 0.5s ease-out forwards;
+  animation: selector-appear 0.5s ease-out 0.5s forwards;
 }
 section#last-projects .content-container .selector-container .selector.disappear {
   animation: selector-disappear 0.5s ease-out forwards;
@@ -727,117 +852,9 @@ section#last-projects .content-container .selector-container .selector li input[
     top: 30px;
   }
 }
-section#last-projects .content-container .switch-container {
-  overflow: visible;
-  display: flex;
-  transition: transform 0.5s ease-out;
-}
-section#last-projects .content-container .switch-container .switch-box {
+section#last-projects .dummy-project {
   width: 100vw;
   height: 100vh;
-  flex-shrink: 0;
-  position: relative;
-}
-section#last-projects .content-container .switch-container .switch-box .background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 0;
-  pointer-events: none;
-}
-section#last-projects .content-container .switch-container .switch-box .cover {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 1;
-  opacity: 0.5;
-  background: linear-gradient(223.43deg, rgba(15, 23, 42, 0) 58.22%, #0F172A 88.25%);
-  pointer-events: none;
-}
-section#last-projects .content-container .switch-container .switch-box .content {
-  position: absolute;
-  z-index: 2;
-  bottom: 24%;
-  left: 45px;
-  backdrop-filter: blur(10px);
-  display: flex;
-  flex-direction: column;
-  max-width: 400px;
-}
-section#last-projects .content-container .switch-container .switch-box .content .title {
-  position: relative;
-  font-size: 64px;
-  color: #ffffff;
-  font-weight: bold;
-  line-height: 80px;
-  text-transform: uppercase;
-  opacity: 0;
-  top: -40px;
-}
-section#last-projects .content-container .switch-container .switch-box .content .subtitle, section#last-projects .content-container .switch-container .switch-box .content .text {
-  font-size: 16px;
-  position: relative;
-  font-weight: light;
-  color: #ffffff;
-  opacity: 0;
-  top: -40px;
-}
-section#last-projects .content-container .switch-container .switch-box .content .subtitle {
-  text-transform: uppercase;
-}
-section#last-projects .content-container .switch-container .switch-box .content.appear .subtitle {
-  animation: content-appear 0.5s ease-out forwards;
-}
-section#last-projects .content-container .switch-container .switch-box .content.appear .title {
-  animation: content-appear 0.5s ease-out 0.2s forwards;
-}
-section#last-projects .content-container .switch-container .switch-box .content.appear .text {
-  animation: content-appear 0.5s ease-out 0.4s forwards;
-}
-section#last-projects .content-container .switch-container .switch-box .content.disappear .text {
-  animation: content-disappear 0.5s ease-out forwards;
-}
-section#last-projects .content-container .switch-container .switch-box .content.disappear .title {
-  animation: content-disappear 0.5s ease-out 0.2s forwards;
-}
-section#last-projects .content-container .switch-container .switch-box .content.disappear .subtitle {
-  animation: content-disappear 0.5s ease-out 0.4s forwards;
-}
-@keyframes content-appear {
-  0% {
-    opacity: 0;
-    top: -40px;
-  }
-  100% {
-    opacity: 1;
-    top: 0px;
-  }
-}
-@keyframes content-disappear {
-  0% {
-    opacity: 1;
-    top: 0px;
-  }
-  100% {
-    opacity: 0;
-    top: 40px;
-  }
-}
-section#last-projects .content-container .switch-container .switch-box:nth-child(1) {
-  background-color: red;
-}
-section#last-projects .content-container .switch-container .switch-box:nth-child(2) {
-  background-color: blue;
-}
-section#last-projects .content-container .switch-container .switch-box:nth-child(3) {
-  background-color: green;
-}
-section#last-projects .content-container .switch-container .switch-box:nth-child(4) {
-  background-color: orange;
 }
 
 section#about {

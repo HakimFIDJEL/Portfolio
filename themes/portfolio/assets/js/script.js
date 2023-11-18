@@ -6,26 +6,32 @@ $(document).ready(function()
 {
    
 
-    $(window).on('wheel', function(e)
-    {
-        toggleHeader();
-    });
-
-    $(document).on('click', '.go-to', function()
-    {
-        deactivateLastProjects();
-        setTimeout(function()
-        {
-            activateLastProjects();
-        }, 1000);
-    });
-
 
     $(window).on('scroll', function()
     {
         let section_home = $('section#home');
         let section_last_projects = $('section#last-projects');
         let section_all_projects = $('section#all-projects');
+
+        let switch_container = $('#last-projects .switch-container');
+
+        setTimeout(function()
+        {
+            if(switch_container.hasClass('active'))
+            {
+                header.css('top', '0px');
+                header.removeClass('appear');
+                header.addClass('disappear');
+            }
+            else 
+            {
+                header.css('top', '-100px');
+                header.removeClass('disappear');
+                header.addClass('appear');
+            }
+        }, 0);
+
+       
 
 
         if($(window).scrollTop() > section_home.offset().top  && $(window).scrollTop() < section_home.offset().top + section_home.height() - 100)
@@ -49,18 +55,6 @@ $(document).ready(function()
     });
 });
 
-function toggleHeader()
-{
-    if(body.css('overflow') == 'hidden')
-    {
-        header.removeClass('appear');
-        header.addClass('disappear');
-    }
-    else {
-        header.removeClass('disappear');
-        header.addClass('appear');
-    }
-}
 
 function headerLight()
 {
@@ -82,3 +76,4 @@ function activateLastProjects()
 {
     last_projects_status = true;
 }
+

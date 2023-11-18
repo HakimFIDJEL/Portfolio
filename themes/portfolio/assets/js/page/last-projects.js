@@ -1,324 +1,199 @@
 $(document).ready(function()
 {
-
     let container = $('#last-projects .content-container');
-    let switch_container = container.find('.switch-container');
-    let switch_container_children = switch_container.children();
-    let switch_cover = container.find('.switch-cover');
-   
-    let selector = container.find('.selector');
+    let switch_container = $('#last-projects .switch-container');
+    let switch_cover = $('#last-projects .switch-cover');
+    let selector_container = $('#last-projects .selector-container');
+    let dummy;
+    let tempDummy;
+    let isOut;
 
-    let currentChildren = switch_container_children.first();
-    let isInContainer = false;
-    let lastScrollTop = 0;
+    // Vérification au rechargement de la page
 
-    let isOut = false;
-
-    let balises = $(".selector li");
-
-    var isIterating = false;
-    var lastScrollTime = 0;
-
-    // $(document).on('click', '.go-to', function()
-    // {
-
-    //     let ref = $(this).data('ref');
-    //     goTo(switch_container_children.length - 1);
-    //     while(true)
-    //     {
-    //         if(getCurrentSlide() == switch_container_children.length - 1)
-    //         {
-    //             isOut = true;
-    //             isInContainer = false;
-    //             $(window).scrollTop($(ref).offset().top);
-    //             break;
-    //         }
-    //     }
-    // })
-
+    reload();
 
     $(document).on('click', '.selector li', function()
     {
         let index = $(this).index();
-        let old_slide = getCurrentSlide();
-        disappear(old_slide);
+        let balises = selector_container.find('.selector li');
+        $(window).scrollTop($('.dummy-project').eq(index).offset().top);
 
+        
         balises.each(function(i, e)
         {
             $(e).removeClass('active');
         });
         $(this).addClass('active');
-
-        goTo(index);
-
-        setTimeout(function()
-        {
-            appear(index);
-        }, 600);
     });
 
     $(document).on('click', '.selector-container .left', function()
     {
-        let index = getCurrentSlide();
+        let index = dummyAbove();
         if(index == 0)
         {
             return;
         }
-        prevSlide();
+        $(window).scrollTop($('.dummy-project').eq(index - 1).offset().top);
     });
 
     $(document).on('click', '.selector-container .right', function()
     {
-        let index = getCurrentSlide();
-        if(index == switch_container_children.length - 1)
+        let index = dummyAbove();
+        if(index == $('.dummy-project').length - 1)
         {
             return;
         }
-        nextSlide();
+        $(window).scrollTop($('.dummy-project').eq(index + 1).offset().top);
     });
 
-
-
-    // Détecte si on est dans le carousel ou pas
-    $(window).scroll(function()
+   
+    $(window).on('scroll', function(e)
     {
-        let scroll = $(window).scrollTop();
-        let containerTop = container.offset().top;
-        let containerBottom = containerTop + container.height();
-        let index = getCurrentSlide();
-
-
-        if(scroll >= containerTop && scroll <= (containerTop + 500)  && last_projects_status)
+        if(isInContainer())
         {
-            isInContainer = true;
-            if(!isOut)
+            // On ajoute la classe active si c'est pas déjà le cas (règle la position du container)
+            if(!switch_container.hasClass('active'))
             {
-                $("body").css("overflow", "hidden");
-                toggleHeader();
-                $(window).scrollTop(container.offset().top);
-                checkSlides();
-
-                appear(index);
-                $(switch_container_children[index]).addClass('active');
+                switch_container.addClass('active');
             }
-        }
-        else
-        {
-            $("body").css("overflow", "auto");
-            
-        }
-    });
-
-
-    $(window).on('wheel', function(event) {
-        let now = Date.now();
-
-        
-    
-        if (isInContainer && (!isIterating || now - lastScrollTime > 1000)) 
-        {
-            isIterating = true;
-            lastScrollTime = now;
-            
-
-                let index = getCurrentSlide();
-                // Si je suis dans le container
-                if(isInContainer)
-                {
-                    let delta = event.originalEvent.deltaY;
-                    
-                    // Si je scroll vers le bas
-                    if(delta > 0)
-                    {
-                        // Si je suis sur le dernier slide
-                        if(index == switch_container_children.length - 1)
-                        {
-                            // Si j'ai assez scroll
-                            
-                                isInContainer = false;
-                                isOut = true;
-                                $("body").css("overflow", "auto");
-                                selectorDisappear();
-                                disappear(index);
-                                toggleHeader();
-                        }
-                        // Si je suis sur un autre slide
-                        else 
-                        {
-                            // Si j'ai assez scroll
-                            
-                            isInContainer = true;
-                            isOut = false;
-                            $(window).scrollTop(container.offset().top);
-                            iteration = 0;
-                            nextSlide();
-                            
-                        }
-                    }
-                    // Si je scroll vers le haut
-                    else
-                    {
-                        // Si je suis sur le premier slide
-                        if(index == 0)
-                        {
-                            // Si j'ai assez scroll
-                            
-                                isInContainer = false;
-                                isOut = false;
-                                $("body").css("overflow", "auto");
-                                selectorDisappear();
-                                disappear(0);
-                                toggleHeader();
-                    
-                        }
-                        // Si je suis sur un autre slide
-                        else
-                        {
-                            isInContainer = true;
-                            isOut = false;
-                            $(window).scrollTop(container.offset().top);
-                           
-                                prevSlide();
-                           
-                        }
-                    }
-                    
-                    
-            
-                }
-        }
-        else {
-            switch_cover.css('backdrop-filter', 'blur(4px)');
-            setTimeout(function()
+            if(!selector_container.hasClass('active'))
             {
-                switch_cover.css('backdrop-filter', 'blur(0px)');
-            }, 500);
-
-            
+                selectorAppear();
+            }
+            goTo(dummyAbove());
         }
-       
+        else 
+        {
+            switch_container.removeClass('active');
+            selectorDisappear();
+            arrowDisappear();
+            isAboveOrBelow();
+        }
     });
-    
-    
 
-
-    // // Gestion du scroll
-    // $(window).on('wheel', function(event)
-    // {
-    //     // Reset si jamais il arrête de scroll
-    //     if(!isIterating && isInContainer)
-    //     {
-    //         isIterating = true;
-    //         setTimeout(function()
-    //         {
-    //             isIterating = false;
-    //             iteration = 0;
-    //             switch_cover.css('backdrop-filter', 'blur(0px)');
-    //         }, 500);
-    //     }
-
-
-    //     let index = getCurrentSlide();
-    //     // Si je suis dans le container
-    //     if(isInContainer)
-    //     {
-    //         let delta = event.originalEvent.deltaY;
-    //         // Si je scroll vers le bas
-    //         if(delta > 0)
-    //         {
-    //             // Si je suis sur le dernier slide
-    //             if(index == switch_container_children.length - 1)
-    //             {
-    //                 // Si j'ai assez scroll
-    //                 if(iteration > 2)
-    //                 {
-    //                     isInContainer = false;
-    //                     isOut = true;
-    //                     $("body").css("overflow", "auto");
-    //                     selectorDisappear();
-    //                     disappear(index);
-    //                     toggleHeader();
-    //                 }
-    //                 else 
-    //                 {
-    //                     iteration++;
-    //                     switch_cover.css('backdrop-filter', 'blur('+iteration*2+'px)');
-    //                 }
-    //             }
-    //             // Si je suis sur un autre slide
-    //             else 
-    //             {
-    //                 // Si j'ai assez scroll
-    //                 if(iteration > 2)
-    //                 {
-    //                     isInContainer = true;
-    //                     isOut = false;
-    //                     $(window).scrollTop(container.offset().top);
-    //                     iteration = 0;
-    //                     nextSlide();
-    //                 }
-    //                 else 
-    //                 {
-    //                     iteration++;
-    //                     switch_cover.css('backdrop-filter', 'blur('+iteration*2+'px)');
-    //                 }
-    //             }
-    //         }
-    //         // Si je scroll vers le haut
-    //         else
-    //         {
-    //             // Si je suis sur le premier slide
-    //             if(index == 0)
-    //             {
-    //                 // Si j'ai assez scroll
-    //                 if(iteration > 2)
-    //                 {
-    //                     isInContainer = false;
-    //                     isOut = false;
-    //                     $("body").css("overflow", "auto");
-    //                     selectorDisappear();
-    //                     disappear(0);
-    //                     toggleHeader();
-    //                 }
-    //                 else 
-    //                 {
-    //                     iteration++;
-    //                     switch_cover.css('backdrop-filter', 'blur('+iteration*2+'px)');
-    //                 }
-    //             }
-    //             // Si je suis sur un autre slide
-    //             else
-    //             {
-    //                 isInContainer = true;
-    //                 isOut = false;
-    //                 $(window).scrollTop(container.offset().top);
-    //                 // Si j'ai assez scroll
-    //                 if(iteration > 2)
-    //                 {
-    //                     iteration = 0;
-    //                     prevSlide();
-    //                 }
-    //                 else 
-    //                 {
-    //                     iteration++;
-    //                     switch_cover.css('backdrop-filter', 'blur('+iteration*2+'px)');
-    //                 }
-    //             }
-    //         }
-    //     }
-        
-    // });
-
-
-    function appear(index)
+    // Return true si le container est dans la fenêtre
+    function isInContainer()
     {
-        let slide = switch_container_children[index];
-        let content = $(slide).find('.content');
+        let window_top = $(window).scrollTop();
+        let window_bottom = window_top + $(window).height();
+        let container_top = container.offset().top;
+        let container_bottom = container_top + container.outerHeight();
 
-        checkSlides();
+        return ((container_bottom >= window_bottom) && (container_top <= window_top));
+    }
+
+    // Ajoute la classe top ou bottom au container en fonction de la position de la fenêtre
+    function isAboveOrBelow()
+    {
+        if($(window).scrollTop() < container.offset().top)
+        {
+            switch_container.removeClass('active');
+            switch_container.removeClass('bottom');
+            switch_container.addClass('top');
+            dummy = 0;
+        }
+        else 
+        {
+            switch_container.removeClass('active');
+            switch_container.removeClass('top');
+            switch_container.addClass('bottom');
+            dummy = $('.dummy-project').length - 1;
+        }
+
+        $('.switch-box').eq(dummy).removeClass('active');
+        slideDisappear($('.switch-box').eq(dummy));
+    }
+
+    // Fonction appelée au rechargement de la page
+    function reload()
+    {
+        if(isInContainer())
+        {
+            switch_container.addClass('active');
+        }
+        else 
+        {
+            isAboveOrBelow();
+        }
+    }
+
+    // Retourne le div .dummy-project qui est le plus survolé par le fenêtre
+    function dummyAbove() 
+    {
+        let window_top = $(window).scrollTop();
+        let window_bottom = window_top + $(window).height();
+        let dummy_projects = $('.dummy-project');
+        let mostVisibleDummy = null;
+        let maxVisibleHeight = 0;
+    
+        dummy_projects.each(function() {
+            let dummy_project_top = $(this).offset().top;
+            let dummy_project_height = $(this).outerHeight();
+            let dummy_project_bottom = dummy_project_top + dummy_project_height;
+    
+            // Calculer la hauteur visible
+            let visibleTop = Math.max(dummy_project_top, window_top);
+            let visibleBottom = Math.min(dummy_project_bottom, window_bottom);
+            let visibleHeight = Math.max(0, visibleBottom - visibleTop);
+    
+            // Mise à jour si cet élément est plus visible que les précédents
+            if (visibleHeight > maxVisibleHeight) {
+                maxVisibleHeight = visibleHeight;
+                mostVisibleDummy = $(this);
+            }
+        });
+    
+        return mostVisibleDummy.data('ref');
+    }
+
+    // Déplace le container en fonction de l'index
+    function goTo(index)
+    {
+        switch_cover.css('backdrop-filter', 'blur(6px)');
+        updateSelector();
+        setTimeout(function()
+        {
+            switch_cover.css('backdrop-filter', 'blur(0px)');
+        }, 300);
+        let children = switch_container.children();
+        let old_slide = children.filter('.active');
+        let new_slide = children.eq(index);
+
+        children.removeClass('active');
+        new_slide.addClass('active');
+
+        switch_container.css('transform', 'translateX(-' + index * 100 + '%)');
+
+        slideDisappear(old_slide);
+        slideAppear(new_slide);
+
+        arrowVerify();
+
+    }
+
+    // Fonction qui fait disparaitre le contenu d'un slide
+    function slideDisappear(old_slide)
+    {
+        let content = old_slide.find('.content');
+
+        if($(content).hasClass('appear'))
+        {
+            $(content).children().each(function(i, e)
+            {
+                $(e).css('opacity', '1');
+                $(e).css('top', '0px');
+            });
+            $(content).removeClass('appear');
+            $(content).addClass('disappear');
+        }
 
         
+    }
 
+    // Fonction qui fait apparaitre le contenu d'un slide
+    function slideAppear(new_slide)
+    {
+        let content = new_slide.find('.content');
         $(content).children().each(function(i, e)
         {
             $(e).css('opacity', '0');
@@ -326,177 +201,89 @@ $(document).ready(function()
         });
         $(content).removeClass('disappear');
         $(content).addClass('appear');
-
     }
 
-    function disappear(index)
+    // Fonction qui fait apparaitre le selecteur
+    function selectorAppear()
     {
-        let slide = switch_container_children[index];
-
-        let content = $(slide).find('.content');
-
-        checkSlides();
-
-        $(content).children().each(function(i, e)
-        {
-            $(e).css('opacity', '1');
-            $(e).css('top', '0px');
-        });
-        $(content).removeClass('appear');
-        $(content).addClass('disappear');
+        selector_container.addClass('active');
+        selector_container.find('.selector').removeClass('disappear');
+        selector_container.find('.selector').addClass('appear');
     }
 
-   
-
-    function nextSlide()
+    // Fonction qui fait disparaitre le selecteur
+    function selectorDisappear()
     {
-        let current = getCurrentSlide();
+        selector_container.removeClass('active');
+        selector_container.find('.selector').removeClass('appear');
+        selector_container.find('.selector').addClass('disappear');
+    }
 
-        disappear(current);
+    function arrowVerify()
+    {
+        let index = dummyAbove();
+        let arrow_left = $('.selector-container .left');
+        let arrow_right = $('.selector-container .right');
 
-        let next = current + 1;
-        if(next >= switch_container_children.length)
+        switch(index)
         {
-            next = 0;
+            case 0 :
+                if(arrow_left.css('opacity') != 0)
+                {
+                    arrow_left.removeClass('appear');
+                    arrow_left.addClass('disappear');
+                }
+                arrow_right.removeClass('disappear');
+                arrow_right.addClass('appear');
+            break;
+            case $('.dummy-project').length - 1 :
+                arrow_right.removeClass('appear');
+                arrow_right.addClass('disappear');
+    
+                arrow_left.removeClass('disappear');
+                arrow_left.addClass('appear');
+            break;
+            default :
+                arrow_left.removeClass('disappear');
+                arrow_left.addClass('appear');
+
+                arrow_right.removeClass('disappear');
+                arrow_right.addClass('appear');
+            break;
+
         }
-        goTo(next);
-
-        setTimeout(function()
-        {
-            appear(next);
-        }, 600);
     }
 
-    function prevSlide()
+    function arrowDisappear()
     {
-        let current = getCurrentSlide();
+        let arrow_left = $('.selector-container .left');
+        let arrow_right = $('.selector-container .right');
 
-        disappear(current);
-
-        let prev = current - 1;
-        if(prev < 0)
+        if(arrow_left.hasClass('appear'))
         {
-            prev = switch_container_children.length - 1;
+            arrow_left.removeClass('appear');
+            arrow_left.addClass('disappear');
         }
-        goTo(prev);
-
-        setTimeout(function()
+        if(arrow_right.hasClass('appear'))
         {
-            appear(prev);
-        }, 600);
+            arrow_right.removeClass('appear');
+            arrow_right.addClass('disappear');
+        }
     }
-
-    function goTo(index)
+    
+    function updateSelector()
     {
-        let children = switch_container.children();
-        children.each(function(i, e)
-        {
-            $(e).removeClass('active');
-        });
-        $(children[index]).addClass('active');
-
-        
+        let index = dummyAbove();
+        let balises = selector_container.find('.selector li');
         balises.each(function(i, e)
         {
             $(e).removeClass('active');
         });
-
-        $(balises[index]).addClass('active');
+        balises.eq(index).addClass('active');
         $(balises[index]).find('input').prop('checked', true);
-
-
-        switch_container.css('transform', 'translateX(-' + index * 100 + '%)');
-        switch_cover.css('backdrop-filter', 'blur(0px)');
-
-
-    }
-
-    function getCurrentSlide()
-    {
-
-        let children = switch_container.children();
-        let index = 0;
-        children.each(function(i, e)
-        {
-            if($(e).hasClass('active'))
-            {
-                index = i;
-            }
-        });
-        return index;
-    }
-
-    function checkSlides() {
-        let index = getCurrentSlide();
-
-        switch_container_children.each(function(i, e)
-        {
-            $(e).removeClass('appear');
-            $(e).addClass('disappear');
-        });
-
-    
-        const arrow_left = container.find('.left');
-        const arrow_right = container.find('.right');
-        const switch_container_children_length = switch_container_children.length;
-        
-        if(!isOut)
-        {
-            $(selector).removeClass('disappear');
-            $(selector).addClass('appear');
-        }
-        
-
-        
-    
-        if (index == 0) {
-
-            if(arrow_left.css('opacity') != 0)
-            {
-                $(arrow_left).removeClass('appear');
-                $(arrow_left).addClass('disappear');
-            }
-            $(arrow_right).removeClass('disappear');
-            $(arrow_right).addClass('appear');
-            
-        } else if (index == switch_container_children_length - 1) {
-         
-
-            $(arrow_right).removeClass('appear');
-            $(arrow_right).addClass('disappear');
-
-            $(arrow_left).removeClass('disappear');
-            $(arrow_left).addClass('appear');
-        } else {
-            $(arrow_left).removeClass('disappear');
-            $(arrow_left).addClass('appear');
-
-            $(arrow_right).removeClass('disappear');
-            $(arrow_right).addClass('appear');
-        }
     }
     
-
-    function selectorDisappear()
-    {
-        let arrow_left = container.find('.left');
-        let arrow_right = container.find('.right');
-
-
-        setTimeout(function()
-        {
-            $(selector).removeClass('appear');
-            $(selector).addClass('disappear');
-
-            $(arrow_left).removeClass('appear');
-            $(arrow_left).addClass('disappear');
-
-            $(arrow_right).removeClass('appear');
-            $(arrow_right).addClass('disappear');
-        }, 10);
-
-
-    }
 
 
 });
+

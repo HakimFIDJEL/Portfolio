@@ -24,11 +24,11 @@ header
 
     &.appear
     {
-        animation: header-appear 0.5s ease-in-out forwards;
+        animation: header-appear 0.5s ease-in-out  forwards;
     }
     &.disappear
     {
-        animation: header-disappear 0.5s ease-in-out forwards;
+        animation: header-disappear 0.5s ease-in-out 0.5s forwards;
     }
 
     .socials , .nav
