@@ -12,6 +12,7 @@ $(document).ready(function()
         let section_home = $('section#home');
         let section_last_projects = $('section#last-projects');
         let section_all_projects = $('section#all-projects');
+        let contact = $('section#contact');
 
         let switch_container = $('#last-projects .switch-container');
 
@@ -43,6 +44,10 @@ $(document).ready(function()
             headerLight();
         }
         else if($(window).scrollTop() > section_all_projects.offset().top  && $(window).scrollTop() < section_all_projects.offset().top + section_all_projects.height() - 100)
+        {
+            headerLight();
+        }
+        else if($(window).scrollTop() > contact.offset().top  && $(window).scrollTop() < contact.offset().top + contact.height() - 100)
         {
             headerLight();
         }

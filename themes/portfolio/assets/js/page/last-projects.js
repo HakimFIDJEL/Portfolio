@@ -75,11 +75,29 @@ $(document).ready(function()
                 selectorAppear();
             }
             goTo(dummyAbove());
+
+            tempDummy = dummyAbove();
+            if(tempDummy != dummy)
+            {
+                dummy = tempDummy;
+                switch_cover.css('backdrop-filter', 'blur(20px)');
+                setTimeout(function()
+                {
+                    switch_cover.css('backdrop-filter', 'blur(0px)');
+                }, 500);
+                
+            }
         }
         else 
         {
             switch_container.removeClass('active');
-            selectorDisappear();
+
+            if(selector_container.hasClass('active'))
+            {
+                selectorDisappear();
+
+            }
+
             arrowDisappear();
             isAboveOrBelow();
         }
@@ -163,12 +181,9 @@ $(document).ready(function()
     // Déplace le container en fonction de l'index
     function goTo(index)
     {
-        switch_cover.css('backdrop-filter', 'blur(6px)');
+        
         updateSelector();
-        setTimeout(function()
-        {
-            switch_cover.css('backdrop-filter', 'blur(0px)');
-        }, 300);
+        
         let children = switch_container.children();
         let old_slide = children.filter('.active');
         let new_slide = children.eq(index);

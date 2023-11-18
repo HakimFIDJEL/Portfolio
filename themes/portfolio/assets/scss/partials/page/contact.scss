@@ -1,0 +1,202 @@
+section#contact
+{
+    .header-container
+    {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        background-color : $color3;
+        color: white;
+
+        @keyframes continuous-scroll-title
+        {
+            0% {
+                transform: translate(0, 0);
+            }
+            100% {
+                transform: translate(-100%, 0);
+            }
+        }
+
+        .slide-title
+        {
+            margin: 55px 0;
+            font-size: 80px;
+            font-weight: bold;
+            text-transform: uppercase;
+            width: 100%;
+            
+            white-space: nowrap;
+
+            display: flex;
+            overflow: hidden;
+            .group
+            {
+                animation : continuous-scroll-title 10s linear infinite;
+            }
+        }
+        .text-container
+        {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            width: 100%;
+            padding: 60px 40px 110px 40px;
+            box-sizing: border-box;
+            position: relative;
+
+            &::after 
+            {
+                content: '';
+                position: absolute;
+                height: 1px;
+                bottom: 0;
+                left: 40px;
+                right: 40px;
+                background-color: white;
+                z-index: 1;
+            }
+
+            .text 
+            {
+                font-size: 22px;
+                text-transform: uppercase;
+                font-weight: 300;
+            }
+
+            .click-to-scroll
+            {
+                display: flex;
+                align-items: flex-start;
+                gap: 30px;
+                color: white;
+                text-decoration: none;
+                cursor: pointer;
+
+                
+
+                &:hover 
+                {
+                    .scroll-text::before 
+                    {
+                        width: 100%;
+                        left: 0;
+                    }
+                    &.first 
+                    {
+                        .scroll-icon 
+                        {
+                            transform: rotate(-45deg);
+                        }
+                    }
+                    &.second 
+                    {
+                        .scroll-icon 
+                        {
+                            transform: rotate(45deg);
+                        }
+                    }
+                }
+                .scroll-icon 
+                {
+                    transition: 0.3s ease-out;
+                }
+
+                .scroll-text
+                {
+                    font-size: 22px;
+                    line-height: 16px;
+                    text-transform: uppercase;
+                    font-weight: 300;
+                    position: relative;
+
+                    &::before 
+                    {
+                        transition: 0.3s ease-out;
+                        content : '';
+                        position: absolute;
+                        
+                        width: 0;
+                        right: 0;
+
+                        bottom: -8px;
+                        height: 1px;
+                        background-color: $color1;
+
+                        
+                    }
+                }
+            }
+        }
+    }
+
+
+    .content-container 
+    {
+        background-color: $color3;
+                height: 100vh;
+
+        box-sizing: border-box;
+        padding : 140px 140px 160px 40px;
+
+        .hero-container
+        {
+            text-transform: uppercase;
+            color: white;
+            margin-bottom: 120px;
+            .title 
+            {
+                font-size: 96px;
+                font-weight: bold;
+            }
+            .subtitle 
+            {
+                font-size: 22px;
+                font-weight: 300;
+            }   
+        }
+
+        .wrapper 
+        {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+
+            .text 
+            {
+                font-size: 40px; 
+                font-weight: bold;
+                color: white;
+                text-transform: uppercase;
+                padding-left: 32px;
+                box-sizing: border-box;
+                border-left: 2px solid white;
+            }
+
+            form
+            {
+                width: 770px;
+                background-color: lightblue;
+
+                display: flex;
+                justify-content: space-between;
+                flex-direction: column;
+                gap: 60px;
+
+                .row 
+                {
+                    display: flex;
+                    justify-content: space-between;
+                }
+
+                button
+                {
+                    width: 150px;
+                    height: 40px;
+                    align-self: flex-end;
+                }
+            }
+        }
+    }
+}
