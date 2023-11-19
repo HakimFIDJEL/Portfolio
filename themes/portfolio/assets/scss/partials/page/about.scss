@@ -216,7 +216,7 @@ section#about
                     {
                         height: 100px;
                     }
-                    .group-title .arrow 
+                    .group-title .arrow svg
                     {
                         transform: rotate(90deg);
                     }
@@ -274,7 +274,12 @@ section#about
                         align-items: center;
                         justify-content: center;
 
-                        transition: 0.3s ease-out;
+                        transition: 0.3s ease-out 0s;
+                        svg 
+                        {
+                            transition: 0.3s ease-out;
+                        }
+
                         cursor: pointer;
 
                         &:hover 

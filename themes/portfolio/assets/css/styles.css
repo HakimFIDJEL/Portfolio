@@ -151,6 +151,69 @@ header .nav li:hover a .second {
   opacity: 1;
 }
 
+footer {
+  box-sizing: border-box;
+  padding: 50px 45px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid white;
+  background-color: #1C1D1F;
+}
+footer .click-to-scroll {
+  display: flex;
+  align-items: flex-start;
+  gap: 30px;
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+}
+footer .click-to-scroll:hover .scroll-text::before {
+  width: 100%;
+  left: 0;
+}
+footer .click-to-scroll:hover.first .scroll-icon {
+  transform: rotate(-45deg);
+}
+footer .click-to-scroll:hover.second .scroll-icon {
+  transform: rotate(45deg);
+}
+footer .click-to-scroll .scroll-icon {
+  transition: 0.3s ease-out;
+}
+footer .click-to-scroll .scroll-text {
+  font-size: 16px;
+  line-height: 16px;
+  text-transform: uppercase;
+  font-weight: 300;
+  position: relative;
+}
+footer .click-to-scroll .scroll-text::before {
+  transition: 0.3s ease-out;
+  content: "";
+  position: absolute;
+  width: 0;
+  right: 0;
+  bottom: -8px;
+  height: 1px;
+  background-color: #FFFFFF;
+}
+footer .title {
+  color: #FFFFFF;
+  font-size: 20px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+footer .socials {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  gap: 36px;
+}
+footer .socials a, footer .socials path {
+  transition: 0.3s ease-out;
+}
+
 aside.preloader {
   width: 100vw;
   height: 100vh;
@@ -777,7 +840,7 @@ section#last-projects .content-container .selector-container .selector {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 30px;
+  gap: 50px;
   position: relative;
   top: 30px;
   opacity: 0;
@@ -1012,7 +1075,7 @@ section#about .experience-container .accordeon-container .accordeon {
 section#about .experience-container .accordeon-container .accordeon.active .group-content {
   height: 100px;
 }
-section#about .experience-container .accordeon-container .accordeon.active .group-title .arrow {
+section#about .experience-container .accordeon-container .accordeon.active .group-title .arrow svg {
   transform: rotate(90deg);
 }
 section#about .experience-container .accordeon-container .accordeon.active .group-title::after {
@@ -1054,8 +1117,11 @@ section#about .experience-container .accordeon-container .accordeon .group-title
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: 0.3s ease-out;
+  transition: 0.3s ease-out 0s;
   cursor: pointer;
+}
+section#about .experience-container .accordeon-container .accordeon .group-title .arrow svg {
+  transition: 0.3s ease-out;
 }
 section#about .experience-container .accordeon-container .accordeon .group-title .arrow:hover::after {
   opacity: 0.2;
@@ -1451,8 +1517,8 @@ section#contact .content-container .wrapper form .row .group-input {
   width: 47%;
 }
 section#contact .content-container .wrapper form button {
-  width: 150px;
-  height: 40px;
+  padding: 10px 20px;
+  box-sizing: border-box;
   align-self: flex-end;
   display: flex;
   align-items: center;
@@ -1460,75 +1526,72 @@ section#contact .content-container .wrapper form button {
   font-size: 16px;
   font-weight: 300;
   text-transform: uppercase;
+  gap: 10px;
   cursor: pointer;
   border: none;
   outline: none;
-  border-radius: 5px;
+  border-radius: 20px;
   background-color: white;
   color: #1C1D1F;
   transition: 0.3s ease-out;
   position: relative;
+  overflow: hidden;
 }
-section#contact .content-container .wrapper form button::before, section#contact .content-container .wrapper form button::after {
-  position: absolute;
-  content: "";
-  border-left: 1px solid white;
-  border-right: 1px solid white;
+section#contact .content-container .wrapper form button .text-button {
+  position: relative;
+  z-index: 1;
+  transition: 0.3s ease-out;
 }
-section#contact .content-container .wrapper form button::before {
-  top: 0;
-  border-top: 1px solid white;
-  border-bottom: none;
+section#contact .content-container .wrapper form button svg {
+  position: relative;
+  z-index: 1;
 }
-section#contact .content-container .wrapper form button::after {
-  bottom: 0;
-  border-bottom: 1px solid white;
-  border-top: none;
+section#contact .content-container .wrapper form button svg path {
+  stroke: #1C1D1F;
+  transition: 0.3s ease-out;
 }
 section#contact .content-container .wrapper form button:hover, section#contact .content-container .wrapper form button:focus {
-  background-color: #333333;
+  outline: 1px solid white;
+}
+section#contact .content-container .wrapper form button:hover .text-button, section#contact .content-container .wrapper form button:focus .text-button {
   color: white;
-  border-radius: 0px;
+}
+section#contact .content-container .wrapper form button:hover path, section#contact .content-container .wrapper form button:focus path {
+  stroke: white;
 }
 section#contact .content-container .wrapper form button:hover::before, section#contact .content-container .wrapper form button:focus::before {
-  animation: contact-before-appear 0.6s ease-in forwards;
+  transform: scale(1);
 }
 section#contact .content-container .wrapper form button:hover::after, section#contact .content-container .wrapper form button:focus::after {
-  animation: contact-after-appear 0.6s ease-in forwards;
+  transform: scale(1);
 }
-@keyframes contact-before-appear {
-  0% {
-    right: 50%;
-    left: 50%;
-    bottom: 100%;
-  }
-  40% {
-    right: 0;
-    left: 0;
-    bottom: 100%;
-  }
-  100% {
-    right: 0;
-    left: 0;
-    bottom: 50%;
-  }
+section#contact .content-container .wrapper form button::before {
+  content: "";
+  position: absolute;
+  top: -100%;
+  left: -10px;
+  right: -10px;
+  background-color: #333333;
+  border-radius: 50%;
+  aspect-ratio: 1/1;
+  transform: scale(0);
+  transition: transform 0.3s ease-in;
+  z-index: 0;
+  opacity: 0.5;
 }
-@keyframes contact-after-appear {
-  0% {
-    right: 50%;
-    left: 50%;
-    top: 100%;
-  }
-  40% {
-    right: 0;
-    left: 0;
-    top: 100%;
-  }
-  100% {
-    right: 0;
-    left: 0;
-    top: 50%;
-  }
+section#contact .content-container .wrapper form button::after {
+  content: "";
+  position: absolute;
+  top: -100%;
+  left: -10px;
+  right: -10px;
+  background-color: #1C1D1F;
+  border-radius: 50%;
+  aspect-ratio: 1/1;
+  transform: scale(0);
+  transition: transform 0.3s ease-in;
+  transition-delay: 0.15s;
+  z-index: 0;
 }
 
 /*# sourceMappingURL=styles.css.map */

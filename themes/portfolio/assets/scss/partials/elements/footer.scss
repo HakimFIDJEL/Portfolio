@@ -1,0 +1,95 @@
+footer 
+{
+    box-sizing: border-box;
+    padding: 50px 45px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid white;
+    background-color: $color3;
+
+    .click-to-scroll
+    {
+        display: flex;
+        align-items: flex-start;
+        gap: 30px;
+        color: white;
+        text-decoration: none;
+        cursor: pointer;
+
+        
+
+        &:hover 
+        {
+            .scroll-text::before 
+            {
+                width: 100%;
+                left: 0;
+            }
+            &.first 
+            {
+                .scroll-icon 
+                {
+                    transform: rotate(-45deg);
+                }
+            }
+            &.second 
+            {
+                .scroll-icon 
+                {
+                    transform: rotate(45deg);
+                }
+            }
+        }
+        .scroll-icon 
+        {
+            transition: 0.3s ease-out;
+        }
+
+        .scroll-text
+        {
+            font-size: 16px;
+            line-height: 16px;
+            text-transform: uppercase;
+            font-weight: 300;
+            position: relative;
+
+            &::before 
+            {
+                transition: 0.3s ease-out;
+                content : '';
+                position: absolute;
+                
+                width: 0;
+                right: 0;
+
+                bottom: -8px;
+                height: 1px;
+                background-color: $color1;
+
+                
+            }
+        }
+    }
+
+    .title 
+    {
+        color: $color1;
+        font-size: 20px;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    .socials
+    {
+        display: flex;
+        align-items: center;
+        list-style: none;
+        gap : 36px;
+
+        a, path 
+        {
+            transition: 0.3s ease-out;
+        }
+    }
+}

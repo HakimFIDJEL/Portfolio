@@ -236,6 +236,7 @@ section#contact
                         opacity: 0;
                         pointer-events: none;
                         transition: 0.2s ease-in;
+                        
                     }
                     
 
@@ -274,8 +275,8 @@ section#contact
 
                 button
                 {
-                    width: 150px;
-                    height: 40px;
+                    padding: 10px 20px;
+                    box-sizing: border-box;
                     align-self: flex-end;
 
                     display: flex;
@@ -284,95 +285,103 @@ section#contact
                     font-size: 16px;
                     font-weight: 300;
                     text-transform: uppercase;
+                    gap: 10px;
 
                     cursor: pointer;
                     border: none;
                     outline: none;
 
-                    border-radius: 5px;
+                    border-radius: 20px;
 
                     background-color: white;
                     color: $color3;
 
                     transition: 0.3s ease-out;
                     position: relative;
+                    overflow: hidden;
 
-                    &::before, &::after 
+                    .text-button 
                     {
-                        position: absolute;
-                        content : '';
-                        
-                        border-left: 1px solid white;
-                        border-right: 1px solid white;
+                        position: relative;
+                        z-index: 1;
+                        transition: 0.3s ease-out;
                     }
-
-                    &::before 
+                    svg
                     {
-                        top: 0;
-                        border-top: 1px solid white;
-                        border-bottom: none;
-                    }
-                    &::after 
-                    {
-                        bottom: 0;
-                        border-bottom: 1px solid white;
-                        border-top: none;
+                        position: relative;
+                        z-index: 1;
+                        path 
+                        {
+                            stroke: $color3;
+                            transition: 0.3s ease-out;
+                        }
                     }
 
                     &:hover, &:focus
                     {
-                        background-color: $color4;
-                        color: white;
-                        border-radius: 0px;
+                        outline: 1px solid white;
+                        .text-button 
+                        {
+                            color: white;
+                        }
 
+                        path 
+                        {
+                            stroke: white;
+                        }
                         &::before 
                         {
-                            animation : contact-before-appear 0.6s ease-in forwards;
+                            transform: scale(1);
                         }
                         &::after 
                         {
-                            animation : contact-after-appear 0.6s ease-in forwards;
+                            transform: scale(1);
                         }
-
                     }
 
-
-                    @keyframes contact-before-appear
+                    &::before 
                     {
-                        0%{
-                            right: 50%;
-                            left: 50%;
-                            bottom: 100%;
-                        }
-                        40%{
-                            right: 0;
-                            left: 0;
-                            bottom: 100%;
-                        }
-                        100%{
-                            right: 0;
-                            left: 0;
-                            bottom: 50%;
-                        }
+                        content: '';
+                        position: absolute;
+                        top: -100%;
+                        left: -10px;
+                        right: -10px;
+
+                        background-color: $color4;
+                        border-radius: 50%;
+
+                        aspect-ratio: 1/1;
+
+                        transform: scale(0);
+                        transition: transform 0.3s ease-in;
+
+                        z-index: 0;
+                        opacity: 0.5;
                     }
-                    @keyframes contact-after-appear
+
+                    &::after 
                     {
-                        0%{
-                            right: 50%;
-                            left: 50%;
-                            top: 100%;
-                        }
-                        40%{
-                            right: 0;
-                            left: 0;
-                            top: 100%;
-                        }
-                        100%{
-                            right: 0;
-                            left: 0;
-                            top: 50%;
-                        }
+                        content: '';
+                        position: absolute;
+                        top: -100%;
+                        left: -10px;
+                        right: -10px;
+
+                        background-color: $color3;
+                        border-radius: 50%;
+
+                        aspect-ratio: 1/1;
+
+                        transform: scale(0);
+                        transition: transform 0.3s ease-in;
+                        transition-delay: 0.15s;
+
+                        z-index: 0;
                     }
+
+                    
+
+
                 }
             }
         }
