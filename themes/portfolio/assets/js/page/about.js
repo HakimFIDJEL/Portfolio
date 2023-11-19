@@ -1,50 +1,13 @@
 $(document).ready(function()
 {
+    // TODO : Mettre un effet Parallax à la place de la page hero about
 
 
     let skill_container = $("#about .skills-container");
     let skills = $("#about .skills-container .skill");
     let blockTitles = $("#about .block-group-title");
 
-    let followCursor = $('.accordeon-container .follow-cursor');
-    // $(window).on('mousemove', function(e) {
-    //     let mouseX = e.pageX;
-    //     let mouseY = e.pageY;
     
-    //     followCursor.each(function() {
-    //         let $this = $(this);
-    //         let thisX = $this.offset().left + $this.width() / 2;
-    //         let thisY = $this.offset().top + $this.height() / 2;
-    
-    //         let deltaX = mouseX - thisX;
-    //         let deltaY = mouseY - thisY;
-    //         let distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
-    
-    //         if (distance < 100) {
-    //             // Réduire la distance de translation pour un mouvement plus subtil
-    //             let translateX = deltaX / 5;
-    //             let translateY = deltaY / 5;
-
-
-                
-    //                 $this.css({
-    //                     'transform': `translate(${translateX}px, ${translateY}px)`,
-    //                     'transition': 'none'  // Pas de transition pour le suivi instantané
-    //                 });
-    
-                
-    //         } else {
-    //             $this.css({
-    //                 'transform': 'translate(0px, 0px)',
-    //                 'transition': 'transform 0.3s ease-out'  // Remettre la transition pour le retour en douceur
-    //             });
-    //         }
-    //     });
-    // });
-    
-
-
-
 
     $(document).on('click', '.accordeon .arrow', function()
     {
