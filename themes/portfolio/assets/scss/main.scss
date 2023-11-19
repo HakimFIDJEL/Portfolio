@@ -130,6 +130,10 @@ html
     }
 }
 
+.follow-cursor {
+    transition: top 0.3s ease-out, left 0.3s ease-out;
+}
+
 
 @import './partials/elements/header.scss';
 @import './partials/elements/footer.scss';

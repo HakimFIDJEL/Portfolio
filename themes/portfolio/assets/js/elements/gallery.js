@@ -3,6 +3,7 @@ $(document).ready(function()
     let gallery = $('aside#gallery');
     let thumbnail_container = $(".thumbnail-container");
     let tab = [];
+    let followCursor = $('aside#gallery .follow-cursor');
 
     // A mettre dans about.js
     $(document).on('click', '.image-container .image', function()
@@ -52,6 +53,44 @@ $(document).ready(function()
     {
         CloseGallery();
     });
+
+
+    // $(window).on('mousemove', function(e) {
+    //     let mouseX = e.pageX;
+    //     let mouseY = e.pageY;
+    
+    //     followCursor.each(function() {
+    //         let $this = $(this);
+    //         let thisX = $this.offset().left + $this.width() / 2;
+    //         let thisY = $this.offset().top + $this.height() / 2;
+    
+    //         let deltaX = mouseX - thisX;
+    //         let deltaY = mouseY - thisY;
+    //         let distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+    
+    //         if (distance < 75) {
+    //             // Réduire la distance de translation pour un mouvement plus subtil
+    //             let translateX = deltaX / 5;
+    //             let translateY = deltaY / 5;
+
+
+                
+    //                 $this.css({
+    //                     'transform': `translate(${translateX}px, ${translateY}px)`,
+    //                     'transition': 'background-color 0.3s ease-out'  // Pas de transition pour le suivi instantané
+    //                 });
+    
+                
+    //         } else {
+    //             $this.css({
+    //                 'transform': 'translate(0px, 0px)',
+    //                 'transition': 'transform 0.3s ease-out, background-color 0.3s ease-out'  // Remettre la transition pour le retour en douceur
+    //             });
+    //         }
+    //     });
+    // });
+
+
 
     function OpenGallery(images)
     {

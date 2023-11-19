@@ -96,6 +96,10 @@ html {
   }
 }
 
+.follow-cursor {
+  transition: top 0.3s ease-out, left 0.3s ease-out;
+}
+
 header {
   position: fixed;
   z-index: 9999;
@@ -330,6 +334,7 @@ aside#gallery .gallery-container .image-display-container .image-display {
   right: 0;
   transition: 0.5s ease-in-out 0.3s;
   opacity: 0;
+  z-index: 1;
 }
 aside#gallery .gallery-container .image-display-container .arrow-container {
   position: absolute;
@@ -341,13 +346,22 @@ aside#gallery .gallery-container .image-display-container .arrow-container {
   justify-content: center;
   transition: 0.5s ease-in-out 0.6s;
   opacity: 0;
+  z-index: 0;
 }
 aside#gallery .gallery-container .image-display-container .arrow-container .arrow {
-  background-color: lightblue;
+  position: relative;
   width: 40px;
   height: 40px;
   border-radius: 50%;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  transition: 0.3s ease-out;
+}
+aside#gallery .gallery-container .image-display-container .arrow-container .arrow:hover {
+  background-color: rgba(0, 0, 0, 0.8);
 }
 aside#gallery .gallery-container .image-display-container .arrow-container.prev {
   left: 0px;
@@ -359,11 +373,11 @@ aside#gallery .gallery-container .thumbnail-container {
   position: relative;
   height: 100px;
   display: flex;
-  gap: 10px;
+  gap: 15px;
   max-width: 800px;
   overflow: auto;
   box-sizing: border-box;
-  padding-bottom: 20px;
+  padding: 0 10px 20px 10px;
   transform: translateY(20px);
   opacity: 0;
   transition: 0.5s ease-in-out 0.3s;
@@ -373,6 +387,11 @@ aside#gallery .gallery-container .thumbnail-container .thumbnail {
   aspect-ratio: 16/9;
   flex-shrink: 0;
   position: relative;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+aside#gallery .gallery-container .thumbnail-container .thumbnail:hover {
+  transform: scale(1.05);
 }
 aside#gallery .gallery-container .thumbnail-container .thumbnail::after {
   content: "";
@@ -385,10 +404,24 @@ aside#gallery .gallery-container .thumbnail-container .thumbnail::after {
   opacity: 0;
   transition: 0.3s ease-in-out;
 }
+aside#gallery .gallery-container .thumbnail-container .thumbnail.active {
+  animation: animation-opacity-bounce 200ms ease-out;
+}
 aside#gallery .gallery-container .thumbnail-container .thumbnail.active::after {
   opacity: 1;
   right: 0;
   left: 0;
+}
+@keyframes animation-opacity-bounce {
+  0% {
+    transform: scale(1.05);
+  }
+  50% {
+    transform: scale(0.95);
+  }
+  100% {
+    transform: scale(1.05);
+  }
 }
 aside#gallery.active {
   backdrop-filter: blur(5px);
@@ -1046,7 +1079,7 @@ section#last-projects .content-container .selector-container .selector {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 50px;
+  gap: 40px;
   position: relative;
   top: 30px;
   opacity: 0;
@@ -1304,9 +1337,18 @@ section#about .experience-container .accordeon-container .accordeon {
 section#about .experience-container .accordeon-container .accordeon.active .group-title .arrow svg {
   transform: rotate(90deg);
 }
+section#about .experience-container .accordeon-container .accordeon.active .group-title .arrow svg path {
+  fill: white;
+}
 section#about .experience-container .accordeon-container .accordeon.active .group-title::after {
   left: 5%;
   right: 5%;
+}
+section#about .experience-container .accordeon-container .accordeon.active .group-title {
+  background-color: #1C1D1F;
+}
+section#about .experience-container .accordeon-container .accordeon.active .group-title .title {
+  color: white;
 }
 section#about .experience-container .accordeon-container .accordeon:last-child {
   border-bottom: none;
@@ -1318,6 +1360,8 @@ section#about .experience-container .accordeon-container .accordeon .group-title
   padding: 50px 60px 50px 40px;
   box-sizing: border-box;
   position: relative;
+  background-color: #F0F0F0;
+  transition: 0.2s ease-out;
 }
 section#about .experience-container .accordeon-container .accordeon .group-title::after {
   content: "";
@@ -1333,6 +1377,7 @@ section#about .experience-container .accordeon-container .accordeon .group-title
   font-size: 24px;
   font-weight: bold;
   color: #1C1D1F;
+  transition: 0.2s ease-out;
   text-transform: uppercase;
 }
 section#about .experience-container .accordeon-container .accordeon .group-title .arrow {
@@ -1343,7 +1388,7 @@ section#about .experience-container .accordeon-container .accordeon .group-title
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.3s ease-out, background-color 0.3s ease-out, opacity 0.3s ease-out;
+  transition: 0.3s ease-out;
   cursor: pointer;
 }
 section#about .experience-container .accordeon-container .accordeon .group-title .arrow svg {

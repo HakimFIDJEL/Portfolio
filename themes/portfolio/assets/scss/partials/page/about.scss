@@ -252,11 +252,23 @@ section#about
                     .group-title .arrow svg
                     {
                         transform: rotate(90deg);
+                        path 
+                        {
+                            fill : white;
+                        }
                     }
                     .group-title::after 
                     {
                         left: 5%;
                         right: 5%;
+                    }
+                    .group-title 
+                    {
+                        background-color: $color3;
+                        .title 
+                        {
+                            color: white;
+                        }
                     }
                 }
 
@@ -274,6 +286,9 @@ section#about
                     padding: 50px 60px 50px 40px;
                     box-sizing: border-box;
                     position: relative;
+                    background-color: $color2;
+
+                    transition: 0.2s ease-out;
 
                     &::after 
                     {
@@ -292,6 +307,7 @@ section#about
                         font-size: 24px;
                         font-weight: bold;
                         color: $color3;
+                        transition: 0.2s ease-out;
                         text-transform: uppercase;
                     }
 
@@ -306,7 +322,7 @@ section#about
                         align-items: center;
                         justify-content: center;
                     
-                        transition: transform 0.3s ease-out, background-color 0.3s ease-out, opacity 0.3s ease-out;
+                        transition :  0.3s ease-out;
                         svg {
                             transition: 0.3s ease-out;
                         }
