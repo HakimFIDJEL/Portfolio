@@ -1,0 +1,198 @@
+aside#gallery
+{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    backdrop-filter: blur(0px);
+
+    display: none;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+
+    transition: 0.3s ease-in-out;
+
+    .gallery-container
+    {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-direction: column;
+        position: relative;
+
+        height: 70%;
+        top: 5%;
+
+        .image-display-container
+        {
+            position: relative;
+            width: 700px;
+            aspect-ratio: 16/9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            .image-display
+            {
+                position: absolute;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+
+                transition: 0.5s ease-in-out 0.3s;
+                opacity: 0;
+            }
+            .arrow-container
+            {
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                width: 80px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            
+                transition: 0.5s ease-in-out 0.6s;
+                opacity: 0;
+                
+                .arrow 
+                {
+                    background-color: lightblue;
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 50%;
+                    cursor: pointer;
+                }
+
+                &.prev
+                {
+                    left: 0px;
+                }
+                &.next
+                {
+                    right: 0px;
+                }
+
+            }
+        }
+    
+        .thumbnail-container
+        {
+            position: relative;
+            height: 100px;
+            display: flex;
+            gap: 10px;
+            max-width: 800px;
+            overflow: auto;
+            box-sizing: border-box;
+            padding-bottom: 20px;
+
+            transform: translateY(20px);
+            opacity: 0;
+            transition: 0.5s ease-in-out 0.3s;
+
+            .thumbnail
+            {
+                height: 100%;
+                aspect-ratio: 16/9;
+                flex-shrink: 0;
+                position: relative;
+
+                &::after 
+                {
+                    content: "";
+                    position: absolute;
+                    
+                    bottom: -10px;
+                    right: 50%;
+                    left: 50%;
+                    height: 2px;
+
+                    background-color: white;
+                    opacity: 0;
+                    transition: 0.3s ease-in-out;
+                }
+
+                &.active 
+                {
+                    &::after 
+                    {
+                        opacity: 1;
+                        right: 0;
+                        left: 0;
+                    }
+                }
+            }
+        }
+    }
+
+    &.active 
+    {
+        backdrop-filter: blur(5px);
+        opacity: 1;
+        .cover 
+        {
+            opacity: 0.6;
+        }
+        .close 
+        {
+            right: 20px;
+            opacity: 1;
+        }
+        .thumbnail-container
+        {
+            transform: translateY(0px);
+            opacity: 1;
+        }
+        .image-display-container
+        {
+            .image-display
+            {
+                opacity: 1;
+            }
+            .arrow-container
+            {
+                opacity: 1;
+                &.prev
+                {
+                    left: -100px;
+                }
+                &.next
+                {
+                    right: -100px;
+                }
+            }
+        }
+    }
+
+    
+
+    .cover
+    {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        background-color: black;
+        opacity: 0;
+
+        transition : all 0.3s ease-in-out;
+        z-index: 0;
+    }
+    .close 
+    {
+        position: absolute;
+        top: 20px;
+        right: 0px;
+        opacity: 0;
+        z-index: 1;
+        color: white;
+        cursor: pointer;
+        transition: 0.5s ease-in-out 0.3s;
+    }
+}

@@ -11,8 +11,43 @@ section#about
         font-size: 20px;
         font-weight: 300;
         color: $color3;
-        border-bottom: 1px solid $color3;
         padding : 4px 0;
+
+        transition: 0.5s ease-in-out 0.2s;
+
+        overflow: hidden;
+        white-space: nowrap;
+        position: relative;
+
+        .text 
+        {
+            transform :translateY(-110%);
+            transition: 0.3s ease-in;
+        }
+
+        &::after 
+        {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 100%;
+            height: 1px;
+            background-color: $color3;
+            transition: 0.5s ease-in-out 0.2s;
+        }
+
+        &.active
+        {
+            .text 
+            {
+                transform :translateY(0px);
+            }
+            &::after 
+            {
+                right: 0;
+            }
+        }
     }
 
     .about-container
@@ -166,10 +201,12 @@ section#about
                         .progression
                         {
                             height: 100%;
-                            width: 80%;
+                            width: 0%;
                             opacity: 0.7;
                             background-color: $color3;
-                            transition: 0.3s ease-out;
+                            transition: 0.4s ease-in-out;
+
+                            
                         }
                         .pourcentage
                         {
@@ -212,10 +249,6 @@ section#about
 
                 &.active 
                 {
-                    .group-content
-                    {
-                        height: 100px;
-                    }
                     .group-title .arrow svg
                     {
                         transform: rotate(90deg);
@@ -262,33 +295,31 @@ section#about
                         text-transform: uppercase;
                     }
 
-                    .arrow
-                    {
+                    .arrow {
                         position: relative;
                         box-sizing: border-box;
-
+                    
                         width: 50px;
                         height: 50px;
-
+                    
                         display: flex;
                         align-items: center;
                         justify-content: center;
-
-                        transition: 0.3s ease-out 0s;
-                        svg 
-                        {
+                    
+                        transition: transform 0.3s ease-out, background-color 0.3s ease-out, opacity 0.3s ease-out;
+                        svg {
                             transition: 0.3s ease-out;
                         }
-
+                    
                         cursor: pointer;
-
-                        &:hover 
-                        {
-                            &::after 
-                            {
+                    
+                        &:hover {
+                            &::after {
                                 opacity: 0.2;
                             }
                         }
+                    
+                    
 
 
                         &::after 
@@ -310,12 +341,72 @@ section#about
                 }
                 .group-content
                 {
-                    background-color: lightgreen;
                     height: 0px;
                     width: 100%;
-                    box-sizing: border-box;
+                    overflow :hidden;
+                    transition: 0.2s ease-out;
 
-                    transition: 0.4s ease-in;
+                    display: flex;
+                    justify-content: space-between;
+                    gap: 80px;
+
+                  
+                    .image-container
+                    {
+                        display: grid;
+                        grid-template-columns: 1fr 1fr; /* Crée deux colonnes */
+                        grid-template-rows: 1fr 1fr;
+                        gap: 15px;
+
+                        margin: 60px 0px 40px 10px;
+                        .image 
+                        {
+                            width: 200px;
+                            aspect-ratio: 16/9;
+
+                            &:nth-child(1)
+                            {
+                                background-color: lightblue;
+                            }
+                            &:nth-child(2)
+                            {
+                                background-color: lightgreen;
+                            }
+                            &:nth-child(3)
+                            {
+                                background-color: lightpink;
+                            }
+                            &:nth-child(4)
+                            {
+                                background-color: lightyellow;
+                            }
+
+
+                            
+                        }
+                    }
+                    .text-container
+                    {
+                        margin : 60px 30px 40px 0px;
+                        display: flex;
+                        justify-content: space-between;
+                        flex-direction: column;
+                        color: $color3;
+                        .text 
+                        {
+                            font-size: 16px;
+                            font-weight :light;
+
+                        }
+                        .date 
+                        {
+                            align-self: flex-end;
+                            font-size: 14px;
+                            font-weight: 300;
+                            text-transform: uppercase;
+                            opacity: 0.7;
+                        }
+                    }
                 }
             }
         }
@@ -386,19 +477,7 @@ section#about
 
     .hero-container
     {
-        @keyframes about-slide
-        {
-            0%
-            {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            100%
-            {
-                opacity: 1;
-                transform: translateX(0%);
-            }
-        }
+        
 
         height: 100vh;
         width: 100%;
@@ -515,15 +594,8 @@ section#about
             .title 
             {
                 opacity: 0;
-                transform: translateY(-30px);
-                animation: about-slide 0.5s ease-in-out forwards 0s;
             }
-            .line
-            {
-                opacity: 0;
-                transform: translateY(-30px);
-                animation: about-slide 0.5s ease-in-out 0s forwards;
-            }
+            
         }
     }
 

@@ -53,12 +53,89 @@ html
     scroll-behavior: smooth;
 }
 
+.animation-opacity
+{
+    opacity: 0.1;
+    
+
+    &.appear
+    {
+        animation: animation-opacity-appear 0.3s ease-out forwards;
+    }
+    &.disappear
+    {
+        animation: animation-opacity-disappear 0.3s ease-out forwards;
+    }
+    @keyframes animation-opacity-appear
+    {
+        0%
+        {
+            opacity: 0.1;
+        }
+        100%
+        {
+            opacity: 1;
+        }
+    }
+    @keyframes animation-opacity-disappear
+    {
+        0%
+        {
+            opacity: 1;
+        }
+        100%
+        {
+            opacity: 0.1;
+        }
+    }
+}
+
+.animation-translate
+{
+    opacity: 0;
+    transform: translateY(-50px);
+    &.appear
+    {
+        animation: animation-translate-appear 0.5s ease-in forwards;
+    }
+    &.disappear
+    {
+        animation: animation-translate-disappear 0.5s ease-in forwards;
+    }
+    @keyframes animation-translate-appear
+    {
+        0%
+        {
+            opacity: 0;
+            transform: translateY(-50px);
+        }
+        100%
+        {
+            opacity: 1;
+            transform: translateY(0px);
+        }
+    }
+    @keyframes animation-translate-disappear
+    {
+        0%
+        {
+            opacity: 1;
+            transform: translateY(0px);
+        }
+        100%
+        {
+            opacity: 0;
+            transform: translateY(-50px);
+        }
+    }
+}
 
 
 @import './partials/elements/header.scss';
 @import './partials/elements/footer.scss';
 @import './partials/elements/mouse-cursor.scss';
 @import './partials/elements/preloader.scss';
+@import './partials/elements/gallery.scss';
 
 @import './partials/page/home.scss';
 @import './partials/page/all-projects.scss';

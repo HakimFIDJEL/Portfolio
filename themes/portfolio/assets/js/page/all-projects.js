@@ -101,14 +101,15 @@ $(document).ready(function()
             let group = $(this);
             let groupTop = group.offset().top;
 
-            if($(window).scrollTop() > groupTop - 600 && $(window).scrollTop() < groupTop + group.height() + 600)
+            if($(window).scrollTop() > groupTop - 700 && $(window).scrollTop() < groupTop + group.height() + 700)
             {
                 group.removeClass('disappear');
                 group.addClass('appear');
             }
             else 
             {
-                
+                group.removeClass('appear');
+                group.addClass('disappear');
             }
         });
     }

@@ -5,31 +5,7 @@ var last_projects_status = true;
 $(document).ready(function()
 {
    
-    let followCursor = $('.follow-cursor');
-    $(window).on('mousemove', function(e) {
-        let mouseX = e.pageX;
-        let mouseY = e.pageY;
-
-        followCursor.each(function() {
-            let $this = $(this);
-            let thisX = $this.offset().left + $this.width() / 2;
-            let thisY = $this.offset().top + $this.height() / 2;
-
-            let deltaX = mouseX - thisX;
-            let deltaY = mouseY - thisY;
-            let distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
-
-            if(distance < 100) {
-                // Réduire la distance de translation pour un mouvement plus subtil
-                let translateX = deltaX / 5;
-                let translateY = deltaY / 5;
-
-                $this.css('transform', `translate(${translateX}px, ${translateY}px)`);
-            } else {
-                $this.css('transform', 'translate(0px, 0px)');
-            }
-        });
-    });
+    
 
 
     $(window).on('scroll', function()
@@ -38,7 +14,6 @@ $(document).ready(function()
         let section_last_projects = $('section#last-projects');
         let section_all_projects = $('section#all-projects');
         let contact = $('section#contact');
-
         let switch_container = $('#last-projects .switch-container');
 
         setTimeout(function()
@@ -56,6 +31,10 @@ $(document).ready(function()
                 header.addClass('appear');
             }
         }, 0);
+
+
+        animationOpacity();
+        animationTranslate();
 
        
 
@@ -105,5 +84,46 @@ function deactivateLastProjects()
 function activateLastProjects()
 {
     last_projects_status = true;
+}
+
+function animationOpacity()
+{
+    let animation_opacity = $('.animation-opacity');
+    let window_top = $(window).scrollTop();
+
+    animation_opacity.each(function()
+    {
+        let $this = $(this);
+        let this_top = $this.offset().top;
+
+        if(window_top > this_top - 700 && window_top < this_top + $this.height() + 700)
+        {
+            $this.removeClass('disappear');
+            $this.addClass('appear');
+        }
+        else 
+        {
+            $this.removeClass('appear');
+            $this.addClass('disappear');
+        }
+    });
+}
+
+function animationTranslate()
+{
+    let animation_translate = $('.animation-translate');
+    let window_top = $(window).scrollTop();
+
+    animation_translate.each(function()
+    {
+        let $this = $(this);
+        let this_top = $this.offset().top;
+
+        if(window_top > this_top - 700 && window_top < this_top + $this.height() + 700)
+        {
+            $this.removeClass('disappear');
+            $this.addClass('appear');
+        }
+    });
 }
 

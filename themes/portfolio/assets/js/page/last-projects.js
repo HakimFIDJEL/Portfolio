@@ -129,6 +129,7 @@ $(document).ready(function()
             switch_container.removeClass('active');
             switch_container.removeClass('top');
             switch_container.addClass('bottom');
+            switch_container.css('transform', 'translateX(-' + ($('.dummy-project').length - 1) * 100 + '%)');
             dummy = $('.dummy-project').length - 1;
         }
 
@@ -222,14 +223,17 @@ $(document).ready(function()
     // Fonction qui fait apparaitre le contenu d'un slide
     function slideAppear(new_slide)
     {
-        let content = new_slide.find('.content');
-        $(content).children().each(function(i, e)
+        if(switch_container.hasClass('active'))
         {
-            $(e).css('opacity', '0');
-            $(e).css('top', '-40px');
-        });
-        $(content).removeClass('disappear');
-        $(content).addClass('appear');
+            let content = new_slide.find('.content');
+            $(content).children().each(function(i, e)
+            {
+                $(e).css('opacity', '0');
+                $(e).css('top', '-40px');
+            });
+            $(content).removeClass('disappear');
+            $(content).addClass('appear');
+        }
     }
 
     // Fonction qui fait apparaitre le selecteur
@@ -250,37 +254,41 @@ $(document).ready(function()
 
     function arrowVerify()
     {
-        let index = dummyAbove();
-        let arrow_left = $('.selector-container .left');
-        let arrow_right = $('.selector-container .right');
-
-        switch(index)
+        if(switch_container.hasClass('active'))
         {
-            case 0 :
-                if(arrow_left.css('opacity') != 0)
-                {
-                    arrow_left.removeClass('appear');
-                    arrow_left.addClass('disappear');
-                }
-                arrow_right.removeClass('disappear');
-                arrow_right.addClass('appear');
-            break;
-            case $('.dummy-project').length - 1 :
-                arrow_right.removeClass('appear');
-                arrow_right.addClass('disappear');
+            let index = dummyAbove();
+            let arrow_left = $('.selector-container .left');
+            let arrow_right = $('.selector-container .right');
     
-                arrow_left.removeClass('disappear');
-                arrow_left.addClass('appear');
-            break;
-            default :
-                arrow_left.removeClass('disappear');
-                arrow_left.addClass('appear');
-
-                arrow_right.removeClass('disappear');
-                arrow_right.addClass('appear');
-            break;
-
+            switch(index)
+            {
+                case 0 :
+                    if(arrow_left.css('opacity') != 0)
+                    {
+                        arrow_left.removeClass('appear');
+                        arrow_left.addClass('disappear');
+                    }
+                    arrow_right.removeClass('disappear');
+                    arrow_right.addClass('appear');
+                break;
+                case $('.dummy-project').length - 1 :
+                    arrow_right.removeClass('appear');
+                    arrow_right.addClass('disappear');
+        
+                    arrow_left.removeClass('disappear');
+                    arrow_left.addClass('appear');
+                break;
+                default :
+                    arrow_left.removeClass('disappear');
+                    arrow_left.addClass('appear');
+    
+                    arrow_right.removeClass('disappear');
+                    arrow_right.addClass('appear');
+                break;
+    
+            }
         }
+        
     }
 
     function arrowDisappear()
