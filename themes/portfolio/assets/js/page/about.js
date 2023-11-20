@@ -154,6 +154,16 @@ $(document).ready(function()
         let parallax_height = $("#about .hero-container").height();
 
         let parallax = $("#about .parallax");
+
+        let title = $("#about .group-title .title");
+        let title_top = title.offset().top;
+        let title_height = title.height();
+
+        let subtitle = $("#about .group-title .subtitle");
+        let subtitle_top = subtitle.offset().top;
+        let subtitle_height = subtitle.height();
+
+     
     
         let max = 40;
     
@@ -169,7 +179,29 @@ $(document).ready(function()
     
             parallax_offset = Math.min(max, Math.max(0, parallax_offset));
             parallax.css('top', parallax_offset - 20 + '%')
+
+        
         }
+
+        // Le titre est sur notre écran distancé de 100px du bas et du haut de notre fenêtre
+        if (window_top + window_height >= title_top + 200 && window_top <= title_top + title_height - 200)
+        {
+            title.addClass('active');
+        }
+        else 
+        {
+            title.removeClass('active');
+        }
+        if (window_top + window_height >= subtitle_top + 200 && window_top <= subtitle_top + subtitle_height - 200)
+        {
+            subtitle.addClass('active');
+        }
+        else 
+        {
+            subtitle.removeClass('active');
+        }
+
+        
     }
     
 });
