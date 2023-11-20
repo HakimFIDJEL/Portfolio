@@ -5,16 +5,40 @@ $(document).ready(function()
     let tab = [];
     let followCursor = $('aside#gallery .follow-cursor');
 
+    $(document).on('keydown', function(e)
+    {
+        if(gallery.hasClass('active'))
+        {
+            if(e.keyCode == 27)
+            {
+                CloseGallery();
+            }
+            else if(e.keyCode == 37)
+            {
+                prevImage();
+            }
+            else if(e.keyCode == 39)
+            {
+                nextImage();
+            }
+
+        }
+    });
+
+
     // A mettre dans about.js
     $(document).on('click', '.image-container .image', function()
     {
         let images_url = [];
+
+        let index = $(this).index();
+
         let images = $(this).parent().find('.image');
         images.each(function()
         {
             images_url.push($(this).css('background'));
         });
-        OpenGallery(images_url);
+        OpenGallery(images_url, index);
     });
 
     // Changement d'imager au click sur les thumbnails
@@ -27,25 +51,15 @@ $(document).ready(function()
     // Changement d'image au click sur les boutons de navigation
     $(document).on('click', 'aside#gallery .arrow', function()
     {
-        let index = $(".thumbnail.active").attr('data-ref');
         let parent = $(this).parent();
         if(parent.hasClass('prev'))
         {
-            index--;
-            if(index < 0)
-            {
-                index = tab.length - 1;
-            }
+            prevImage();
         }
         else
         {
-            index++;
-            if(index > tab.length - 1)
-            {
-                index = 0;
-            }
+            nextImage();
         }
-        DisplayImage(index);
     });
 
     // Fermeture de la gallerie
@@ -55,54 +69,14 @@ $(document).ready(function()
     });
 
 
-    // $(window).on('mousemove', function(e) {
-    //     let mouseX = e.pageX;
-    //     let mouseY = e.pageY;
-    
-    //     followCursor.each(function() {
-    //         let $this = $(this);
-    //         let thisX = $this.offset().left + $this.width() / 2;
-    //         let thisY = $this.offset().top + $this.height() / 2;
-    
-    //         let deltaX = mouseX - thisX;
-    //         let deltaY = mouseY - thisY;
-    //         let distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
-    
-    //         if (distance < 75) {
-    //             // Réduire la distance de translation pour un mouvement plus subtil
-    //             let translateX = deltaX / 5;
-    //             let translateY = deltaY / 5;
-
-
-                
-    //                 $this.css({
-    //                     'transform': `translate(${translateX}px, ${translateY}px)`,
-    //                     'transition': 'background-color 0.3s ease-out'  // Pas de transition pour le suivi instantané
-    //                 });
-    
-                
-    //         } else {
-    //             $this.css({
-    //                 'transform': 'translate(0px, 0px)',
-    //                 'transition': 'transform 0.3s ease-out, background-color 0.3s ease-out'  // Remettre la transition pour le retour en douceur
-    //             });
-    //         }
-    //     });
-    // });
-
-
-
-    function OpenGallery(images)
+    function OpenGallery(images, index)
     {
         tab = images;
-        gallery.css('display', 'flex');
     
-        setTimeout(function()
-        {
-            gallery.addClass('active');
-            InitialiseThumbnails(tab);
-            DisplayImage(0);
-        }, 5);
+        
+        gallery.addClass('active');
+        InitialiseThumbnails(tab);
+        DisplayImage(index);
     }
 
     function CloseGallery()
@@ -111,7 +85,6 @@ $(document).ready(function()
         setTimeout(function()
         {
             thumbnail_container.html('');
-            gallery.css('display', 'none');
         }, 500);
     }
 
@@ -134,6 +107,28 @@ $(document).ready(function()
         $(".thumbnail[data-ref='"+index+"']").addClass('active');
 
     }   
+
+    function prevImage()
+    {
+        let index = $(".thumbnail.active").attr('data-ref');
+        index--;
+        if(index < 0)
+        {
+            index = tab.length - 1;
+        }
+        DisplayImage(index);
+    }
+
+    function nextImage()
+    {
+        let index = $(".thumbnail.active").attr('data-ref');
+        index++;
+        if(index > tab.length - 1)
+        {
+            index = 0;
+        }
+        DisplayImage(index);
+    }
 
 });
 

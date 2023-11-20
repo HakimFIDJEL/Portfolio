@@ -16,10 +16,6 @@ $(document).ready(function()
         let content = accordeon.find('.group-content');
         
         
-
-
-        
-        
         accordeons.each(function()
         {
             if ($(this).hasClass('active') && this != accordeon[0])
@@ -48,6 +44,11 @@ $(document).ready(function()
             }, 400);
         }
     });
+
+
+
+
+
 
     $(window).on('scroll', function(e)
     {
