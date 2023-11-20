@@ -1511,81 +1511,24 @@ section#about .hero-container {
   width: 100%;
   position: relative;
 }
-section#about .hero-container .click-container {
+section#about .hero-container .parallax-container {
   position: absolute;
+  top: 0;
   bottom: 0;
   left: 0;
   right: 0;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 40px 25px 40px;
-  box-sizing: border-box;
 }
-section#about .hero-container .click-container .click-to-scroll {
-  display: flex;
-  align-items: flex-start;
-  gap: 30px;
-  color: #1C1D1F;
-  text-decoration: none;
-  cursor: pointer;
-}
-section#about .hero-container .click-container .click-to-scroll:hover .scroll-text::before {
-  width: 100%;
-  left: 0;
-}
-section#about .hero-container .click-container .click-to-scroll:hover.first .scroll-icon {
-  transform: rotate(-45deg);
-}
-section#about .hero-container .click-container .click-to-scroll:hover.second .scroll-icon {
-  transform: rotate(45deg);
-}
-section#about .hero-container .click-container .click-to-scroll .scroll-icon {
-  transition: 0.3s ease-out;
-}
-section#about .hero-container .click-container .click-to-scroll .scroll-text {
-  font-size: 16px;
-  line-height: 16px;
-  text-transform: uppercase;
-  font-weight: 300;
+section#about .hero-container .parallax-container .parallax {
   position: relative;
-}
-section#about .hero-container .click-container .click-to-scroll .scroll-text::before {
-  transition: 0.3s ease-out;
-  content: "";
-  position: absolute;
-  width: 0;
+  top: 0;
+  bottom: 0;
+  left: 0;
   right: 0;
-  bottom: -8px;
-  height: 1px;
-  background-color: #1C1D1F;
 }
-section#about .hero-container .title-container {
-  position: absolute;
-  bottom: 20vh;
-  left: 30px;
-}
-section#about .hero-container .title-container .title, section#about .hero-container .title-container .name {
-  font-size: 96px;
-  font-weight: bold;
-  color: #1C1D1F;
-  text-transform: uppercase;
-}
-section#about .hero-container .title-container .line {
-  display: flex;
-}
-section#about .hero-container .title-container .line .subtitle {
-  margin-top: 22px;
-  line-height: 20px;
-  margin-right: 20px;
-  font-size: 16px;
-  color: #1C1D1F;
-  font-weight: 300;
-  text-transform: uppercase;
-}
-section#about .hero-container .title-container .title {
-  opacity: 0;
+section#about .hero-container .parallax-container .parallax img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 section#about .text-block {
   width: 100%;

@@ -55,6 +55,7 @@ $(document).ready(function()
 
         blockTitleAnimation();
         skillAnimation();
+        parallaxAnimation();
         
     });
 
@@ -143,6 +144,15 @@ $(document).ready(function()
                 }
             }
         });
+
+    }
+
+    function parallaxAnimation()
+    {
+        let window_top = $(window).scrollTop();
+        let window_height = $(window).height();
+        let parallax_top = $("#about .hero-container").offset().top;
+        let parallax_height = $("#about .hero-container").height();
 
     }
 });
