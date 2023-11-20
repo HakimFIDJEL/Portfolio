@@ -147,12 +147,29 @@ $(document).ready(function()
 
     }
 
-    function parallaxAnimation()
-    {
+    function parallaxAnimation() {
         let window_top = $(window).scrollTop();
         let window_height = $(window).height();
         let parallax_top = $("#about .hero-container").offset().top;
         let parallax_height = $("#about .hero-container").height();
 
+        let parallax = $("#about .parallax");
+    
+        let max = 40;
+    
+        // Le parallax est sur notre écran
+        if (window_top + window_height >= parallax_top && window_top <= parallax_top + parallax_height)
+        {
+            
+            let scrolled = (window_top - parallax_top) + window_height;
+            let totalScroll = parallax_height + window_height;
+            let scrollRatio = scrolled / totalScroll;
+    
+            let parallax_offset = scrollRatio * max;
+    
+            parallax_offset = Math.min(max, Math.max(0, parallax_offset));
+            parallax.css('top', parallax_offset - 20 + '%')
+        }
     }
+    
 });

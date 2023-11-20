@@ -1507,16 +1507,28 @@ section#about .experience-container .cv-container a {
   height: 100%;
 }
 section#about .hero-container {
-  height: 100vh;
   width: 100%;
+  aspect-ratio: 16/9;
   position: relative;
 }
 section#about .hero-container .parallax-container {
+  height: 100%;
+  width: 100%;
   position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
+  overflow: hidden;
+}
+section#about .hero-container .parallax-container .cover {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.2);
 }
 section#about .hero-container .parallax-container .parallax {
   position: relative;
@@ -1526,9 +1538,9 @@ section#about .hero-container .parallax-container .parallax {
   right: 0;
 }
 section#about .hero-container .parallax-container .parallax img {
+  object-fit: cover;
   width: 100%;
   height: 100%;
-  object-fit: cover;
 }
 section#about .text-block {
   width: 100%;
