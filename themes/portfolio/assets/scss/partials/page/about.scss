@@ -251,7 +251,7 @@ section#about
                 {
                     .group-title .arrow svg
                     {
-                        transform: rotate(90deg);
+                        
                         path 
                         {
                             fill : white;
@@ -330,6 +330,7 @@ section#about
                         cursor: pointer;
                     
                         &:hover {
+                           
                             &::after {
                                 opacity: 0.2;
                             }

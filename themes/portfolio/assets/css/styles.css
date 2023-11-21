@@ -499,7 +499,7 @@ section#home .parallax img {
 }
 section#home .container {
   position: absolute;
-  top: 20%;
+  top: 16%;
   left: 100px;
   right: 100px;
   bottom: 0;
@@ -591,6 +591,7 @@ section#home .container .content .group-about .section.know-more a {
   color: #1C1D1F;
   text-decoration: none;
   position: relative;
+  font-size: 20px;
 }
 section#home .container .content .group-about .section.know-more a::before {
   content: "";
@@ -1421,9 +1422,6 @@ section#about .experience-container {
 }
 section#about .experience-container .accordeon-container .accordeon {
   border-bottom: 1px solid #1C1D1F;
-}
-section#about .experience-container .accordeon-container .accordeon.active .group-title .arrow svg {
-  transform: rotate(90deg);
 }
 section#about .experience-container .accordeon-container .accordeon.active .group-title .arrow svg path {
   fill: white;

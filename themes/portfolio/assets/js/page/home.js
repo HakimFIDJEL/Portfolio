@@ -56,7 +56,7 @@ $(document).ready(function() {
 
             
 
-            parallax.css('top', scroll_ratio * 20 + '%');
+            parallax.css('top', scroll_ratio * 25 + '%');
         }
 
         section.each(function()
