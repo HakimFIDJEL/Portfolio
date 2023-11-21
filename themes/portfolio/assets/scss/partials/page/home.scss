@@ -1,64 +1,201 @@
 section#home
 {
-    width: 100vw;
-    height: 100vh;
-    background-color: $color2;
     position: relative;
 
-    @keyframes home-slide
+    .cover 
     {
-        0%
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 1;
+        background-color: rgb(255, 255, 255, 0.5);
+    }
+
+   
+    .parallax 
+    {
+        width: 100%;
+        aspect-ratio: 1/1;
+        overflow: hidden;
+        img 
         {
-            opacity: 0;
-            transform: translateY(-30px);
-        }
-        100%
-        {
-            opacity: 1;
-            transform: translateX(0%);
+            top: 0;
+            width:100%;
+            position: relative;
+            aspect-ratio: 1/1;
         }
     }
 
     .container 
     {
         position: absolute;
-        bottom: 20vh;
-        left: 30px;
+        top: 20%;
+        left: 100px;
+        right: 100px;
+        bottom: 0;
+    
+        .content
+        {
+            position: absolute;
+            z-index: 1;
+            bottom: 0;
+            right: 0;
+            top:0;
+            left:0;
+            flex-direction: column;
 
-        .title, .name
-        {
-            font-size: 96px;
-            font-weight: bold;
-            color: $color3;
-            text-transform: uppercase;  
-        }
-        .line 
-        {
             display: flex;
-            .subtitle
-            {
-                margin-top: 22px;
-                line-height: 20px;
-                width: 300px;
-                margin-right: 20px;
-                font-size: 16px;
-                color: $color3;
-                font-weight: 300;
-                text-transform: uppercase;
-            }
-        }
+            gap: 180px;
 
-        .title 
-        {
-            opacity: 0;
-            transform: translateY(-30px);
-            animation: home-slide 0.5s ease-in-out forwards 1.2s;
+            .group-title
+            {
+                display: flex;
+                flex-direction: column;
+                gap: 60px;
+                position: relative;
+
+                .title, .subtitle 
+                {
+                    opacity: 0;
+                    transform: translate(0px, -50px);
+                    transition: 0.6s ease-out 0.2s;
+                    &.active 
+                    {
+                        opacity: 1;
+                        transform: translate(0px, 0px);
+                    }
+                }
+
+                .title 
+                {
+                    transition-delay: 0.4s;
+                    font-size: 112px;
+                    color: $color3;
+                    font-weight: 700;
+                    text-transform: uppercase;
+                    position: relative;
+
+                }
+
+                .subtitle 
+                {
+                    font-size: 24px;
+                    color: $color3;
+                    font-weight: 500;
+                    text-transform: uppercase;
+                    
+                }
+
+                .scroll-down 
+                    {
+                        position: absolute;
+                        bottom: 20px;
+                        z-index: 1;
+                        right: 0px;
+                        font-size: 18px;
+                        color: $color3;
+                        font-weight: 500;
+                        display: flex;
+                        gap: 16px;
+                        align-items: center;
+
+                        transition: 0.4s ease-in-out 0.2s;
+
+                        opacity: 0;
+                        transform: translate(20px, 0px);
+
+                        cursor: pointer;
+
+                        padding: 4px 0;
+                        box-sizing: border-box;
+
+                        svg 
+                        {
+                            transition: 0.4s ease-in-out;
+                        }
+                        &:hover 
+                        {
+                            svg 
+                            {
+                                transform: translate(0px, 2px);
+                            
+                            }
+                        }
+                       
+
+
+                        &.active 
+                        {
+                            opacity: 1;
+                            transform: translate(0px,0px);
+                        }
+                    }
+            }
+
+            .group-about 
+            {
+                position: relative;
+                align-self: flex-end;
+                width: 40%;
+                right: 8%;
+                display: flex;
+                flex-direction: column;
+                gap: 50px;
+
+                .section 
+                {
+                    font-size: 24px;
+                    opacity: 0;
+                    transition : 0.4s ease-in-out;
+
+                    &.know-more a
+                    {
+                        cursor: pointer;
+                        color: $color3;
+                        text-decoration: none;
+                        position : relative;
+
+                        
+
+
+                        &::before 
+                        {
+                            content: "";
+                            position: absolute;
+                            
+                            bottom: -4px;
+                            width: 100%;
+                            height: 1px;
+                            background-color: $color3;
+                            z-index: -1;
+                            transition: 0.4s ease-in-out;
+                            transform-origin: left;
+                        }
+
+                        &:hover 
+                        {
+                            &::before 
+                            {
+                                right: 0;
+                                width: 0;
+                            }
+                        }
+                    }
+
+                    &.active 
+                    {
+                        opacity: 1;
+                    }
+                }
+            }
+
+            
         }
-        .line
-        {
-            opacity: 0;
-            transform: translateY(-30px);
-            animation: home-slide 0.5s ease-in-out 1.4s forwards;
-        }
+    
     }
+
+    
+
 }

@@ -475,54 +475,140 @@ aside#gallery .close {
 }
 
 section#home {
-  width: 100vw;
-  height: 100vh;
-  background-color: #F0F0F0;
   position: relative;
 }
-@keyframes home-slide {
-  0% {
-    opacity: 0;
-    transform: translateY(-30px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0%);
-  }
+section#home .cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+section#home .parallax {
+  width: 100%;
+  aspect-ratio: 1/1;
+  overflow: hidden;
+}
+section#home .parallax img {
+  top: 0;
+  width: 100%;
+  position: relative;
+  aspect-ratio: 1/1;
 }
 section#home .container {
   position: absolute;
-  bottom: 20vh;
-  left: 30px;
+  top: 20%;
+  left: 100px;
+  right: 100px;
+  bottom: 0;
 }
-section#home .container .title, section#home .container .name {
-  font-size: 96px;
-  font-weight: bold;
-  color: #1C1D1F;
-  text-transform: uppercase;
-}
-section#home .container .line {
+section#home .container .content {
+  position: absolute;
+  z-index: 1;
+  bottom: 0;
+  right: 0;
+  top: 0;
+  left: 0;
+  flex-direction: column;
   display: flex;
+  gap: 180px;
 }
-section#home .container .line .subtitle {
-  margin-top: 22px;
-  line-height: 20px;
-  width: 300px;
-  margin-right: 20px;
-  font-size: 16px;
+section#home .container .content .group-title {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  position: relative;
+}
+section#home .container .content .group-title .title, section#home .container .content .group-title .subtitle {
+  opacity: 0;
+  transform: translate(0px, -50px);
+  transition: 0.6s ease-out 0.2s;
+}
+section#home .container .content .group-title .title.active, section#home .container .content .group-title .subtitle.active {
+  opacity: 1;
+  transform: translate(0px, 0px);
+}
+section#home .container .content .group-title .title {
+  transition-delay: 0.4s;
+  font-size: 112px;
   color: #1C1D1F;
-  font-weight: 300;
+  font-weight: 700;
+  text-transform: uppercase;
+  position: relative;
+}
+section#home .container .content .group-title .subtitle {
+  font-size: 24px;
+  color: #1C1D1F;
+  font-weight: 500;
   text-transform: uppercase;
 }
-section#home .container .title {
+section#home .container .content .group-title .scroll-down {
+  position: absolute;
+  bottom: 20px;
+  z-index: 1;
+  right: 0px;
+  font-size: 18px;
+  color: #1C1D1F;
+  font-weight: 500;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  transition: 0.4s ease-in-out 0.2s;
   opacity: 0;
-  transform: translateY(-30px);
-  animation: home-slide 0.5s ease-in-out forwards 1.2s;
+  transform: translate(20px, 0px);
+  cursor: pointer;
+  padding: 4px 0;
+  box-sizing: border-box;
 }
-section#home .container .line {
+section#home .container .content .group-title .scroll-down svg {
+  transition: 0.4s ease-in-out;
+}
+section#home .container .content .group-title .scroll-down:hover svg {
+  transform: translate(0px, 2px);
+}
+section#home .container .content .group-title .scroll-down.active {
+  opacity: 1;
+  transform: translate(0px, 0px);
+}
+section#home .container .content .group-about {
+  position: relative;
+  align-self: flex-end;
+  width: 40%;
+  right: 8%;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+section#home .container .content .group-about .section {
+  font-size: 24px;
   opacity: 0;
-  transform: translateY(-30px);
-  animation: home-slide 0.5s ease-in-out 1.4s forwards;
+  transition: 0.4s ease-in-out;
+}
+section#home .container .content .group-about .section.know-more a {
+  cursor: pointer;
+  color: #1C1D1F;
+  text-decoration: none;
+  position: relative;
+}
+section#home .container .content .group-about .section.know-more a::before {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  width: 100%;
+  height: 1px;
+  background-color: #1C1D1F;
+  z-index: -1;
+  transition: 0.4s ease-in-out;
+  transform-origin: left;
+}
+section#home .container .content .group-about .section.know-more a:hover::before {
+  right: 0;
+  width: 0;
+}
+section#home .container .content .group-about .section.active {
+  opacity: 1;
 }
 
 section#all-projects {
@@ -1014,16 +1100,16 @@ section#last-projects .content-container .switch-container .switch-box .content.
   }
 }
 section#last-projects .content-container .switch-container .switch-box:nth-child(1) {
-  background-color: red;
+  background-color: #333333;
 }
 section#last-projects .content-container .switch-container .switch-box:nth-child(2) {
-  background-color: blue;
+  background-color: #1C1D1F;
 }
 section#last-projects .content-container .switch-container .switch-box:nth-child(3) {
-  background-color: green;
+  background-color: #2C3E50;
 }
 section#last-projects .content-container .switch-container .switch-box:nth-child(4) {
-  background-color: orange;
+  background-color: #F0F0F0;
 }
 section#last-projects .content-container .switch-cover {
   position: absolute;
