@@ -10,15 +10,7 @@ section#last-projects
         align-items: center;
         flex-direction: column;
 
-        @keyframes continuous-scroll-title
-        {
-            0% {
-                transform: translate(0, 0);
-            }
-            100% {
-                transform: translate(-100%, 0);
-            }
-        }
+      
 
         .slide-title
         {
@@ -34,7 +26,9 @@ section#last-projects
             overflow: hidden;
             .group
             {
-                animation : continuous-scroll-title 10s linear infinite;
+                overflow: visible;
+                transition: 0.1s ease-out;
+                transform: translate(-30%, 0);
             }
         }
         .text-container

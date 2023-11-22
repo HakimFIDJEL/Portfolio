@@ -1,3 +1,36 @@
+.image-block
+{
+    width: 200px;
+    aspect-ratio: 16/9;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+
+    .image 
+    {
+        position: absolute;
+        top: 0;
+        
+
+        bottom: 0;
+
+        width: 0%;
+        left: 100%;
+
+        background-color: white;
+        transition: 0.3s ease;
+
+        &.active 
+        {
+            left: 0;
+            right: 0;
+            width: 100%;
+        }
+    }
+}
+
 section#about
 {
     width: 100vw;
@@ -380,6 +413,13 @@ section#about
                         {
                             width: 200px;
                             aspect-ratio: 16/9;
+                            transition: 0.2s ease-in;
+
+                            &:hover 
+                            {
+                                transform: scale(0.9);
+                                cursor: pointer;
+                            }
 
                             &:nth-child(1)
                             {
@@ -628,8 +668,11 @@ section#about
         display: flex;
         align-items: center;
         justify-content: center;
+        position: relative;
 
         background-color: $color3;
+
+        
 
         .text 
         {

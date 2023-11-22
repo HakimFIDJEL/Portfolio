@@ -52,11 +52,13 @@ section#all-projects
             overflow: hidden;
 
             position: sticky;
-            top: 50%;
+            top: 20%;
 
             .group
             {
-                animation : continuous-scroll-title 10s linear infinite;
+                overflow: visible;
+                transition: 0.1s ease-out;
+                transform: translate(-30%, 0);
             }
         }
         .text-container
@@ -65,7 +67,7 @@ section#all-projects
             align-items: center;
             justify-content: space-between;
             width: 100%;
-            padding: 400px 40px 60px 40px;
+            padding: 0px 40px 60px 40px;
             box-sizing: border-box;
 
             .text 

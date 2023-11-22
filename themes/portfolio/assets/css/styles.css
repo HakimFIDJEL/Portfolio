@@ -650,17 +650,19 @@ section#all-projects .header-container .slide-title {
   display: flex;
   overflow: hidden;
   position: sticky;
-  top: 50%;
+  top: 20%;
 }
 section#all-projects .header-container .slide-title .group {
-  animation: continuous-scroll-title 10s linear infinite;
+  overflow: visible;
+  transition: 0.1s ease-out;
+  transform: translate(-30%, 0);
 }
 section#all-projects .header-container .text-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  padding: 400px 40px 60px 40px;
+  padding: 0px 40px 60px 40px;
   box-sizing: border-box;
 }
 section#all-projects .header-container .text-container .text {
@@ -908,14 +910,6 @@ section#last-projects .header-container {
   align-items: center;
   flex-direction: column;
 }
-@keyframes continuous-scroll-title {
-  0% {
-    transform: translate(0, 0);
-  }
-  100% {
-    transform: translate(-100%, 0);
-  }
-}
 section#last-projects .header-container .slide-title {
   margin: 55px 0;
   font-size: 80px;
@@ -927,7 +921,9 @@ section#last-projects .header-container .slide-title {
   overflow: hidden;
 }
 section#last-projects .header-container .slide-title .group {
-  animation: continuous-scroll-title 10s linear infinite;
+  overflow: visible;
+  transition: 0.1s ease-out;
+  transform: translate(-30%, 0);
 }
 section#last-projects .header-container .text-container {
   display: flex;
@@ -1248,6 +1244,30 @@ section#last-projects .dummy-project {
   height: 100vh;
 }
 
+.image-block {
+  width: 200px;
+  aspect-ratio: 16/9;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+.image-block .image {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 0%;
+  left: 100%;
+  background-color: white;
+  transition: 0.3s ease;
+}
+.image-block .image.active {
+  left: 0;
+  right: 0;
+  width: 100%;
+}
+
 section#about {
   width: 100vw;
   position: relative;
@@ -1514,6 +1534,11 @@ section#about .experience-container .accordeon-container .accordeon .group-conte
 section#about .experience-container .accordeon-container .accordeon .group-content .image-container .image {
   width: 200px;
   aspect-ratio: 16/9;
+  transition: 0.2s ease-in;
+}
+section#about .experience-container .accordeon-container .accordeon .group-content .image-container .image:hover {
+  transform: scale(0.9);
+  cursor: pointer;
 }
 section#about .experience-container .accordeon-container .accordeon .group-content .image-container .image:nth-child(1) {
   background-color: lightblue;
@@ -1676,6 +1701,7 @@ section#about .text-block {
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
   background-color: #1C1D1F;
 }
 section#about .text-block .text {
@@ -1712,14 +1738,6 @@ section#contact .header-container {
   background-color: #1C1D1F;
   color: white;
 }
-@keyframes continuous-scroll-title {
-  0% {
-    transform: translate(0, 0);
-  }
-  100% {
-    transform: translate(-100%, 0);
-  }
-}
 section#contact .header-container .slide-title {
   margin: 55px 0;
   font-size: 80px;
@@ -1731,7 +1749,9 @@ section#contact .header-container .slide-title {
   overflow: hidden;
 }
 section#contact .header-container .slide-title .group {
-  animation: continuous-scroll-title 10s linear infinite;
+  overflow: visible;
+  transition: 0.1s ease-out;
+  transform: translate(-30%, 0);
 }
 section#contact .header-container .text-container {
   display: flex;

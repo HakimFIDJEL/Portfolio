@@ -9,15 +9,7 @@ section#contact
         background-color : $color3;
         color: white;
 
-        @keyframes continuous-scroll-title
-        {
-            0% {
-                transform: translate(0, 0);
-            }
-            100% {
-                transform: translate(-100%, 0);
-            }
-        }
+        
 
         .slide-title
         {
@@ -31,10 +23,14 @@ section#contact
 
             display: flex;
             overflow: hidden;
-            .group
+          
+            .group 
             {
-                animation : continuous-scroll-title 10s linear infinite;
+                overflow: visible;
+                transition: 0.1s ease-out;
+                transform: translate(-30%, 0);
             }
+
         }
         .text-container
         {

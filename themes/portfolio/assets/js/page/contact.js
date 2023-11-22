@@ -1,44 +1,37 @@
 $(document).ready(function()
 {   
-    let followCursor = $('#contact .follow-cursor');
-    let slide_title = $('#contact .slide-title');
-    let last_scroll = 0;
-    let groups = slide_title.find('.group');
+    let slide_title = $('.slide-title');
+    let slide_top;
+    let slide_bottom;
+    let group = slide_title.find('.group');
+   
     
-    // $(window).on('mousemove', function(e) {
-    //     let mouseX = e.pageX;
-    //     let mouseY = e.pageY;
-    
-    //     followCursor.each(function() {
-    //         let $this = $(this);
-    //         let thisX = $this.offset().left + $this.width() / 2;
-    //         let thisY = $this.offset().top + $this.height() / 2;
-    
-    //         let deltaX = mouseX - thisX;
-    //         let deltaY = mouseY - thisY;
-    //         let distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
-    
-    //         if (distance < 100) {
-    //             // Réduire la distance de translation pour un mouvement plus subtil
-    //             let translateX = deltaX / 5;
-    //             let translateY = deltaY / 5;
+    $(window).on('scroll', function() 
+    {
+        let window_top = $(window).scrollTop();
+        let window_height = $(window).height();
 
+        slide_title.each(function()
+        {
+            slide_top = $(this).offset().top;
+            slide_bottom = slide_top + $(this).height();
 
-                
-    //                 $this.css({
-    //                     'transform': `translate(${translateX}px, ${translateY}px)`,
-    //                     'transition': 'none'  // Pas de transition pour le suivi instantané
-    //                 });
-    
-                
-    //         } else {
-    //             $this.css({
-    //                 'transform': 'translate(0px, 0px)',
-    //                 'transition': 'transform 0.3s ease-out'  // Remettre la transition pour le retour en douceur
-    //             });
-    //         }
-    //     });
-    // });
+            console.log('slide_top', slide_top);    
+            console.log('slide_bottom', slide_bottom);
+            console.log('window_top', window_top);
+            console.log('window_bottom', window_top + window_height);
+
+            if (window_top + window_height >= slide_top && window_top <= slide_bottom) 
+            {
+                let scrollPercent = (window_top + window_height - slide_top) / (slide_bottom - slide_top + window_height);
+                scrollPercent = Math.max(0, Math.min(1, scrollPercent));
+                let translateValue = -20 * scrollPercent;
+                group.css('transform', 'translate(' + translateValue + '%, 0)');
+            }
+        });
+
+        
+    });
     
 
    
