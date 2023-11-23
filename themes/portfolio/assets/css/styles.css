@@ -1257,14 +1257,13 @@ section#last-projects .dummy-project {
   position: absolute;
   top: 0;
   bottom: 0;
+  right: 0;
   width: 0%;
-  left: 100%;
   background-color: white;
   transition: 0.3s ease;
 }
 .image-block .image.active {
   left: 0;
-  right: 0;
   width: 100%;
 }
 
@@ -1624,7 +1623,7 @@ section#about .experience-container .cv-container a svg {
 }
 section#about .hero-container {
   width: 100%;
-  aspect-ratio: 16/9;
+  aspect-ratio: 16/12;
   position: relative;
 }
 section#about .hero-container .parallax-container {
@@ -1715,19 +1714,19 @@ section#about .text-block .text span {
   position: relative;
   cursor: pointer;
 }
-section#about .text-block .text span::after {
+section#about .text-block .text span::before {
   content: "";
   position: absolute;
   bottom: 0px;
-  left: 0;
   width: 100%;
   height: 2px;
-  background-color: white;
-  transition: 0.3s ease-out;
+  background-color: #FFFFFF;
+  transition: 0.4s ease-in-out;
+  transform-origin: left;
 }
-section#about .text-block .text span:hover::after {
-  bottom: 50%;
-  height: 4px;
+section#about .text-block .text span:hover::before {
+  right: 0;
+  width: 0;
 }
 
 section#contact .header-container {

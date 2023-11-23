@@ -2,8 +2,6 @@ $(document).ready(function()
 {
     let groups = $(".group-container");
 
-    // headerLight();
-
 
     $(document).on('click', "#all-projects .selected", function()
     {
@@ -93,31 +91,4 @@ $(document).ready(function()
     });
 
  
-
-    function checkOnScreen()
-    {
-        groups.each(function()
-        {
-            let group = $(this);
-            let groupTop = group.offset().top;
-
-            if($(window).scrollTop() > groupTop - 700 && $(window).scrollTop() < groupTop + group.height() + 700)
-            {
-                group.removeClass('disappear');
-                group.addClass('appear');
-            }
-            else 
-            {
-                group.removeClass('appear');
-                group.addClass('disappear');
-            }
-        });
-    }
-
-
-
-    $(window).on('scroll', function(e)
-    {
-        checkOnScreen();
-    });
 });
