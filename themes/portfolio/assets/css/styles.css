@@ -103,7 +103,10 @@ html {
 header {
   position: fixed;
   z-index: 9999;
-  top: 0;
+  top: -100px;
+  opacity: 0;
+  backdrop-filter: blur(0px);
+  transition: 0.4s ease-in-out;
   height: 80px;
   width: 100%;
   display: flex;
@@ -112,11 +115,40 @@ header {
   box-sizing: border-box;
   padding: 0 45px;
 }
-header.appear {
-  animation: header-appear 0.5s ease-in-out forwards;
+header.dark {
+  background-color: rgba(255, 255, 255, 0.2);
 }
-header.disappear {
-  animation: header-disappear 0.5s ease-in-out 0.5s forwards;
+header.dark .nav li a {
+  color: #333333;
+}
+header.dark .nav li::before {
+  background-color: #333333;
+}
+header.dark .socials .fill {
+  fill: #333333;
+}
+header.dark .socials .stroke {
+  stroke: #333333;
+}
+header.light {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+header.light .nav li a {
+  color: #FFFFFF;
+}
+header.light .nav li::before {
+  background-color: #FFFFFF;
+}
+header.light .socials .fill {
+  fill: #FFFFFF;
+}
+header.light .socials .stroke {
+  stroke: #FFFFFF;
+}
+header.active {
+  top: 0;
+  opacity: 1;
+  backdrop-filter: blur(10px);
 }
 header .socials, header .nav {
   display: flex;
@@ -147,22 +179,6 @@ header .socials a, header .socials path, header .nav a, header .nav path {
     opacity: 1;
   }
 }
-@keyframes header-appear {
-  0% {
-    top: -100px;
-  }
-  100% {
-    top: 0px;
-  }
-}
-@keyframes header-disappear {
-  0% {
-    top: 0px;
-  }
-  100% {
-    top: -100px;
-  }
-}
 header .nav li {
   position: relative;
   padding: 4px 0;
@@ -171,7 +187,6 @@ header .nav li a {
   margin: 2px;
   display: block;
   position: relative;
-  color: #333333;
   font-size: 16px;
   text-decoration: none;
   font-weight: 500;
@@ -195,7 +210,6 @@ header .nav li::before {
   position: absolute;
   width: 0%;
   height: 1px;
-  background-color: #333333;
   bottom: 0px;
   transition: 0.2s ease-in-out;
   right: 0;
@@ -211,6 +225,9 @@ header .nav li:hover a .first {
 header .nav li:hover a .second {
   top: 0px;
   opacity: 1;
+}
+header .socials path {
+  transition: 0.3s ease-out;
 }
 
 footer {
@@ -274,6 +291,36 @@ footer .socials {
 }
 footer .socials a, footer .socials path {
   transition: 0.3s ease-out;
+}
+
+aside.mouse-cursor {
+  transition: 0.25s ease-out;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  outline: 2px solid rgb(153, 153, 153);
+  background-color: transparent;
+  position: fixed;
+  z-index: 50;
+  top: -50px;
+  left: -50px;
+  pointer-events: none;
+  cursor: none;
+}
+aside.mouse-cursor.active {
+  transform: scale(2.3);
+  outline: 0px;
+  cursor: pointer;
+}
+
+.square {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 40px;
+  background-color: rgb(153, 153, 153);
+  opacity: 0.5;
 }
 
 aside.preloader {
@@ -553,7 +600,7 @@ section#home .container .content .group-title .scroll-down {
   color: #1C1D1F;
   font-weight: 500;
   display: flex;
-  gap: 16px;
+  gap: 20px;
   align-items: center;
   transition: 0.4s ease-in-out 0.2s;
   opacity: 0;
@@ -562,10 +609,19 @@ section#home .container .content .group-title .scroll-down {
   padding: 4px 0;
   box-sizing: border-box;
 }
-section#home .container .content .group-title .scroll-down svg {
+section#home .container .content .group-title .scroll-down .scroll-icon {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+section#home .container .content .group-title .scroll-down .scroll-icon svg {
+  width: 20px;
+  height: 20px;
   transition: 0.4s ease-in-out;
 }
-section#home .container .content .group-title .scroll-down:hover svg {
+section#home .container .content .group-title .scroll-down .scroll-icon:hover svg {
   transform: translate(0px, 2px);
 }
 section#home .container .content .group-title .scroll-down.active {
@@ -708,6 +764,9 @@ section#all-projects .header-container .click-container .click-to-scroll:hover.s
 }
 section#all-projects .header-container .click-container .click-to-scroll .scroll-icon {
   transition: 0.3s ease-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 section#all-projects .header-container .click-container .click-to-scroll .scroll-text {
   font-size: 16px;
@@ -819,6 +878,10 @@ section#all-projects .content-container .selector-container .selected .text {
 }
 section#all-projects .content-container .selector-container .selected .arrow {
   transition: 0.1s ease-out;
+}
+section#all-projects .content-container .selector-container .selected .arrow svg {
+  width: 20px;
+  height: 20px;
 }
 section#all-projects .content-container .container {
   width: 100%;
@@ -958,6 +1021,9 @@ section#last-projects .header-container .text-container .click-to-scroll:hover.s
 }
 section#last-projects .header-container .text-container .click-to-scroll .scroll-icon {
   transition: 0.3s ease-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 section#last-projects .header-container .text-container .click-to-scroll .scroll-text {
   font-size: 22px;
@@ -1151,15 +1217,6 @@ section#last-projects .content-container .selector-container .arrow.right {
 section#last-projects .content-container .selector-container .arrow.left {
   left: 45px;
 }
-section#last-projects .content-container .selector-container .arrow svg {
-  transition: transform 0.2s ease-out;
-}
-section#last-projects .content-container .selector-container .arrow.right:hover svg {
-  transform: translateX(4px);
-}
-section#last-projects .content-container .selector-container .arrow.left:hover svg {
-  transform: translateX(-4px);
-}
 section#last-projects .content-container .selector-container .selector {
   display: flex;
   align-items: center;
@@ -1242,29 +1299,6 @@ section#last-projects .content-container .selector-container .selector li input[
 section#last-projects .dummy-project {
   width: 100vw;
   height: 100vh;
-}
-
-.image-block {
-  width: 200px;
-  aspect-ratio: 16/9;
-  pointer-events: none;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 1;
-}
-.image-block .image {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  width: 0%;
-  background-color: white;
-  transition: 0.3s ease;
-}
-.image-block .image.active {
-  left: 0;
-  width: 100%;
 }
 
 section#about {
@@ -1796,6 +1830,9 @@ section#contact .header-container .text-container .click-to-scroll:hover.second 
 }
 section#contact .header-container .text-container .click-to-scroll .scroll-icon {
   transition: 0.3s ease-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 section#contact .header-container .text-container .click-to-scroll .scroll-text {
   font-size: 22px;

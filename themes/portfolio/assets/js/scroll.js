@@ -2,6 +2,10 @@ $(document).ready(function()
 {
     let window_top =  $(window).scrollTop();
     let window_height = $(window).height();
+    let lastScrollTop = 0;
+    let header = $('header');
+    let header_fonts = $("header .nav a");
+    let header_logo = $("header .socials a svg");
     let home_parallax_top = $('#home .parallax').offset().top;
     let home_parallax_height = $('#home .parallax').height();
     let home_parallax = $('#home .parallax img');
@@ -25,6 +29,18 @@ $(document).ready(function()
     let slide_title = $('.slide-title');
     let slide_top;
     let slide_bottom;
+
+
+    let home_top = $('#home').offset().top;
+    let home_bottom = home_top + $('#home').height();
+
+    let about_top = $('#about .experience-container').offset().top;
+    let about_bottom = $('#about .about-container').offset().top + $('#about .about-container').height();
+    
+    let animation_opacity = $('.animation-opacity');
+    let animation_translate = $('.animation-translate');
+
+    let mouseCursor = $(".mouse-cursor");
     
     $(window).on('resize', function()
     {
@@ -37,6 +53,9 @@ $(document).ready(function()
         
         window_top = $(window).scrollTop();
 
+        HeaderAnimation();
+        HeaderColor();
+
         Home_scroll();
 
         AllProjects_checkOnScreen();
@@ -46,7 +65,122 @@ $(document).ready(function()
         About_parallaxAnimation();
 
         ContactScroll();
+
+        animationOpacity();
+        animationTranslate();
+
+        
     });
+
+
+   
+    
+
+    function animationOpacity()
+    {
+        animation_opacity.each(function()
+        {
+            let $this = $(this);
+            let this_top = $this.offset().top;
+
+            if(window_top > this_top - 700 && window_top < this_top + $this.height() + 700)
+            {
+                $this.removeClass('disappear');
+                $this.addClass('appear');
+            }
+        });
+    }
+
+    function animationTranslate()
+    {
+        animation_translate.each(function()
+        {
+            let $this = $(this);
+            let this_top = $this.offset().top;
+
+            if(window_top > this_top - 700 && window_top < this_top + $this.height() + 700)
+            {
+                $this.removeClass('disappear');
+                $this.addClass('appear');
+            }
+        });
+    }
+
+
+
+    function HeaderColor()
+    {
+        // Si le header est dans la section home
+        if(header.offset().top + header.height() >= home_top && header.offset().top <= home_bottom)
+        {
+            headerDark();
+        }
+        // Si le header est dans la section about
+        else if(header.offset().top + header.height() >= about_top && header.offset().top <= about_bottom)
+        {
+            headerDark();
+        }
+        else 
+        {
+            headerLight();
+        }
+    }
+
+    function headerDark()
+    {
+        if(header.hasClass('light'))
+        {
+            header.removeClass('light');
+        }
+        if(!header.hasClass('dark'))
+        {
+            header.addClass('dark');
+        }        
+        return;
+    }
+    function headerLight()
+    {
+        if(header.hasClass('dark'))
+        {
+            header.removeClass('dark');
+        }
+        if(!header.hasClass('light'))
+        {
+            header.addClass('light');
+        }        
+        return;
+    }
+
+    function HeaderAnimation()
+    {
+        // On va vers le bas
+        if(window_top > lastScrollTop)
+        {
+            if(header.hasClass('active'))
+            {
+                header.removeClass('active');
+            }
+        }
+        // On va vers le haut
+        else 
+        {
+            if(!$("#last-projects .switch-container").hasClass('active'))
+            {
+                if(!header.hasClass('active'))
+                {
+                    header.addClass('active');
+                }
+            }
+            else 
+            {
+                if(header.hasClass('active'))
+                {
+                    header.removeClass('active');
+                }
+            }
+        }
+        lastScrollTop = window_top;
+    }
 
     // Fonctions section all-projects
     function AllProjects_checkOnScreen()
@@ -235,26 +369,14 @@ $(document).ready(function()
             {
                 $(this).addClass('active');
             }
-            else 
-            {
-                $(this).removeClass('active');
-            }
         });
         if (window_top + window_height >= home_title.offset().top + 200 && window_top <= home_title.offset().top + home_title.height() - 200)
         {
             home_title.addClass('active');
         }
-        else 
-        {
-            home_title.removeClass('active');
-        }
         if (window_top + window_height >= home_subtitle.offset().top + 200 && window_top <= home_subtitle.offset().top + home_subtitle.height() - 200)
         {
             home_subtitle.addClass('active');
-        }
-        else 
-        {
-            home_subtitle.removeClass('active');
         }
         
     }

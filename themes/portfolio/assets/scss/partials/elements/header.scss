@@ -2,16 +2,69 @@ header
 {
     position: fixed;
     z-index: 9999;
-    top: 0;
+    top: -100px;
+    opacity: 0;
+    backdrop-filter: blur(0px);
+
+    transition: 0.4s ease-in-out;
 
     height: 80px;
     width: 100%;
+
+
+
+    &.dark 
+    {
+        background-color: rgb(255,255, 255, 0.2);
+        .nav li a
+        {
+            color: $color4;
+        }
+        .nav li::before 
+        {
+            background-color: $color4;
+        }
+        .socials .fill
+        {
+            fill: $color4;
+        }
+        .socials .stroke
+        {
+            stroke: $color4;
+        }
+    }
+    &.light 
+    {
+        
+        background-color: rgb(0, 0, 0, 0.2);
+        .nav li a
+        {
+            color: $color1;
+        }
+        .nav li::before 
+        {
+            background-color: $color1;
+        }
+        .socials .fill
+        {
+            fill: $color1;
+        }
+        .socials .stroke
+        {
+            stroke: $color1;
+        }
+    }
 
   
     // backdrop-filter: blur(20px);
 
 
-     
+    &.active 
+    {
+        top: 0;
+        opacity: 1;
+        backdrop-filter: blur(10px);
+    }
       
 
 
@@ -22,14 +75,7 @@ header
     box-sizing: border-box;
     padding: 0 45px;
 
-    &.appear
-    {
-        animation: header-appear 0.5s ease-in-out  forwards;
-    }
-    &.disappear
-    {
-        animation: header-disappear 0.5s ease-in-out 0.5s forwards;
-    }
+   
 
     .socials , .nav
     {
@@ -68,40 +114,31 @@ header
         }
     }
 
-    @keyframes header-appear {
-        0%{
-            top : -100px;
-        }
-        100%{
-            top : 0px;
-        }
-    }
-    @keyframes header-disappear {
-        0%{
-            top : 0px;
-        }
-        100%{
-            top : -100px;
-        }
-    }
     
 
     .nav 
     {
+        
+
         li 
         {
 
             position: relative;
             padding: 4px 0;
+            
+
+
             a
             {
                 margin: 2px;
                 display: block;
                 position: relative;
-                color: $color4;
+                
                 font-size: 16px;
                 text-decoration: none;
                 font-weight: 500;
+
+                
 
                 .first 
                 {
@@ -127,7 +164,6 @@ header
                 position: absolute;
                 width: 0%;
                 height: 1px;
-                background-color: $color4;
                 bottom: 0px;
                 transition: 0.2s ease-in-out;
                 right: 0;
@@ -157,6 +193,13 @@ header
         }
     }
 
+    .socials 
+    {
+        path 
+        {
+            transition: 0.3s ease-out;
+        }
+    }
     
 
 }

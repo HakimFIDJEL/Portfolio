@@ -12,6 +12,18 @@ $(document).ready(function()
 
     reload();
 
+    $(document).on('keydown', function(e)
+    {
+        if(e.keyCode == 37)
+        {
+            prev();
+        }
+        else if(e.keyCode == 39)
+        {
+            next();
+        }
+    });
+
     $(document).on('click', '.selector li', function()
     {
         let index = $(this).index();
@@ -42,22 +54,12 @@ $(document).ready(function()
 
     $(document).on('click', '.selector-container .left', function()
     {
-        let index = dummyAbove();
-        if(index == 0)
-        {
-            return;
-        }
-        $(window).scrollTop($('.dummy-project').eq(index - 1).offset().top + 20);
+        prev()
     });
 
     $(document).on('click', '.selector-container .right', function()
     {
-        let index = dummyAbove();
-        if(index == $('.dummy-project').length - 1)
-        {
-            return;
-        }
-        $(window).scrollTop($('.dummy-project').eq(index + 1).offset().top - 20);
+        next()
     });
 
    
@@ -318,6 +320,25 @@ $(document).ready(function()
         });
         balises.eq(index).addClass('active');
         $(balises[index]).find('input').prop('checked', true);
+    }
+
+    function prev()
+    {
+        let index = dummyAbove();
+        if(index == 0)
+        {
+            return;
+        }
+        $(window).scrollTop($('.dummy-project').eq(index - 1).offset().top + 20);
+    }
+    function next()
+    {
+        let index = dummyAbove();
+        if(index == $('.dummy-project').length - 1)
+        {
+            return;
+        }
+        $(window).scrollTop($('.dummy-project').eq(index + 1).offset().top - 20);
     }
  
 });

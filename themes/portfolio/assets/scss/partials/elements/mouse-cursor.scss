@@ -1,0 +1,37 @@
+aside.mouse-cursor 
+{
+    transition: 0.25s ease-out;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    outline : 2px solid rgb(153, 153, 153);
+    background-color: transparent;
+
+    position: fixed;
+    z-index: 50;
+
+    top : -50px;
+    left: -50px;
+
+
+    pointer-events: none;
+    cursor : none;
+
+    &.active
+    {
+        transform: scale(2.3);
+        outline : 0px; 
+        cursor: pointer;
+    }
+}
+
+.square
+{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 40px;
+    height: 40px;
+    background-color: rgb(153, 153, 153);
+    opacity: 0.5;
+}

@@ -141,6 +141,9 @@ section#all-projects
                 .scroll-icon 
                 {
                     transition: 0.3s ease-out;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
                 }
                 .scroll-text
                 {
@@ -303,6 +306,11 @@ section#all-projects
                 }
                 .arrow 
                 {
+                    svg 
+                    {
+                        width: 20px;
+                        height: 20px;
+                    }
                     transition: 0.1s ease-out;
                 }
             }
