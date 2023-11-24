@@ -224,7 +224,6 @@ section#last-projects
                     }
                     .subtitle, .text
                     {
-                        font-size: var(--small-size);
                         position: relative;
                         font-weight: 300;
                         color: #ffffff;
@@ -233,7 +232,13 @@ section#last-projects
                     }
                     .subtitle 
                     {
+                        font-size: var(--small-size);
                         text-transform: uppercase;
+                    }
+                    .text 
+                    {
+                        
+                        font-size: var(--medium-size);
                     }
 
 
@@ -352,6 +357,7 @@ section#last-projects
                 align-items: center;
                 gap : 20px;
                 font-weight: 300;
+                font-size: var(--medium-size);
                 cursor: pointer;
 
                 position: absolute;

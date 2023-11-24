@@ -40,4 +40,12 @@ $(document).ready(function()
 
 });
 
+function getOrientation()
+{
+    if(window.innerHeight > window.innerWidth) {
+        return 'portrait';
+    } else {
+        return 'landscape';
+    }
+}
 

@@ -14,7 +14,7 @@ section#contact
         .slide-title
         {
             margin: 55px 0;
-            font-size: 80px;
+            font-size: var(--slide-title);
             font-weight: bold;
             text-transform: uppercase;
             width: 100%;
@@ -56,7 +56,7 @@ section#contact
 
             .text 
             {
-                font-size: 22px;
+                font-size: var(--medium-size);
                 text-transform: uppercase;
                 font-weight: 300;
             }
@@ -104,7 +104,7 @@ section#contact
 
                 .scroll-text
                 {
-                    font-size: 22px;
+                    font-size: var(--medium-size);
                     line-height: 16px;
                     text-transform: uppercase;
                     font-weight: 300;
@@ -139,6 +139,12 @@ section#contact
         box-sizing: border-box;
         padding : 140px 140px 160px 40px;
 
+        @include responsive(tablet)
+        {
+            padding : 120px 30px 100px 30px;
+            height: auto;
+        }
+
         .hero-container
         {
             text-transform: uppercase;
@@ -146,12 +152,12 @@ section#contact
             margin-bottom: 120px;
             .title 
             {
-                font-size: 96px;
+                font-size: var(--slide-title);
                 font-weight: bold;
             }
             .subtitle 
             {
-                font-size: 22px;
+                font-size: var(--medium-size);
                 font-weight: 300;
             }   
         }
@@ -162,15 +168,21 @@ section#contact
             justify-content: space-between;
             align-items: flex-start;
 
+            gap : 60px;
+
             .text 
             {
-                font-size: 40px; 
+                font-size: var(--big-size); 
                 font-weight: bold;
                 color: white;
                 text-transform: uppercase;
                 padding-left: 32px;
                 box-sizing: border-box;
                 border-left: 2px solid white;
+                @include responsive(tablet)
+                {
+                    padding-left: 20px;
+                }
             }
 
             form
@@ -182,6 +194,11 @@ section#contact
                 flex-direction: column;
                 gap: 60px;
 
+                @include responsive(tablet)
+                {
+                    gap : 40px;
+                }
+
 
                 input 
                 {
@@ -191,7 +208,7 @@ section#contact
                     outline : none;
                     border: none;
                     border-bottom: 1px solid rgb(255, 255, 255, 0.7);
-                    font-size: 20px;
+                    font-size: var(--small-size);
                     color: white;
                     position: relative;
 
@@ -229,7 +246,7 @@ section#contact
                         display: flex;
                         align-items: center;
                         justify-content: flex-start;
-                        font-size: 16px;
+                        font-size: var(--xs-size);
                         font-weight: 300;
                         color: white;
                         opacity: 0;
@@ -248,7 +265,7 @@ section#contact
                         display: flex;
                         align-items: center;
                         justify-content: flex-start;
-                        font-size: 20px;
+                        font-size: var(--small-size);
                         font-weight: 300;
                         color: white;
                         opacity: 0.7;
@@ -281,7 +298,8 @@ section#contact
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    font-size: 16px;
+                    font-size: var(--xs-size);
+                    
                     font-weight: 300;
                     text-transform: uppercase;
                     gap: 10px;

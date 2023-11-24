@@ -10,7 +10,7 @@ section#about
     {
         text-transform: uppercase;
         width: 100%;
-        font-size: 20px;
+        font-size: var(--medium-size);
         font-weight: 300;
         color: $color3;
         padding : 4px 0;
@@ -67,26 +67,30 @@ section#about
             padding: 160px 40px 160px 60px;
             gap: 120px;
 
+            @include responsive(tablet)
+            {
+                padding: 100px 0px 100px 0px;
+                gap: 70px;
+            }
+
             .image
             {
-                width: 225px;
-                height: 225px;
-                background-color: white;
-                border-radius: 50%;
+                width: 200px;
+                height: 200px;
                 flex-shrink: 0;
             }
             .text-container
             {
                 .text 
                 {
-                    font-size: 40px;
+                    font-size: var(--big-size);
                     font-weight: bold;
                     color: $color3;
                     text-transform: uppercase;
                 }
                 .small-text
                 {
-                    font-size: 24px;
+                    font-size: var(--small-size);
                     font-weight: 300;
                     color: $color3;
                     text-transform: uppercase;
@@ -104,6 +108,11 @@ section#about
         padding: 20px 40px 100px 40px;
         background-color : $color2;
 
+        @include responsive(tablet)
+        {
+            padding: 20px 30px 60px 30px;
+        }
+
         .content-container
         {
             width: 100%;
@@ -113,6 +122,14 @@ section#about
             align-items: center;
             justify-content: space-between;
 
+
+            @include responsive(tablet)
+            {
+                flex-direction: column;
+                gap: 80px;
+                padding : 30px;
+            }
+
             .block-container
             {
                 width: 45%;
@@ -120,6 +137,12 @@ section#about
                 align-items: flex-start;
                 gap: 80px;
                 flex-direction: column;
+
+                @include responsive(tablet)
+                {
+                    width: 100%;
+                    gap: 40px;
+                }
 
                 .wrapper
                 {
@@ -139,7 +162,7 @@ section#about
                     {
                         .title 
                         {
-                            font-size: 28px;
+                            font-size: var(--medium-size);
                             line-height: 40px;
                             font-weight: bold;
                             color: $color3;
@@ -148,7 +171,7 @@ section#about
                         }
                         .subtitle 
                         {
-                            font-size: 18px;
+                            font-size: var(--small-size);
                             font-weight: 300;
                             line-height: 22px;
                             color: $color3;
@@ -166,6 +189,11 @@ section#about
                 flex-direction: column;
                 gap: 20px;
 
+                @include responsive(tablet)
+                {
+                    width: 100%;
+                }
+
                 
                 .skill
                 {
@@ -182,7 +210,7 @@ section#about
                         height: 100%;
                         width: 20%;
 
-                        font-size: 16px;
+                        font-size: var(--small-size);
                         font-weight: 300;
                         color: white;
                         text-transform: uppercase;
@@ -216,7 +244,7 @@ section#about
                             top: 0;
                             bottom: 0;
                             right: 10px;
-                            font-size: 16px;
+                            font-size: var(--small-size);
                             color : $color3;
                             opacity: 0.7;
 
@@ -242,6 +270,11 @@ section#about
         box-sizing: border-box;
         padding: 100px 40px;
         background-color : $color2;
+
+        @include responsive(tablet)
+        {
+            padding: 100px 30px;
+        }
 
         .accordeon-container
         {
@@ -290,12 +323,17 @@ section#about
                     position: relative;
                     background-color: $color2;
 
+                    @include responsive(tablet)
+                    {
+                        padding: 30px 40px 30px 40px;
+                    }
+
                     transition: 0.2s ease-out;
 
 
                     .title 
                     {
-                        font-size: 24px;
+                        font-size: var(--medium-size);
                         font-weight: bold;
                         color: $color3;
                         transition: 0.2s ease-out;
@@ -359,13 +397,20 @@ section#about
                     justify-content: space-between;
                     gap: 80px;
 
+                    @include responsive(tablet)
+                    {
+                        gap: 40px;
+                    }
+
                   
                     .image-container
                     {
                         display: grid;
-                        grid-template-columns: 1fr 1fr; /* Crée deux colonnes */
-                        grid-template-rows: 1fr 1fr;
+                        grid-template-columns: auto auto; /* Crée deux colonnes */
+                        grid-template-rows: auto auto;
+                        align-content: flex-start;
                         gap: 15px;
+
 
                         margin: 60px 0px 40px 10px;
                         .image 
@@ -373,6 +418,11 @@ section#about
                             width: 200px;
                             aspect-ratio: 16/9;
                             transition: 0.2s ease-in;
+
+                            @include responsive(tablet)
+                            {
+                                width: 150px;
+                            }
 
                             &:hover 
                             {
@@ -410,14 +460,16 @@ section#about
                         color: $color3;
                         .text 
                         {
-                            font-size: 20px;
+                            font-size: var(--medium-size);
                             font-weight :light;
+
 
                         }
                         .date 
                         {
+                            margin-top: 24px;
                             align-self: flex-end;
-                            font-size: 14px;
+                            font-size: var(--small-size);
                             font-weight: 300;
                             text-transform: uppercase;
                             opacity: 0.7;
@@ -477,7 +529,7 @@ section#about
                 background-color: $color3;
                 color: white;
                 text-decoration: none;
-                font-size: 24px;
+                font-size: var(--medium-size);
                 font-weight: 300;
                 text-transform: uppercase;
                 transition: 0.3s ease-out;
@@ -509,7 +561,8 @@ section#about
         width: 100%;
         aspect-ratio: 16/12;
         position: relative;
-        
+        background-color: $color3;
+
         .parallax-container 
         {
             height: 100%;
@@ -545,7 +598,7 @@ section#about
 
                 .title
                 {
-                    font-size: 70px;
+                    font-size: var(--last-project-title);
                     color: white;
                     text-transform: uppercase;
                     line-height: 80px;
@@ -561,7 +614,7 @@ section#about
                 }
                 .subtitle
                 {
-                    font-size: 20px;
+                    font-size: var(--medium-size);
                     color: white;
                     text-transform: uppercase;
                     font-weight: 300;
@@ -631,7 +684,10 @@ section#about
 
         background-color: $color3;
 
-        
+        @include responsive(tablet)
+        {
+            padding: 100px 40px;
+        }
 
         .text 
         {
@@ -639,7 +695,7 @@ section#about
 
             color: white;
             text-transform: uppercase;
-            font-size: 54px;
+            font-size: var(--huge-text);
             font-weight: bold;
 
             span 

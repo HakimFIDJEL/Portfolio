@@ -26,11 +26,13 @@ $color5: #2C3E50;
     --hero-title-size: 112px;
     --hero-subtitle-size: 24px;
     --hero-text-size: 24px;
+    --xs-size: 18px;
     --small-size: 22px;
     --medium-size: 24px;
-    --big-size: 32px;
+    --big-size: 40px;
     --slide-title : 80px;
     --last-project-title: 72px;
+    --huge-text : 54px;
 }
 
 // Responsive font sizes
@@ -43,11 +45,13 @@ $color5: #2C3E50;
         --hero-title-size: 64px;
         --hero-subtitle-size: 16px;
         --hero-text-size: 16px;
+        --xs-size: 14px;
         --small-size: 18px;
         --medium-size: 20px;
-        --big-size: 28px;
+        --big-size: 26px;
         --slide-title : 48px;
         --last-project-title: 48px;
+        --huge-text : 36px;
     }
 }
 @include responsive(tablet)
@@ -57,11 +61,13 @@ $color5: #2C3E50;
         --hero-title-size: 96px;
         --hero-subtitle-size: 20px;
         --hero-text-size: 28px;
+        --xs-size: 16px;
         --small-size: 20px;
         --medium-size: 22px;
-        --big-size: 30px;
+        --big-size: 32px;
         --slide-title : 64px;
         --last-project-title: 64px;
+        --huge-text : 46px;
     }
 }
 

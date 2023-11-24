@@ -1,5 +1,12 @@
 $(document).ready(function()
 {
+
+    if(getOrientation() == 'portrait')
+    {
+        mouseCursor.css('display', 'none');
+    }
+
+
     let mouseCursor = $(".mouse-cursor");
     let square = $(".square");
     let sticky = false;

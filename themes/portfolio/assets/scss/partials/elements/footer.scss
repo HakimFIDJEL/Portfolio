@@ -8,6 +8,11 @@ footer
     border-top: 1px solid white;
     background-color: $color3;
 
+    @include responsive('tablet')
+    {
+        padding : 50px 30px;
+    }
+
     .click-to-scroll
     {
         display: flex;
@@ -16,6 +21,11 @@ footer
         color: white;
         text-decoration: none;
         cursor: pointer;
+
+        @include responsive('tablet')
+        {
+            gap : 20px;
+        }
 
         
 
@@ -51,7 +61,7 @@ footer
 
         .scroll-text
         {
-            font-size: 16px;
+            font-size: var(--small-size);
             line-height: 16px;
             text-transform: uppercase;
             font-weight: 300;
@@ -78,7 +88,7 @@ footer
     .title 
     {
         color: $color1;
-        font-size: 20px;
+        font-size: var(--medium-size);
         font-weight: bold;
         text-transform: uppercase;
     }
@@ -89,6 +99,11 @@ footer
         align-items: center;
         list-style: none;
         gap : 36px;
+
+        @include responsive('tablet')
+        {
+            gap : 26px;
+        }
 
         a, path 
         {
