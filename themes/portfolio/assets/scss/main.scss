@@ -5,6 +5,68 @@ $color3: #1C1D1F;
 $color4: #333333;
 $color5: #2C3E50;
 
+// Responsive for phone, tablet and pc (Mixin)
+@mixin responsive($breakpoint) {
+    @if $breakpoint == phone {
+        @media (max-width: 767px) { @content; }
+    }
+    @else if $breakpoint == tablet {
+        @media (min-width: 768px) and (max-width: 1023px) { @content; }
+    }
+    @else if $breakpoint == pc {
+        @media (min-width: 1024px) { @content; }
+    }
+}
+
+
+
+// Font sizes
+:root 
+{
+    --hero-title-size: 112px;
+    --hero-subtitle-size: 24px;
+    --hero-text-size: 24px;
+    --small-size: 22px;
+    --medium-size: 24px;
+    --big-size: 32px;
+    --slide-title : 80px;
+    --last-project-title: 72px;
+}
+
+// Responsive font sizes
+
+
+@include responsive(phone)
+{
+    :root 
+    {
+        --hero-title-size: 64px;
+        --hero-subtitle-size: 16px;
+        --hero-text-size: 16px;
+        --small-size: 18px;
+        --medium-size: 20px;
+        --big-size: 28px;
+        --slide-title : 48px;
+        --last-project-title: 48px;
+    }
+}
+@include responsive(tablet)
+{
+    :root 
+    {
+        --hero-title-size: 96px;
+        --hero-subtitle-size: 20px;
+        --hero-text-size: 28px;
+        --small-size: 20px;
+        --medium-size: 22px;
+        --big-size: 30px;
+        --slide-title : 64px;
+        --last-project-title: 64px;
+    }
+}
+
+
+
 // Normal
 @font-face {
     font-family: 'Karla';
@@ -138,6 +200,9 @@ html
 .follow-cursor {
     transition: top 0.3s ease-out, left 0.3s ease-out;
 }
+
+
+
 
 
 @import './partials/elements/header.scss';

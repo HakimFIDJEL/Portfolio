@@ -14,8 +14,12 @@ section#last-projects
 
         .slide-title
         {
+
+            
+
+
             margin: 55px 0;
-            font-size: 80px;
+            font-size: var(--slide-title);
             font-weight: bold;
             text-transform: uppercase;
             width: 100%;
@@ -42,9 +46,10 @@ section#last-projects
 
             .text 
             {
-                font-size: 22px;
+                font-size: var(--medium-size);
                 text-transform: uppercase;
                 font-weight: 300;
+                
             }
 
             .click-to-scroll
@@ -90,11 +95,12 @@ section#last-projects
 
                 .scroll-text
                 {
-                    font-size: 22px;
+                    font-size: var(--medium-size);
                     line-height: 16px;
                     text-transform: uppercase;
                     font-weight: 300;
                     position: relative;
+                    
 
                     &::before 
                     {
@@ -208,7 +214,7 @@ section#last-projects
                     .title 
                     {
                         position: relative;
-                        font-size: 64px;
+                        font-size: var(--last-project-title);
                         color: #ffffff;
                         font-weight: bold;
                         line-height: 80px;
@@ -218,9 +224,9 @@ section#last-projects
                     }
                     .subtitle, .text
                     {
-                        font-size: 16px;
+                        font-size: var(--small-size);
                         position: relative;
-                        font-weight: light;
+                        font-weight: 300;
                         color: #ffffff;
                         opacity: 0;
                         top: -40px;

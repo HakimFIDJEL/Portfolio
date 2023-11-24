@@ -1,4 +1,39 @@
 @charset "UTF-8";
+:root {
+  --hero-title-size: 112px;
+  --hero-subtitle-size: 24px;
+  --hero-text-size: 24px;
+  --small-size: 22px;
+  --medium-size: 24px;
+  --big-size: 32px;
+  --slide-title: 80px;
+  --last-project-title: 72px;
+}
+
+@media (max-width: 767px) {
+  :root {
+    --hero-title-size: 64px;
+    --hero-subtitle-size: 16px;
+    --hero-text-size: 16px;
+    --small-size: 18px;
+    --medium-size: 20px;
+    --big-size: 28px;
+    --slide-title: 48px;
+    --last-project-title: 48px;
+  }
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+  :root {
+    --hero-title-size: 96px;
+    --hero-subtitle-size: 20px;
+    --hero-text-size: 28px;
+    --small-size: 20px;
+    --medium-size: 22px;
+    --big-size: 30px;
+    --slide-title: 64px;
+    --last-project-title: 64px;
+  }
+}
 @font-face {
   font-family: "Karla";
   src: url("../font/Karla/static/Karla-Regular.ttf");
@@ -113,11 +148,22 @@ header {
   transition: 0.4s ease-in-out;
   height: 80px;
   width: 100%;
+  background-color: lightgreen !important;
   display: flex;
   align-items: center;
   justify-content: space-between;
   box-sizing: border-box;
   padding: 0 45px;
+}
+@media (max-width: 767px) {
+  header {
+    display: none;
+  }
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+  header {
+    background-color: lightblue !important;
+  }
 }
 header.dark {
   background-color: rgba(255, 255, 255, 0.2);
@@ -159,6 +205,11 @@ header .socials, header .nav {
   align-items: center;
   list-style: none;
   gap: 36px;
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+  header .socials, header .nav {
+    gap: 30px;
+  }
 }
 header .socials a, header .socials path, header .nav a, header .nav path {
   transition: 0.3s ease-out;
@@ -585,15 +636,13 @@ section#home .cover {
   background-color: rgba(255, 255, 255, 0.5);
 }
 section#home .parallax {
-  width: 100%;
-  aspect-ratio: 1/1;
+  height: 150vh;
   overflow: hidden;
 }
 section#home .parallax img {
-  top: 0;
-  width: 100%;
+  height: 100%;
+  object-fit: cover;
   position: relative;
-  aspect-ratio: 1/1;
 }
 section#home .container {
   position: absolute;
@@ -601,6 +650,18 @@ section#home .container {
   left: 100px;
   right: 100px;
   bottom: 0;
+}
+@media (max-width: 767px) {
+  section#home .container {
+    left: 20px;
+    right: 20px;
+  }
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+  section#home .container {
+    left: 40px;
+    right: 40px;
+  }
 }
 section#home .container .content {
   position: absolute;
@@ -611,7 +672,6 @@ section#home .container .content {
   left: 0;
   flex-direction: column;
   display: flex;
-  gap: 180px;
 }
 section#home .container .content .group-title {
   display: flex;
@@ -630,14 +690,14 @@ section#home .container .content .group-title .title.active, section#home .conta
 }
 section#home .container .content .group-title .title {
   transition-delay: 0.4s;
-  font-size: 112px;
+  font-size: var(--hero-title-size);
   color: #1C1D1F;
   font-weight: 700;
   text-transform: uppercase;
   position: relative;
 }
 section#home .container .content .group-title .subtitle {
-  font-size: 24px;
+  font-size: var(--hero-subtitle-size);
   color: #1C1D1F;
   font-weight: 500;
   text-transform: uppercase;
@@ -647,7 +707,7 @@ section#home .container .content .group-title .scroll-down {
   bottom: 20px;
   z-index: 1;
   right: 0px;
-  font-size: 18px;
+  font-size: var(--small-size);
   color: #1C1D1F;
   font-weight: 500;
   display: flex;
@@ -680,6 +740,7 @@ section#home .container .content .group-title .scroll-down.active {
   transform: translate(0px, 0px);
 }
 section#home .container .content .group-about {
+  top: 5rem;
   position: relative;
   align-self: flex-end;
   width: 40%;
@@ -688,8 +749,14 @@ section#home .container .content .group-about {
   flex-direction: column;
   gap: 50px;
 }
+@media (min-width: 768px) and (max-width: 1023px) {
+  section#home .container .content .group-about {
+    width: 60%;
+    right: 0;
+  }
+}
 section#home .container .content .group-about .section {
-  font-size: 24px;
+  font-size: var(--hero-text-size);
   opacity: 0;
   transition: 0.4s ease-in-out;
 }
@@ -698,7 +765,7 @@ section#home .container .content .group-about .section.know-more a {
   color: #1C1D1F;
   text-decoration: none;
   position: relative;
-  font-size: 20px;
+  font-size: var(--small-size);
 }
 section#home .container .content .group-about .section.know-more a::before {
   content: "";
@@ -1026,7 +1093,7 @@ section#last-projects .header-container {
 }
 section#last-projects .header-container .slide-title {
   margin: 55px 0;
-  font-size: 80px;
+  font-size: var(--slide-title);
   font-weight: bold;
   text-transform: uppercase;
   width: 100%;
@@ -1048,7 +1115,7 @@ section#last-projects .header-container .text-container {
   box-sizing: border-box;
 }
 section#last-projects .header-container .text-container .text {
-  font-size: 22px;
+  font-size: var(--medium-size);
   text-transform: uppercase;
   font-weight: 300;
 }
@@ -1077,7 +1144,7 @@ section#last-projects .header-container .text-container .click-to-scroll .scroll
   justify-content: center;
 }
 section#last-projects .header-container .text-container .click-to-scroll .scroll-text {
-  font-size: 22px;
+  font-size: var(--medium-size);
   line-height: 16px;
   text-transform: uppercase;
   font-weight: 300;
@@ -1157,7 +1224,7 @@ section#last-projects .content-container .switch-container .switch-box .content 
 }
 section#last-projects .content-container .switch-container .switch-box .content .title {
   position: relative;
-  font-size: 64px;
+  font-size: var(--last-project-title);
   color: #ffffff;
   font-weight: bold;
   line-height: 80px;
@@ -1166,9 +1233,9 @@ section#last-projects .content-container .switch-container .switch-box .content 
   top: -40px;
 }
 section#last-projects .content-container .switch-container .switch-box .content .subtitle, section#last-projects .content-container .switch-container .switch-box .content .text {
-  font-size: 16px;
+  font-size: var(--small-size);
   position: relative;
-  font-weight: light;
+  font-weight: 300;
   color: #ffffff;
   opacity: 0;
   top: -40px;

@@ -3,8 +3,8 @@ $(document).ready(function()
     let gallery = $('aside#gallery');
     let thumbnail_container = $(".thumbnail-container");
     let tab = [];
+    let followCursor = $('aside#gallery .follow-cursor');
 
-    // Défilement de la galerie grâce aux flèches du clavier
     $(document).on('keydown', function(e)
     {
         if(gallery.hasClass('active'))
@@ -21,8 +21,8 @@ $(document).ready(function()
             {
                 nextImage();
             }
+
         }
-        return;
     });
 
 
@@ -30,7 +30,9 @@ $(document).ready(function()
     $(document).on('click', '.image-container .image', function()
     {
         let images_url = [];
+
         let index = $(this).index();
+
         let images = $(this).parent().find('.image');
         images.each(function()
         {
@@ -66,10 +68,12 @@ $(document).ready(function()
         CloseGallery();
     });
 
-    
+
     function OpenGallery(images, index)
     {
         tab = images;
+    
+        
         gallery.addClass('active');
         InitialiseThumbnails(tab);
         DisplayImage(index);

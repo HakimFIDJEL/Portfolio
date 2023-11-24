@@ -11,8 +11,16 @@ header
     height: 80px;
     width: 100%;
 
-    
+    @include responsive(phone)
+    {
+        display: none;
+    }
 
+    background-color: lightgreen !important;
+    @include responsive(tablet)
+    {
+        background-color: lightblue !important;
+    }
 
     &.dark 
     {
@@ -56,9 +64,6 @@ header
         }
     }
 
-  
-    // backdrop-filter: blur(20px);
-
 
     &.active 
     {
@@ -77,13 +82,19 @@ header
     padding: 0 45px;
 
    
-
     .socials , .nav
     {
         display: flex;
         align-items: center;
         list-style: none;
         gap : 36px;
+
+        @include responsive(tablet)
+        {
+            gap: 30px;
+        }
+
+        
 
         a, path 
         {

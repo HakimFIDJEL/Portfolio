@@ -16,15 +16,13 @@ section#home
    
     .parallax 
     {
-        width: 100%;
-        aspect-ratio: 1/1;
+        height: 150vh;
         overflow: hidden;
         img 
         {
-            top: 0;
-            width:100%;
+            height: 100%;
+            object-fit: cover;
             position: relative;
-            aspect-ratio: 1/1;
         }
     }
 
@@ -35,6 +33,18 @@ section#home
         left: 100px;
         right: 100px;
         bottom: 0;
+
+        @include responsive(phone)
+        {
+            left : 20px;
+            right: 20px;
+        }
+        @include responsive(tablet)
+        {
+            left: 40px;
+            right: 40px;
+        }
+        
     
         .content
         {
@@ -47,7 +57,6 @@ section#home
             flex-direction: column;
 
             display: flex;
-            gap: 180px;
 
             .group-title
             {
@@ -71,17 +80,16 @@ section#home
                 .title 
                 {
                     transition-delay: 0.4s;
-                    font-size: 112px;
+                    font-size: var(--hero-title-size);
                     color: $color3;
                     font-weight: 700;
                     text-transform: uppercase;
                     position: relative;
-
                 }
 
                 .subtitle 
                 {
-                    font-size: 24px;
+                    font-size: var(--hero-subtitle-size);
                     color: $color3;
                     font-weight: 500;
                     text-transform: uppercase;
@@ -89,65 +97,67 @@ section#home
                 }
 
                 .scroll-down 
+                {
+                    position: absolute;
+                    bottom: 20px;
+                    z-index: 1;
+                    right: 0px;
+                    font-size: var(--small-size);
+                    color: $color3;
+                    font-weight: 500;
+                    display: flex;
+                    gap: 20px;
+                    align-items: center;
+
+                    transition: 0.4s ease-in-out 0.2s;
+
+                    opacity: 0;
+                    transform: translate(20px, 0px);
+
+                    cursor: pointer;
+
+                    padding: 4px 0;
+                    box-sizing: border-box;
+
+                    .scroll-icon
                     {
-                        position: absolute;
-                        bottom: 20px;
-                        z-index: 1;
-                        right: 0px;
-                        font-size: 18px;
-                        color: $color3;
-                        font-weight: 500;
+                        width: 30px;
+                        height: 30px;
                         display: flex;
-                        gap: 20px;
                         align-items: center;
-
-                        transition: 0.4s ease-in-out 0.2s;
-
-                        opacity: 0;
-                        transform: translate(20px, 0px);
-
-                        cursor: pointer;
-
-                        padding: 4px 0;
-                        box-sizing: border-box;
-
-                        .scroll-icon
+                        justify-content: center;
+                        svg 
                         {
-                            width: 30px;
-                            height: 30px;
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
+                            width: 20px;
+                            height: 20px;
+                            transition: 0.4s ease-in-out;
+                            
+                        }
+                        &:hover 
+                        {
                             svg 
                             {
-                                width: 20px;
-                                height: 20px;
-                                transition: 0.4s ease-in-out;
-                               
+                                transform: translate(0px, 2px);
+                            
                             }
-                            &:hover 
-                            {
-                                svg 
-                                {
-                                    transform: translate(0px, 2px);
-                                
-                                }
-                            }
-                        }
-                        
-                       
-
-
-                        &.active 
-                        {
-                            opacity: 1;
-                            transform: translate(0px,0px);
                         }
                     }
+                    
+                    
+
+
+                    &.active 
+                    {
+                        opacity: 1;
+                        transform: translate(0px,0px);
+                    }
+                }
             }
 
             .group-about 
             {
+               
+                top :  5rem;
                 position: relative;
                 align-self: flex-end;
                 width: 40%;
@@ -156,11 +166,20 @@ section#home
                 flex-direction: column;
                 gap: 50px;
 
+                @include responsive(tablet)
+                {
+                    width: 60%;
+                    right: 0;
+                }
+                
+
                 .section 
                 {
-                    font-size: 24px;
+                    font-size: var(--hero-text-size);
                     opacity: 0;
                     transition : 0.4s ease-in-out;
+
+                    
 
                     &.know-more a
                     {
@@ -168,7 +187,7 @@ section#home
                         color: $color3;
                         text-decoration: none;
                         position : relative;
-                        font-size: 20px;
+                        font-size: var(--small-size);
                         
 
 
