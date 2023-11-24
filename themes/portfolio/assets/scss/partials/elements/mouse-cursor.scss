@@ -15,13 +15,49 @@ aside.mouse-cursor
 
 
     pointer-events: none;
+    opacity: 1;
     cursor : none;
 
-    &.active
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    div 
+    {
+        display: none;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &.image
     {
         transform: scale(2.3);
         outline : 0px; 
         cursor: pointer;
+        background-color : $color3;
+        .image 
+        {
+            display: flex;
+        }
+    }
+    &.link
+    {
+        transform: scale(2.3);
+        outline : 0px; 
+        cursor: pointer;
+        background-color : #F88379;
+        .link 
+        {
+            display: flex;
+        }
+    }
+    &.sticky 
+    {
+        outline: 1px solid rgb(153, 153, 153)
+    }
+    &.button
+    {
+        opacity: 0;
     }
 }
 

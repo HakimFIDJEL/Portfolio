@@ -35,6 +35,10 @@
   font-family: "Karla";
 }
 
+body {
+  overflow-x: hidden;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -230,6 +234,22 @@ header .socials path {
   transition: 0.3s ease-out;
 }
 
+.header-popup {
+  background-color: #1C1D1F;
+  color: #FFFFFF;
+  padding: 6px 12px;
+  box-sizing: border-box;
+  position: absolute;
+  z-index: 10000;
+  top: 0;
+  left: 0;
+  font-weight: 300;
+  outline: none;
+  border: none;
+  opacity: 0;
+  transition: 0.1s ease-out;
+}
+
 footer {
   box-sizing: border-box;
   padding: 50px 45px;
@@ -258,6 +278,9 @@ footer .click-to-scroll:hover.second .scroll-icon {
   transform: rotate(45deg);
 }
 footer .click-to-scroll .scroll-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transition: 0.3s ease-out;
 }
 footer .click-to-scroll .scroll-text {
@@ -305,12 +328,40 @@ aside.mouse-cursor {
   top: -50px;
   left: -50px;
   pointer-events: none;
+  opacity: 1;
   cursor: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-aside.mouse-cursor.active {
+aside.mouse-cursor div {
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+aside.mouse-cursor.image {
   transform: scale(2.3);
   outline: 0px;
   cursor: pointer;
+  background-color: #1C1D1F;
+}
+aside.mouse-cursor.image .image {
+  display: flex;
+}
+aside.mouse-cursor.link {
+  transform: scale(2.3);
+  outline: 0px;
+  cursor: pointer;
+  background-color: #F88379;
+}
+aside.mouse-cursor.link .link {
+  display: flex;
+}
+aside.mouse-cursor.sticky {
+  outline: 1px solid rgb(153, 153, 153);
+}
+aside.mouse-cursor.button {
+  opacity: 0;
 }
 
 .square {
@@ -893,7 +944,7 @@ section#all-projects .content-container .container {
   flex-wrap: wrap;
 }
 section#all-projects .content-container .container .group-container {
-  width: 640px;
+  width: 46%;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -933,7 +984,7 @@ section#all-projects .content-container .container .group-container.disappear {
 }
 section#all-projects .content-container .container .group-container .img-container {
   width: 100%;
-  height: 400px;
+  aspect-ratio: 16/9;
   background-color: white;
   transition: 0.4s ease-out;
   cursor: pointer;
@@ -1102,6 +1153,7 @@ section#last-projects .content-container .switch-container .switch-box .content 
   display: flex;
   flex-direction: column;
   max-width: 400px;
+  text-decoration: none;
 }
 section#last-projects .content-container .switch-container .switch-box .content .title {
   position: relative;
@@ -1476,6 +1528,9 @@ section#about .experience-container {
 section#about .experience-container .accordeon-container .accordeon {
   border-bottom: 1px solid #1C1D1F;
 }
+section#about .experience-container .accordeon-container .accordeon.active .group-title .arrow svg {
+  transform: rotate(-90deg);
+}
 section#about .experience-container .accordeon-container .accordeon.active .group-title .arrow svg path {
   fill: white;
 }
@@ -1502,16 +1557,6 @@ section#about .experience-container .accordeon-container .accordeon .group-title
   background-color: #F0F0F0;
   transition: 0.2s ease-out;
 }
-section#about .experience-container .accordeon-container .accordeon .group-title::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  right: 50%;
-  height: 1px;
-  background-color: #1C1D1F;
-  transition: 0.3s ease-out;
-}
 section#about .experience-container .accordeon-container .accordeon .group-title .title {
   font-size: 24px;
   font-weight: bold;
@@ -1532,6 +1577,7 @@ section#about .experience-container .accordeon-container .accordeon .group-title
 }
 section#about .experience-container .accordeon-container .accordeon .group-title .arrow svg {
   transition: 0.3s ease-out;
+  transform: rotate(90deg);
 }
 section#about .experience-container .accordeon-container .accordeon .group-title .arrow:hover::after {
   opacity: 0.2;

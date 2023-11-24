@@ -7,22 +7,30 @@ $(document).ready(function()
     $(document).on('mouseenter', '.cursor-pointer', function()
     {
         let type = $(this).data('type');
+        let svg, top, left, width, height, border_radius;
+
+        mouseCursor.addClass('active');
 
         switch (type)
         {
             case 'link':
-                let color = $(this).data('color');
-                mouseCursor.addClass('active');
-                mouseCursor.css('background-color', color);
+                mouseCursor.addClass('link');
+            break;
+            case 'image' : 
+                mouseCursor.addClass('image');
+            break;
+            case 'button' : 
+                mouseCursor.addClass('button');
             break;
             case 'sticky' : 
+                mouseCursor.addClass('sticky');
                 sticky = true;
-                let svg = $(this).find('svg');
+                svg = $(this).find('svg');
 
-                let top = svg.offset().top - $(window).scrollTop() - svg.height() / 2 ;
-                let left = svg.offset().left - $(window).scrollLeft() - svg.width() / 2;
-                let width = svg.width() * 2;
-                let height = svg.height() * 2;
+                top = svg.offset().top - $(window).scrollTop() - svg.height() / 2 ;
+                left = svg.offset().left - $(window).scrollLeft() - svg.width() / 2;
+                width = svg.width() * 2;
+                height = svg.height() * 2;
 
                 mouseCursor.css({
                     top: top,
@@ -44,7 +52,11 @@ $(document).ready(function()
         
         sticky = false;
         mouseCursor.removeClass('active');
-        mouseCursor.css('background-color', 'transparent');
+        mouseCursor.removeClass('link');
+        mouseCursor.removeClass('image');
+        mouseCursor.removeClass('button');
+        mouseCursor.removeClass('header');
+        mouseCursor.removeClass('sticky');
         mouseCursor.css({
             width: 40,
             height: 40,

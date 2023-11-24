@@ -11,6 +11,7 @@ header
     height: 80px;
     width: 100%;
 
+    
 
 
     &.dark 
@@ -200,6 +201,26 @@ header
             transition: 0.3s ease-out;
         }
     }
+    
+
+}
+
+.header-popup
+{
+    background-color : $color3;
+    color: $color1;
+    padding: 6px 12px;
+    box-sizing: border-box;
+    position: absolute;
+    z-index: 10000;
+    top: 0;
+    left: 0;
+    font-weight: 300;
+    outline: none;
+    border: none;
+
+    opacity: 0;
+    transition: 0.1s ease-out;
     
 
 }

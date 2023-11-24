@@ -253,7 +253,7 @@ section#about
                 {
                     .group-title .arrow svg
                     {
-                        
+                        transform : rotate(-90deg);
                         path 
                         {
                             fill : white;
@@ -292,17 +292,6 @@ section#about
 
                     transition: 0.2s ease-out;
 
-                    &::after 
-                    {
-                        content: '';
-                        position: absolute;
-                        bottom: 0;
-                        left: 50%;
-                        right: 50%;
-                        height: 1px;
-                        background-color: $color3;
-                        transition: 0.3s ease-out;
-                    }
 
                     .title 
                     {
@@ -327,6 +316,7 @@ section#about
                         transition :  0.3s ease-out;
                         svg {
                             transition: 0.3s ease-out;
+                            transform: rotate(90deg);
                         }
                     
                         cursor: pointer;
