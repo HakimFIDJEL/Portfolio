@@ -3,6 +3,11 @@ section#last-projects
     background-color: $color3;
     color : $color1;
 
+    @include responsive(phone)
+    {
+        display: none;
+    }
+
     .header-container
     {
         width: 100%;

@@ -41,6 +41,12 @@ section#all-projects
 
             margin : 55px 0 200px;
 
+            @include responsive(phone)
+            {
+                margin: 40px 0 60px;
+                position: relative;
+            }
+
             font-size: var(--slide-title);
             font-weight: bold;
             text-transform: uppercase;
@@ -70,6 +76,11 @@ section#all-projects
             padding: 0px 40px 60px 40px;
             box-sizing: border-box;
 
+            @include responsive(phone)
+            {
+                padding: 0px 20px 40px 20px;
+            }
+
             .text 
             {
                 font-size: var(--medium-size);
@@ -89,6 +100,11 @@ section#all-projects
             box-sizing: border-box;
 
             position: relative;
+
+            @include responsive(phone)
+            {
+                display: none;
+            }
 
             &::after 
             {
@@ -188,6 +204,13 @@ section#all-projects
             display: flex;
             gap: 40px;
 
+            @include responsive(phone)
+            {
+                margin: 40px 20px 40px 20px;
+            }
+
+            
+
             .options-container
             {
                 display: flex;
@@ -196,6 +219,14 @@ section#all-projects
                 width: 0px;
                 opacity: 0;
                 overflow : hidden;
+
+                @include responsive(phone)
+                {
+                    gap: 10px;
+                    overflow : auto;
+                    padding: 10px;
+                    box-sizing: border-box;
+                }
 
                 &.appear
                 {
@@ -262,6 +293,8 @@ section#all-projects
                 padding: 4px 0;
 
                 cursor: pointer;
+
+                
 
                 &::after 
                 {
@@ -342,6 +375,11 @@ section#all-projects
                 @include responsive(tablet)
                 {
                     margin: 40px 0;
+                }
+                @include responsive(phone)
+                {
+                    width: 100%;
+                    margin : 20px 0;
                 }
 
                 opacity: 0;

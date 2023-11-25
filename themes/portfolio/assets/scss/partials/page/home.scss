@@ -18,6 +18,12 @@ section#home
     {
         height: 150vh;
         overflow: hidden;
+
+        @include responsive(phone)
+        {
+            height: 100vh;
+        }
+
         img 
         {
             object-fit: cover;
@@ -99,6 +105,11 @@ section#home
 
                 .scroll-down 
                 {
+                    @include responsive(phone)
+                    {
+                        display: none;
+                    }
+
                     position: absolute;
                     bottom: 20px;
                     z-index: 1;
@@ -170,6 +181,11 @@ section#home
                 @include responsive(tablet)
                 {
                     width: 60%;
+                    right: 0;
+                }
+                @include responsive(phone)
+                {
+                    width: 80%;
                     right: 0;
                 }
                 

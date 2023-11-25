@@ -34,6 +34,10 @@ aside#gallery
         {
             width: 92%;
         }
+        @include responsive('phone')
+        {
+            width: 92%;
+        }
 
         .image-display-container
         {
@@ -51,6 +55,12 @@ aside#gallery
                 width: 90%;
                 min-width: auto;
             }
+            @include responsive('phone')
+            {
+                width: 90%;
+                min-width: auto;
+            }
+
 
             .image-display
             {
@@ -77,6 +87,11 @@ aside#gallery
                 transition: 0.5s ease-in-out 0.6s;
                 opacity: 0;
                 z-index: 0;
+
+                @include responsive(phone)
+                {
+                    display: none;
+                }
                 
                 .arrow 
                 {
@@ -125,6 +140,15 @@ aside#gallery
             opacity: 0;
             transition: 0.5s ease-in-out 0.3s;
 
+            @include responsive(phone)
+            {
+                width: 100%;
+                flex-wrap: wrap;
+                overflow: visible;
+                height: auto;
+                justify-content: space-between;
+            }
+
             .thumbnail
             {
                 height: 100%;
@@ -133,6 +157,13 @@ aside#gallery
                 position: relative;
                 cursor: pointer;
                 transition: 0.3s ease-in-out;
+
+                @include responsive(phone)
+                {
+                    width: 46%;
+                    apsect-ratio: 16/9;
+                    margin-bottom: 20px;
+                }
 
                 &:hover 
                 {

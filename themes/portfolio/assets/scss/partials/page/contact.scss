@@ -42,6 +42,11 @@ section#contact
             box-sizing: border-box;
             position: relative;
 
+            @include responsive(phone)
+            {
+                padding: 40px 20px;
+            }
+
             &::after 
             {
                 content: '';
@@ -63,6 +68,12 @@ section#contact
 
             .click-to-scroll
             {
+
+                @include responsive(phone)
+                {
+                    display: none;
+                }
+
                 display: flex;
                 align-items: flex-start;
                 gap: 30px;
@@ -144,6 +155,11 @@ section#contact
             padding : 120px 30px 100px 30px;
             height: auto;
         }
+        @include responsive(phone)
+        {
+            padding : 100px 20px 80px 20px;
+            height: auto;
+        }
 
         .hero-container
         {
@@ -170,8 +186,15 @@ section#contact
 
             gap : 60px;
 
+            
+
             .text 
             {
+                @include responsive(phone)
+                {
+                    display: none;
+                }
+
                 font-size: var(--big-size); 
                 font-weight: bold;
                 color: white;
