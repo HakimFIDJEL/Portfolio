@@ -40,6 +40,9 @@ $(document).ready(function()
     let animation_opacity = $('.animation-opacity');
     let animation_translate = $('.animation-translate');
 
+    let burgerContainer = $(".burger-container");
+    let nav = $("nav");
+
     let mouseCursor = $(".mouse-cursor");
     
     $(window).on('resize', function()
@@ -56,6 +59,8 @@ $(document).ready(function()
         HeaderAnimation();
         HeaderColor();
 
+        
+
         Home_scroll();
 
         AllProjects_checkOnScreen();
@@ -68,11 +73,13 @@ $(document).ready(function()
 
         animationOpacity();
         animationTranslate();
-
         
+
+        lastScrollTop = window_top;
     });
 
 
+  
    
     
 
@@ -135,6 +142,14 @@ $(document).ready(function()
         if(!header.hasClass('dark'))
         {
             header.addClass('dark');
+        }
+        if(burgerContainer.hasClass('light'))
+        {
+            burgerContainer.removeClass('light');
+        }
+        if(!burgerContainer.hasClass('dark'))
+        {
+            burgerContainer.addClass('dark');
         }        
         return;
     }
@@ -148,6 +163,14 @@ $(document).ready(function()
         {
             header.addClass('light');
         }        
+        if(burgerContainer.hasClass('dark'))
+        {
+            burgerContainer.removeClass('dark');
+        }
+        if(!burgerContainer.hasClass('light'))
+        {
+            burgerContainer.addClass('light');
+        }
         return;
     }
 
@@ -159,6 +182,10 @@ $(document).ready(function()
             if(header.hasClass('active'))
             {
                 header.removeClass('active');
+            }
+            if(burgerContainer.hasClass('active') && !$("nav .container").hasClass('active'))
+            {
+                burgerContainer.removeClass('active');
             }
         }
         // On va vers le haut
@@ -178,8 +205,11 @@ $(document).ready(function()
                     header.removeClass('active');
                 }
             }
+            if(!burgerContainer.hasClass('active'))
+            {
+                burgerContainer.addClass('active');
+            }
         }
-        lastScrollTop = window_top;
     }
 
     // Fonctions section all-projects

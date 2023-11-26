@@ -1,5 +1,8 @@
 $(document).ready(function()
 {
+    let mouseCursor = $(".mouse-cursor");
+    let square = $(".square");
+    let sticky = false;
 
     if(getOrientation() == 'portrait')
     {
@@ -7,9 +10,7 @@ $(document).ready(function()
     }
 
 
-    let mouseCursor = $(".mouse-cursor");
-    let square = $(".square");
-    let sticky = false;
+    
 
     $(document).on('mouseenter', '.cursor-pointer', function()
     {
