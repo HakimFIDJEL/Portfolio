@@ -33,6 +33,7 @@ $color5: #2C3E50;
     --slide-title : 80px;
     --last-project-title: 72px;
     --huge-text : 54px;
+    --line-height-hero : 78px;
 }
 
 // Responsive font sizes
@@ -52,6 +53,7 @@ $color5: #2C3E50;
         --slide-title : 36px;
         --last-project-title: 40px;
         --huge-text : 36px;
+        --line-height-hero : 0px;
     }
 }
 @include responsive(tablet)
@@ -68,6 +70,7 @@ $color5: #2C3E50;
         --slide-title : 64px;
         --last-project-title: 64px;
         --huge-text : 46px;
+        --line-height-hero : 0px;
     }
 }
 
@@ -222,3 +225,5 @@ html
 @import './partials/page/last-projects.scss';
 @import './partials/page/about.scss';
 @import './partials/page/contact.scss';
+
+@import './project.scss';

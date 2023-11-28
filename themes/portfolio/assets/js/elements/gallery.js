@@ -27,11 +27,11 @@ $(document).ready(function()
 
 
     // A mettre dans about.js
-    $(document).on('click', '.image-container .image', function()
+    $(document).on('click', '.cursor-pointer[data-type="image"]', function()
     {
         let images_url = [];
         let index = $(this).index();
-        let images = $(this).parent().find('.image');
+        let images = $(this).parent().find('.cursor-pointer[data-type="image"]');
         images.each(function()
         {
             images_url.push($(this).css('background'));

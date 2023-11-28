@@ -1,0 +1,156 @@
+section#project
+{
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, #2C3E50 0%, #1C1D1F 68.36%);
+    box-sizing: border-box;
+    padding : 240px 40px 170px 40px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .main-title
+    {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+
+        .group-title 
+        {
+            width: 100%;
+            display: grid;
+            grid-template-columns: auto 1fr;
+
+            .title 
+            {
+                font-size: var(--hero-title-size);
+                font-weight: 300;
+                text-transform: uppercase;
+                color : $color1;
+                line-height: var(--line-height-hero);
+            }
+            span 
+            {
+                background-color: $color1;
+                position: relative;
+                height: 3px;
+                // stick to bottom
+                align-self: flex-end;
+                display: flex;
+                justify-content: flex-end;
+                .categorie 
+                {
+                    position: absolute;
+                    bottom : 120%;
+                    text-align:right;
+                    text-transform: uppercase;
+                    font-size: var(--small-size);
+                    color: $color1;
+                    font-weight: 300;
+                }
+            }
+        }
+        .subtitle 
+        {
+            color: $color1;
+            text-transform: uppercase;
+            font-size: var(--hero-subtitle-size);
+            margin-top: 12px;
+            font-weight: 300;
+        }
+
+    }
+
+    .card-container 
+    {
+        margin-top : 200px;
+        width: 100%;
+        gap : 30px;
+        display: flex;
+        justify-content: space-between;
+        height: 500px;
+
+        
+
+        .card 
+        {
+            height: 100%;
+            background-color: $color1;
+            transition :  0.6s cubic-bezier(0.38, 0.005, 0.215, 1);
+            flex-grow: 1;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content : center;
+
+           
+
+            .text-container
+            {
+                position: absolute;
+                bottom: -30px;
+                left: 0;
+                color : rgb(255, 255, 255, 0.7);
+                font-size : var(--small-size);
+
+                pointer-events: none;
+            }
+
+            
+            &:hover 
+            {
+                flex-grow : 3;
+            }
+           
+        }
+    }
+
+    .techno-used 
+    {
+        margin-top: 200px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+
+        .title 
+        {
+            font-size: var(--small-size);
+            color : $color1;
+            font-weight: 300;
+            text-transform: uppercase;
+
+        }
+        .wrapper 
+        {
+            display: flex;
+            align-items: center;
+            gap : 32px;
+
+            .techno-container 
+            {
+                display: flex;
+                .techno 
+                {
+                    border-left : 1px solid $color1;
+                    padding : 0 12px;
+                    font-size: var(--small-size);
+                    color : $color1;
+                    font-weight: 300;
+                    text-transform: uppercase;
+                    box-sizing: border-box;
+                    &:first-child 
+                    {
+                        border-left : none;
+                    }
+                }
+            }
+            .delimiter 
+            {
+                height: 2px;
+                flex-grow: 1;
+                background-color: $color1;
+            }
+        }
+    }
+}
