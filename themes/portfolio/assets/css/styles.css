@@ -2685,15 +2685,71 @@ section#project {
   height: 100%;
   background: linear-gradient(180deg, #2C3E50 0%, #1C1D1F 68.36%);
   box-sizing: border-box;
-  padding: 240px 40px 170px 40px;
+  padding: 240px 40px 100px 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+section#project .header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  box-sizing: border-box;
+  padding-bottom: 50px;
+  width: 250px;
+  height: 200px;
+  position: fixed;
+  top: -175px;
+  font-size: var(--small-size);
+  border-radius: 50%;
+  z-index: 9999;
+  text-decoration: none;
+  transition: 0.3s ease-out;
+  cursor: pointer;
+}
+section#project .header.active {
+  top: -100px;
+}
+section#project .header.dark {
+  background-color: #1C1D1F;
+  color: #FFFFFF;
+}
+section#project .header.light {
+  background-color: #FFFFFF;
+  color: #1C1D1F;
 }
 section#project .main-title {
   width: 100%;
   display: flex;
   flex-direction: column;
+}
+@keyframes main-title-span {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+@keyframes main-title-categorie {
+  0% {
+    opacity: 0;
+    bottom: 180%;
+  }
+  100% {
+    opacity: 1;
+    bottom: 120%;
+  }
+}
+@keyframes main-title-subtitle {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
 }
 section#project .main-title .group-title {
   width: 100%;
@@ -2708,6 +2764,9 @@ section#project .main-title .group-title .title {
   line-height: var(--line-height-hero);
 }
 section#project .main-title .group-title span {
+  animation: main-title-span 1s ease-out forwards;
+  width: 0%;
+  white-space: nowrap;
   background-color: #FFFFFF;
   position: relative;
   height: 3px;
@@ -2716,6 +2775,9 @@ section#project .main-title .group-title span {
   justify-content: flex-end;
 }
 section#project .main-title .group-title span .categorie {
+  animation: main-title-categorie 0.6s ease-out 1s forwards;
+  opacity: 0;
+  bottom: 180%;
   position: absolute;
   bottom: 120%;
   text-align: right;
@@ -2730,6 +2792,9 @@ section#project .main-title .subtitle {
   font-size: var(--hero-subtitle-size);
   margin-top: 12px;
   font-weight: 300;
+  opacity: 0;
+  transform: translateY(-30px);
+  animation: main-title-subtitle 0.3s ease-out 1.6s forwards;
 }
 section#project .card-container {
   margin-top: 200px;
@@ -2796,6 +2861,185 @@ section#project .techno-used .wrapper .delimiter {
   height: 2px;
   flex-grow: 1;
   background-color: #FFFFFF;
+}
+section#project .description-container {
+  margin-top: 240px;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 85px 40px 160px 40px;
+  display: flex;
+  justify-content: space-between;
+}
+section#project .description-container .grade-container {
+  --w: 300px;
+  width: var(--w);
+}
+section#project .description-container .grade-container .circle {
+  width: 100%;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  position: relative;
+  display: inline-grid;
+  place-content: center;
+  margin: 5px;
+  font-size: 25px;
+  font-weight: bold;
+  font-family: sans-serif;
+  background: conic-gradient(#FFFFFF calc(var(--p) * 1%), rgba(0, 0, 0, 0) 0);
+}
+section#project .description-container .grade-container .circle .round {
+  width: calc(var(--b) / 2 * 1%);
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  background: #FFFFFF;
+  position: absolute;
+}
+section#project .description-container .grade-container .circle .round.first {
+  top: 0px;
+  left: calc(50% - 12px);
+}
+section#project .description-container .grade-container .circle .round.second {
+  inset: calc(50% - var(--b) / 2 * 1% + 12px) 0px 0px calc(50% - var(--b) / 2 * 1% + 12px);
+  background: #FFFFFF;
+  transform: rotate(calc(var(--p) * 3.6deg)) translateY(calc(50% - var(--w) / 2));
+}
+section#project .description-container .grade-container .circle .grade {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+}
+section#project .description-container .grade-container .circle::before {
+  content: "";
+  position: absolute;
+  top: calc(var(--b) / 2 * 1%);
+  left: calc(var(--b) / 2 * 1%);
+  width: calc(100% - (var(--b)) * 1%);
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  background-color: #1C1D1F;
+}
+section#project .description-container .grade-container .subtitle {
+  font-size: var(--xs-size);
+  color: #FFFFFF;
+  font-weight: 300;
+  text-transform: uppercase;
+  margin-top: 20px;
+}
+section#project .description-container .grade-container .links {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  box-sizing: border-box;
+  margin-top: 30px;
+}
+section#project .description-container .grade-container .links .link {
+  padding: 10px 20px;
+  box-sizing: border-box;
+  align-self: flex-end;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--xs-size);
+  font-weight: 300;
+  text-transform: uppercase;
+  gap: 10px;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  border-radius: 20px;
+  background-color: white;
+  color: #1C1D1F;
+  transition: 0.3s ease-out;
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+}
+section#project .description-container .grade-container .links .link svg {
+  position: relative;
+  z-index: 1;
+}
+section#project .description-container .grade-container .links .link svg path {
+  stroke: #1C1D1F;
+  transition: 0.3s ease-out;
+}
+section#project .description-container .grade-container .links .link:hover, section#project .description-container .grade-container .links .link:focus {
+  outline: 1px solid white;
+}
+section#project .description-container .grade-container .links .link:hover .text-button, section#project .description-container .grade-container .links .link:focus .text-button {
+  color: white;
+}
+section#project .description-container .grade-container .links .link:hover path, section#project .description-container .grade-container .links .link:focus path {
+  stroke: white;
+}
+section#project .description-container .grade-container .links .link:hover::before, section#project .description-container .grade-container .links .link:focus::before {
+  top: 0;
+}
+section#project .description-container .grade-container .links .link:hover::after, section#project .description-container .grade-container .links .link:focus::after {
+  top: 0;
+}
+section#project .description-container .grade-container .links .link::before {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #333333;
+  border-radius: 20px;
+  aspect-ratio: 1/1;
+  transition: top 0.15s ease-in;
+  z-index: 0;
+  opacity: 0.5;
+}
+section#project .description-container .grade-container .links .link::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #1C1D1F;
+  border-radius: 20px;
+  aspect-ratio: 1/1;
+  transition: top 0.15s ease-in;
+  transition-delay: 0.15s;
+  z-index: 0;
+}
+section#project .description-container .wrapper {
+  width: 750px;
+  display: flex;
+  flex-direction: column;
+  gap: 55px;
+}
+section#project .description-container .wrapper .description {
+  font-size: var(--medium-size);
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #FFFFFF;
+}
+section#project .description-container .wrapper .group-question {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+section#project .description-container .wrapper .group-question .question {
+  font-size: var(--small-size);
+  color: #FFFFFF;
+  font-weight: 300;
+  text-transform: uppercase;
+}
+section#project .description-container .wrapper .group-question .answer {
+  font-size: var(--xs-size);
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 300;
+  line-height: 1.5;
 }
 
 /*# sourceMappingURL=styles.css.map */
