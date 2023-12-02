@@ -1,0 +1,6 @@
+plugin:
+    name: 'hakim.projet::lang.plugin.name'
+    description: 'hakim.projet::lang.plugin.description'
+    author: Hakim
+    icon: oc-icon-adjust
+    homepage: ''
