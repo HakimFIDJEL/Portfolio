@@ -1,0 +1,55 @@
+fields:
+    name:
+        label: Name
+        span: auto
+        type: text
+    subtitle:
+        label: Subtitle
+        span: auto
+        type: textarea
+    libelle:
+        label: Libelle
+        span: auto
+        type: textarea
+    description:
+        label: Description
+        span: auto
+        type: textarea
+    first_question:
+        label: 'First question'
+        span: auto
+        type: textarea
+    first_answer:
+        label: 'First answer'
+        span: auto
+        type: textarea
+    second_question:
+        label: 'Second question'
+        span: auto
+        type: textarea
+    second_answer:
+        label: 'Second answer'
+        span: auto
+        type: textarea
+    src:
+        label: Src
+        span: auto
+        type: text
+    grade:
+        label: Grade
+        span: auto
+        type: number
+    grade_text:
+        label: 'Grade text'
+        span: auto
+        type: textarea
+    images:
+        label: Images
+        type: fileupload
+        mode: image
+        useCaption: true
+    categories:
+        label: Categories
+        type: relation
+        span: full
+        nameFrom: description

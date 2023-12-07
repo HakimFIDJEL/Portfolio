@@ -1385,7 +1385,9 @@ section#all-projects .content-container .container .group-container.disappear {
 section#all-projects .content-container .container .group-container .img-container {
   width: 100%;
   aspect-ratio: 16/9;
-  background-color: white;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
   transition: 0.4s ease-out;
   cursor: pointer;
 }
@@ -1537,6 +1539,20 @@ section#last-projects .content-container .switch-container .switch-box .backgrou
   bottom: 0;
   z-index: 0;
   pointer-events: none;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+section#last-projects .content-container .switch-container .switch-box .background::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  background-color: rgba(15, 23, 42, 0.3);
+  backdrop-filter: blur(2px);
 }
 section#last-projects .content-container .switch-container .switch-box .cover {
   position: absolute;
@@ -1545,7 +1561,7 @@ section#last-projects .content-container .switch-container .switch-box .cover {
   right: 0;
   bottom: 0;
   z-index: 1;
-  opacity: 0.5;
+  opacity: 0.7;
   background: linear-gradient(223.43deg, rgba(15, 23, 42, 0) 58.22%, #0F172A 88.25%);
   pointer-events: none;
 }
@@ -1554,7 +1570,6 @@ section#last-projects .content-container .switch-container .switch-box .content 
   z-index: 2;
   bottom: 24%;
   left: 45px;
-  backdrop-filter: blur(10px);
   display: flex;
   flex-direction: column;
   max-width: 400px;
@@ -1621,18 +1636,6 @@ section#last-projects .content-container .switch-container .switch-box .content.
     opacity: 0;
     top: 40px;
   }
-}
-section#last-projects .content-container .switch-container .switch-box:nth-child(1) {
-  background-color: #333333;
-}
-section#last-projects .content-container .switch-container .switch-box:nth-child(2) {
-  background-color: #1C1D1F;
-}
-section#last-projects .content-container .switch-container .switch-box:nth-child(3) {
-  background-color: #2C3E50;
-}
-section#last-projects .content-container .switch-container .switch-box:nth-child(4) {
-  background-color: #F0F0F0;
 }
 section#last-projects .content-container .switch-cover {
   position: absolute;
@@ -2813,6 +2816,9 @@ section#project .card-container .card {
   display: flex;
   align-items: center;
   justify-content: center;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 section#project .card-container .card .text-container {
   position: absolute;

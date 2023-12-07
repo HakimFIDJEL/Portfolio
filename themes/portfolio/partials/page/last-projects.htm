@@ -44,18 +44,18 @@
             </div>
 
             <ul class="selector">
-                <li class="active">
-                    <input type="radio" name="last-projects" checked>
-                </li>
-                <li >
-                    <input type="radio" name="last-projects">
-                </li>
-                <li >
-                    <input type="radio" name="last-projects">
-                </li>
-                <li >
-                    <input type="radio" name="last-projects">
-                </li>
+
+                {% set counter_dot = 0 %}
+                {% for project in projects %}
+                    <li class="{% if counter_dot == 0 %} active {% endif %}">
+                        <input type="radio" name="last-projects" {% if counter_dot == 0 %} checked {% endif %}>
+                    </li>
+                    {% set counter_dot = counter_dot + 1 %}
+                {% endfor %}
+        
+
+        
+               
             </ul>
 
             <div class="arrow right cursor-pointer" data-type="sticky">
@@ -67,88 +67,44 @@
         </div>
 
         <div class="switch-container">
-            <div class="switch-box">
-                <div class="background"></div>
+            {% for project in projects %}
+                <div class="switch-box">
+                    {% if project.images|length > 0 %}
+                        <div class="background" style="background-image: url('{{ project.images.first.getPath }}')"></div>
+                    {% else %}
+                        <div class="background">Pas d'image</div>
+                    {% endif %}
 
-                <a href="" class="content cursor-pointer" data-type="link">
-                    <div class="subtitle">
-                        Travail d'intégration 
-                    </div>
-                    <div class="title">
-                        Inframap
-                    </div>
-                    <div class="text">
-                        INFRAMAP est l'un des clients de mon entrepris,e ma mission était d'intégrer les maquettes de notre graphiste pour leur site client.
-                    </div>
-                </a>
-
-                <div class="cover"></div>
-            </div>
-            <div class="switch-box">
-                <div class="background"></div>
-
-                <a href="" class="content cursor-pointer" data-type="link">
-                    <div class="subtitle">
-                        Travail d'intégration 
-                    </div>
-                    <div class="title">
-                        Inframap
-                    </div>
-                    <div class="text">
-                        INFRAMAP est l'un des clients de mon entrepris,e ma mission était d'intégrer les maquettes de notre graphiste pour leur site client.
-                    </div>
-                </a>
-                
-                <div class="cover"></div>
-            </div>
-            <div class="switch-box">
-                <div class="background"></div>
-
-                <a href="" class="content cursor-pointer" data-type="link">
-                    <div class="subtitle">
-                        Travail d'intégration 
-                    </div>
-                    <div class="title">
-                        Inframap
-                    </div>
-                    <div class="text">
-                        INFRAMAP est l'un des clients de mon entrepris,e ma mission était d'intégrer les maquettes de notre graphiste pour leur site client. 
-                    </div>
-                </a>
-                
-                <div class="cover"></div>
-            </div>
-            <div class="switch-box">
-                <div class="background"></div>
-
-                <a href="" class="content cursor-pointer" data-type="link">
-                    <div class="subtitle">
-                        Travail d'intégration 
-                    </div>
-                    <div class="title">
-                        Inframap
-                    </div>
-                    <div class="text">
-                        INFRAMAP est l'un des clients de mon entrepris,e ma mission était d'intégrer les maquettes de notre graphiste pour leur site client. 
-                    </div>
-                </a>
-                
-                <div class="cover"></div>
-            </div>
+                    <a href="{{ url('/project/' ~ project.id) }}" class="content cursor-pointer" data-type="link">
+                        <div class="subtitle">
+                            {{ project.subtitle }}
+                        </div>
+                        <div class="title">
+                            {{ project.name }}
+                        </div>
+                        <div class="text">
+                            {{ project.libelle }}
+                        </div>
+                    </a>
+                    
+                    <div class="cover"></div>
+                </div>
+            {% endfor %}
         </div>
 
 
         
 
         
+         {% set counter_dot = 0 %}
+        {% for project in projects %}
+            <div class="dummy-project" data-ref="{{ counter_dot }}"></div>
+            {% set counter_dot = counter_dot + 1 %}
+        {% endfor %}
+        
 
 
-        
-        <div class="dummy-project" data-ref="0"></div>
-        <div class="dummy-project" data-ref="1"></div>
-        <div class="dummy-project" data-ref="2"></div>
-        <div class="dummy-project" data-ref="3"></div>
-        
+       
 
     </div>
 

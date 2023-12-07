@@ -1,0 +1,20 @@
+v1.0.1:
+    - 'Initialize plugin'
+v1.0.2:
+    - 'Created table hakim_projects_projects'
+    - builder_table_create_hakim_projects_projects.php
+v1.0.3:
+    - 'Created table hakim_projects_projects_images'
+    - builder_table_create_hakim_projects_projects_images.php
+v1.0.4:
+    - 'Created table hakim_projects_category'
+    - builder_table_create_hakim_projects_category.php
+v1.0.5:
+    - 'Created table hakim_projects_project_category'
+    - builder_table_create_hakim_projects_project_category.php
+v1.0.6:
+    - 'Updated table hakim_projects_category'
+    - builder_table_update_hakim_projects_categories.php
+v1.0.7:
+    - 'Updated table hakim_projects_projects'
+    - builder_table_update_hakim_projects_projects.php

@@ -1,0 +1,11 @@
+plugin:
+    name: 'hakim.projects::lang.plugin.name'
+    description: 'hakim.projects::lang.plugin.description'
+    author: Hakim
+    icon: oc-icon-adjust
+    homepage: ''
+navigation:
+    main-menu-item:
+        label: Projets
+        url: /hakim/projects/projectcontroller
+        icon: icon-archive

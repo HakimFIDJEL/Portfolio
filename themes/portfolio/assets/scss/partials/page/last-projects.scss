@@ -183,6 +183,26 @@ section#last-projects
                     z-index: 0;
 
                     pointer-events: none;
+
+                    background-position: center;
+                    background-size: cover;
+                    background-repeat: no-repeat;
+
+                    &::after 
+                    {
+                        content: '';
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        right: 0;
+                        bottom: 0;
+                        z-index: 1;
+
+                        background-color: rgba(15, 23, 42, 0.3);
+                        backdrop-filter: blur(2px);
+                    }
+
+
                 }
 
                 .cover 
@@ -194,7 +214,7 @@ section#last-projects
                     bottom: 0;
                     z-index: 1;
 
-                    opacity: 0.5;
+                    opacity: 0.7;
                     background: linear-gradient(223.43deg, rgba(15, 23, 42, 0) 58.22%, #0F172A 88.25%);
 
                     pointer-events: none;
@@ -207,7 +227,6 @@ section#last-projects
                     bottom: 24%;
                     left: 45px;
 
-                    backdrop-filter: blur(10px);
                 
                     display: flex;
                     flex-direction: column;
@@ -306,22 +325,6 @@ section#last-projects
 
 
 
-                &:nth-child(1)
-                {
-                    background-color: $color4;
-                }
-                &:nth-child(2)
-                {
-                    background-color: $color3;
-                }
-                &:nth-child(3)
-                {
-                    background-color: $color5;
-                }
-                &:nth-child(4)
-                {
-                    background-color: $color2;
-                }
 
             }
         }

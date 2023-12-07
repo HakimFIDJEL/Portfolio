@@ -77,9 +77,6 @@
                 <div class="option hide" data-cat="ALL">
                     TOUS
                 </div>
-                <div class="option" data-cat="INTEGRATION">
-                    INTEGRATION
-                </div>
                 <div class="option" data-cat="FRONTEND">
                     FRONTEND
                 </div>
@@ -89,8 +86,8 @@
                 <div class="option" data-cat="API">
                     API
                 </div>
-                <div class="option" data-cat="COMPLET">
-                    COMPLET
+                <div class="option" data-cat="DESIGN">
+                    DESIGN
                 </div>
             </div>
 
@@ -101,85 +98,33 @@
 
         <div class="container">
 
+       
 
-            <div class="group-container cursor-pointer" data-type="link" data-color="rgb(153, 153, 153)" data-cat='["FRONTEND", "BACKEND", "API", "COMPLET"]'>
-                <div class="img-container">
 
-                </div>
+        {% for project in projects %}
+            {% set categories = [] %}
+            {% for category in project.categories %}
+                {% set categories = categories|merge([category.description|upper]) %}
+            {% endfor %}
+            <div class="group-container cursor-pointer" data-type="link" data-color="rgb(153, 153, 153)" data-cat="{{ categories|json_encode }}">
+
+                {% if project.images|length > 0 %}
+                    <a href="{{url('/project/' ~ project.id)}}" class="img-container" style="background-image: url('{{ project.images.first.getPath }}')"></a>
+                {% else %}
+                    <div class="img-container">Pas d'image</div>
+                {% endif %}
+                
                 <div class="text-container">
                     <div class="title">
-                        INFRAMAP
+                        {{ project.name }}
                     </div>
                     <div class="subtitle">
-                        Intégration
+                        {{ project.subtitle }}
                     </div>
                 </div>
             </div>
-            <div class="group-container cursor-pointer" data-type="link" data-color="rgb(153, 153, 153)" data-cat='["INTEGRATION"]'>
-                <div class="img-container">
+        {% endfor %}
 
-                </div>
-                <div class="text-container">
-                    <div class="title">
-                        INFRAMAP
-                    </div>
-                    <div class="subtitle">
-                        Intégration
-                    </div>
-                </div>
-            </div>
-            <div class="group-container cursor-pointer" data-type="link" data-color="rgb(153, 153, 153)" data-cat='["API", "COMPLET"]'>
-                <div class="img-container">
-
-                </div>
-                <div class="text-container" data-cat='["INTEGRATION", "FRONTEND"]'>
-                    <div class="title">
-                        INFRAMAP
-                    </div>
-                    <div class="subtitle">
-                        Intégration
-                    </div>
-                </div>
-            </div>
-            <div class="group-container cursor-pointer" data-type="link" data-color="rgb(153, 153, 153)" data-cat='["INTEGRATION", "API", "COMPLET"]'>
-                <div class="img-container">
-
-                </div>
-                <div class="text-container">
-                    <div class="title">
-                        INFRAMAP
-                    </div>
-                    <div class="subtitle">
-                        Intégration
-                    </div>
-                </div>
-            </div>
-            <div class="group-container cursor-pointer" data-type="link" data-color="rgb(153, 153, 153)" data-cat='["INTEGRATION", "COMPLET"]'>
-                <div class="img-container">
-
-                </div>
-                <div class="text-container">
-                    <div class="title">
-                        INFRAMAP
-                    </div>
-                    <div class="subtitle">
-                        Intégration
-                    </div>
-                </div>
-            </div>
-            <div class="group-container cursor-pointer" data-type="link" data-color="rgb(153, 153, 153)" data-cat='["INTEGRATION", "FRONTEND", "BACKEND", "API", "COMPLET"]'>
-                <div class="img-container">
-
-                </div>
-                <div class="text-container">
-                    <div class="title">
-                        INFRAMAP
-                    </div>
-                    <div class="subtitle">
-                        Intégration
-                    </div>
-                </div>
-            </div>
 
 
         </div>

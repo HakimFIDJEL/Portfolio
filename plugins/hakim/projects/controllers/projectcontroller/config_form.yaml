@@ -1,0 +1,11 @@
+name: ProjectController
+modelClass: Hakim\Projects\Models\Project
+form: $/hakim/projects/models/project/fields.yaml
+defaultRedirect: hakim/projects/projectcontroller
+create:
+    redirect: 'hakim/projects/projectcontroller/update/:id'
+    redirectClose: hakim/projects/projectcontroller
+update:
+    redirect: hakim/projects/projectcontroller
+    redirectClose: hakim/projects/projectcontroller
+preview: {  }

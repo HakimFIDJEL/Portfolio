@@ -429,7 +429,9 @@ section#all-projects
                 {
                     width: 100%;
                     aspect-ratio: 16/9;
-                    background-color: white;
+                    background-position: center;
+                    background-size: cover;
+                    background-repeat: no-repeat;
 
                     transition: 0.4s ease-out;
                     cursor: pointer;
