@@ -2,9 +2,18 @@ section#project
 {
     width: 100%;
     height: 100%;
-    background: linear-gradient(180deg, #2C3E50 0%, #1C1D1F 68.36%);
+    background: linear-gradient(180deg, #2C3E50 0%, #1C1D1F 50.36%);
     box-sizing: border-box;
     padding : 240px 40px 100px 40px;
+
+    @include responsive(phone)
+    {
+        padding : 240px 20px 100px 20px;
+    }
+    @include responsive(tablet)
+    {
+        padding : 240px 30px 100px 30px;
+    }
 
     display: flex;
     flex-direction: column;
@@ -23,10 +32,10 @@ section#project
         top: -175px;
         font-size: var(--small-size);
         border-radius: 50%;
-        z-index: 9999;
+        z-index: 999;
         text-decoration: none;
 
-        transition: 0.3s ease-out;
+        transition: 0.6s cubic-bezier(0.38, 0.005, 0.215, 1);
 
         cursor: pointer;
 
@@ -91,6 +100,11 @@ section#project
             display: grid;
             grid-template-columns: auto 1fr;
 
+            @include responsive(phone)
+            {
+                grid-template-columns: 1fr;
+            }
+
             .title 
             {
                 font-size: var(--hero-title-size);
@@ -102,6 +116,7 @@ section#project
             span 
             {
                 animation : main-title-span 1s ease-out forwards;
+                
 
 
                 width: 0%;
@@ -115,9 +130,17 @@ section#project
                 align-self: flex-end;
                 display: flex;
                 justify-content: flex-end;
+
+                @include responsive(phone)
+                {
+                    height: 2px;
+                }
                 .categorie 
                 {
-
+                    @include responsive(phone)
+                    {
+                        display: none;
+                    }
                     animation : main-title-categorie 0.6s ease-out 1s forwards;
                     opacity: 0;
                     bottom: 180%;
@@ -157,6 +180,22 @@ section#project
         justify-content: space-between;
         height: 500px;
 
+        @include responsive(tablet)
+        {
+            margin-top: 170px;
+            flex-wrap: wrap;
+            height: auto;
+            gap : 50px;
+        }
+
+        @include responsive(phone)
+        {
+            flex-direction: column;
+            height: auto;
+            gap : 50px;
+            margin-top: 140px;
+        }
+
         
 
         .card 
@@ -173,6 +212,19 @@ section#project
             background-position: center;
             background-size: cover;
             background-repeat: no-repeat;
+
+            @include responsive(tablet)
+            {
+                width: 40%;
+                flex-grow: 1;
+                height: 300px;
+                
+            }
+            @include responsive(phone)
+            {
+                width: 100%;
+                aspect-ratio: 16/9;
+            }
 
            
 
@@ -210,6 +262,12 @@ section#project
             font-weight: 300;
             text-transform: uppercase;
 
+            @include responsive(phone)
+            {
+                margin-bottom: 24px;
+            }
+
+
         }
         .wrapper 
         {
@@ -217,9 +275,16 @@ section#project
             align-items: center;
             gap : 32px;
 
+            
             .techno-container 
             {
                 display: flex;
+                @include responsive(phone)
+                {
+                    flex-wrap: wrap;
+                    justify-content : center;
+                }
+
                 .techno 
                 {
                     border-left : 1px solid $color1;
@@ -240,6 +305,11 @@ section#project
                 height: 2px;
                 flex-grow: 1;
                 background-color: $color1;
+                @include responsive(phone)
+                {
+                    display: none;
+                }
+
             }
         }
     }
@@ -254,15 +324,47 @@ section#project
 
         display: flex;
         justify-content: space-between;
+        
+        gap : 100px;
+
+        @include responsive(tablet)
+        {
+            flex-direction: column-reverse;
+            padding : 0px 30px 160px 30px;
+            gap : 120px;
+        }
+        @include responsive(phone)
+        {
+            flex-direction: column-reverse;
+            padding : 0px 20px 160px 20px;
+            gap : 120px;
+            
+        }
 
         .grade-container 
         {
-            --w : 300px;
-            width: var(--w);
+            position: relative;
+            @include responsive(tablet)
+            {
+                display: flex;
+                gap : 60px;
+
+            }
+
+            @include responsive(phone)
+            {
+                display: flex;
+                flex-direction: column;
+                gap : 60px;
+                justify-content: center;
+                padding-top: 320px;
+            }
+            
 
             .circle 
             {
-                width : 100%;
+                --w : 300px;
+                width: var(--w);
                 aspect-ratio: 1/1;
                 border-radius: 50%;
                 position: relative;
@@ -275,6 +377,18 @@ section#project
                 font-family: sans-serif;
 
                 background: conic-gradient($color1 calc(var(--p) * 1%),#0000 0);
+
+                @include responsive(tablet)
+                {
+                    flex-shrink: 0;
+                }
+                @include responsive(phone)
+                {
+                   position: absolute;
+                   top: 0;
+                   left : 50%;
+                    transform: translateX(-50%);
+                }
 
 
                 .round 
@@ -339,7 +453,16 @@ section#project
                 font-weight: 300;
                 text-transform: uppercase;
                 margin-top: 20px;
-            
+                width: 300px;
+                
+                @include responsive(tablet)
+                {
+                    width: 100%;
+                }
+                @include responsive(phone)
+                {
+                    width: 100%;
+                }
             }
 
             .links 
@@ -350,6 +473,13 @@ section#project
                 box-sizing: border-box;
 
                 margin-top: 30px;
+
+                @include responsive(tablet)
+                {
+                    position: absolute;
+                    bottom: 0px;
+                    right: 0;
+                }
 
                 .link
                 {
@@ -375,7 +505,7 @@ section#project
                     background-color: white;
                     color: $color3;
 
-                    transition: 0.3s ease-out;
+                    transition: 0.6s cubic-bezier(0.38, 0.005, 0.215, 1);
                     position: relative;
                     overflow: hidden;
 
@@ -389,7 +519,7 @@ section#project
                         path 
                         {
                             stroke: $color3;
-                            transition: 0.3s ease-out;
+                            transition: 0.6s cubic-bezier(0.38, 0.005, 0.215, 1);
                         }
                     }
 
@@ -473,6 +603,16 @@ section#project
             flex-direction: column;
             gap : 55px;
 
+            @include responsive(tablet)
+            {
+                width: 100%;
+            }
+
+            @include responsive(phone)
+            {
+                width: 100%;
+            }
+
 
             .description 
             {
@@ -480,6 +620,7 @@ section#project
                 font-weight: 600;
                 text-transform: uppercase;
                 color : $color1;
+                text-align: justify;
             }
             .group-question
             {

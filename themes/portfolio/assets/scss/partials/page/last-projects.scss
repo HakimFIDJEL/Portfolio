@@ -144,7 +144,7 @@ section#last-projects
             height: 100vh;
 
 
-            transition : transform 0.50s ease-out;
+            transition : transform 0.6s cubic-bezier(0.38, 0.005, 0.215, 1);
 
             position: absolute;
 
@@ -256,13 +256,13 @@ section#last-projects
                     }
                     .subtitle 
                     {
-                        font-size: var(--small-size);
+                        font-size: var(--xs-size);
                         text-transform: uppercase;
                     }
                     .text 
                     {
                         
-                        font-size: var(--medium-size);
+                        font-size: var(--small-size);
                     }
 
 
@@ -511,6 +511,6 @@ section#last-projects
     .dummy-project
     {
         width: 100vw;
-        height: 100vh;
+        height: 140vh;
     }
 }

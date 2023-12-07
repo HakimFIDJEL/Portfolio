@@ -53,7 +53,7 @@ $color5: #2C3E50;
         --slide-title : 36px;
         --last-project-title: 40px;
         --huge-text : 36px;
-        --line-height-hero : 0px;
+        --line-height-hero : 40px;
     }
 }
 @include responsive(tablet)
@@ -70,7 +70,7 @@ $color5: #2C3E50;
         --slide-title : 64px;
         --last-project-title: 64px;
         --huge-text : 46px;
-        --line-height-hero : 0px;
+        --line-height-hero : 64px;
     }
 }
 

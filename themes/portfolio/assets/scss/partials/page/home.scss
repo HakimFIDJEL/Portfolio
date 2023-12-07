@@ -76,7 +76,7 @@ section#home
                 {
                     opacity: 0;
                     transform: translate(0px, -50px);
-                    transition: 0.6s ease-out 0.2s;
+                    transition: 0.6s cubic-bezier(0.38, 0.005, 0.215, 1) 0.2s;
                     &.active 
                     {
                         opacity: 1;
@@ -121,7 +121,7 @@ section#home
                     gap: 20px;
                     align-items: center;
 
-                    transition: 0.4s ease-in-out 0.2s;
+                    transition: 0.6s cubic-bezier(0.38, 0.005, 0.215, 1) 0.2s;
 
                     opacity: 0;
                     transform: translate(20px, 0px);
@@ -142,7 +142,7 @@ section#home
                         {
                             width: 20px;
                             height: 20px;
-                            transition: 0.4s ease-in-out;
+                            transition: 0.6s cubic-bezier(0.38, 0.005, 0.215, 1);
                             
                         }
                         &:hover 
@@ -194,7 +194,7 @@ section#home
                 {
                     font-size: var(--hero-text-size);
                     opacity: 0;
-                    transition : 0.4s ease-in-out;
+                    transition : 0.6s cubic-bezier(0.38, 0.005, 0.215, 1);
 
                     
 
@@ -218,7 +218,7 @@ section#home
                             height: 1px;
                             background-color: $color3;
                             z-index: -1;
-                            transition: 0.4s ease-in-out;
+                            transition: 0.6s cubic-bezier(0.38, 0.005, 0.215, 1);
                             transform-origin: left;
                         }
 
