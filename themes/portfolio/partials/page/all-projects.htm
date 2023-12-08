@@ -109,7 +109,7 @@
             <div class="group-container cursor-pointer" data-type="link" data-color="rgb(153, 153, 153)" data-cat="{{ categories|json_encode }}">
 
                 {% if project.images|length > 0 %}
-                    <a href="{{url('/project/' ~ project.id)}}" class="img-container" style="background-image: url('{{ project.images.first.getPath }}')"></a>
+                    <div data-src="{{url('/project/' ~ project.id)}}" class="img-container link-href" style="background-image: url('{{ project.images.first.getPath }}')"></div>
                 {% else %}
                     <div class="img-container">Pas d'image</div>
                 {% endif %}

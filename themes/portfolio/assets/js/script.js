@@ -29,6 +29,18 @@ $(window).on('load', function()
 $(document).ready(function()
 {
 
+    $(document).on('click', ".link-href", function()
+    {
+        let preloader = $('aside.preloader');
+        let src = $(this).data('src');
+        preloader.removeClass('loaded');
+        setTimeout(function(){
+            window.location.href = src;
+        }, 300);
+
+    });
+
+
     $('.follow-cursor').mouseenter(function(){
 
         $(this).mousemove(function(event){

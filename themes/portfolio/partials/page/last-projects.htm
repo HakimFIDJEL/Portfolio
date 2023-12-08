@@ -75,7 +75,7 @@
                         <div class="background">Pas d'image</div>
                     {% endif %}
 
-                    <a href="{{ url('/project/' ~ project.id) }}" class="content cursor-pointer" data-type="link">
+                    <div data-src="{{ url('/project/' ~ project.id) }}" class="content cursor-pointer link-href" data-type="link">
                         <div class="subtitle">
                             {{ project.subtitle }}
                         </div>
@@ -85,7 +85,7 @@
                         <div class="text">
                             {{ project.libelle }}
                         </div>
-                    </a>
+                    </div>
                     
                     <div class="cover"></div>
                 </div>
