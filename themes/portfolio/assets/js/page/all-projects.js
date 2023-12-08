@@ -42,7 +42,7 @@ $(document).ready(function()
         options_container.removeClass('appear');
         options_container.addClass('disappear');
 
-
+        // Selecteur
         setTimeout(function()
         {
             options.each(function()
@@ -64,9 +64,15 @@ $(document).ready(function()
             
             // Vérifier si option.text() fait partie de ce tableau
             if(categories.includes(option.data('cat')) || option.data('cat') == 'ALL') {
-                group.css('display', 'flex');
-                group.removeClass('disappear');
-                group.removeClass('appear');
+                console.log('on rentre');
+
+                if(group.css('display') == 'none')
+                {
+                    group.css('display', 'flex');
+                    group.removeClass('disappear');
+                    group.addClass('appear');
+                }
+
 
 
 
@@ -82,10 +88,7 @@ $(document).ready(function()
                 
             }
 
-            setTimeout(function()
-            {
-                checkOnScreen();
-            }, 200);
+         
         });
 
     });

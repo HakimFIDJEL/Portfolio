@@ -16,15 +16,15 @@ $(document).ready(function()
     let about_blockTitles = $("#about .block-group-title");
     let about_skillsContainer = $("#about .skills-container");
     let about_skills = $("#about .skills-container .skill");
-    let about_parallax_top = $("#about .hero-container").offset().top;
-    let about_parallax_height = $("#about .hero-container").height();
+    // let about_parallax_top = $("#about .hero-container").offset().top;
+    // let about_parallax_height = $("#about .hero-container").height();
     let about_parallax = $("#about .parallax");
     let about_title = $("#about .group-title .title");
     let about_title_top = about_title.offset().top;
-    let about_title_height = about_title.height();
-    let about_subtitle = $("#about .group-title .subtitle");
-    let about_subtitle_top = about_subtitle.offset().top;
-    let about_subtitle_height = about_subtitle.height();
+    // let about_title_height = about_title.height();
+    // let about_subtitle = $("#about .group-title .subtitle");
+    // let about_subtitle_top = about_subtitle.offset().top;
+    // let about_subtitle_height = about_subtitle.height();
     let about_timer = 0;
     let slide_title = $('.slide-title');
     let slide_top;
@@ -67,7 +67,7 @@ $(document).ready(function()
 
         About_blockTitleAnimation();
         About_skillAnimation();
-        About_parallaxAnimation();
+        // About_parallaxAnimation();
 
         ContactScroll();
 
@@ -124,6 +124,11 @@ $(document).ready(function()
         }
         // Si le header est dans la section about
         else if(header.offset().top + header.height() >= about_top && header.offset().top <= about_bottom)
+        {
+            headerDark();
+        }
+        // Si le header est dans la section all-projects
+        else if(header.offset().top + header.height() >= $("#all-projects").offset().top && header.offset().top <= $("#all-projects").offset().top + $("#all-projects").height())
         {
             headerDark();
         }

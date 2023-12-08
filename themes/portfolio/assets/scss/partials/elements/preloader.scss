@@ -12,10 +12,66 @@ aside.preloader
     }
     width: 100vw;
     height: 100vh;
-    position: absolute;
-    background-color: $color4;
-    z-index: 999;
+    position: fixed;
+    z-index: 99999;
     top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-    animation: preloader-out 0.3s ease-in-out forwards 1s;
+    pointer-events: none;
+
+    @keyframes delimiter-appear
+    {
+        0%{
+            height: 0%;
+        }
+        100%{
+            height: 100%;
+        }
+    }
+
+    .delimiter 
+    {
+        width: 1px;
+        background-color: white;
+        z-index: 1;
+        animation : delimiter-appear 0.6s cubic-bezier(0.38, 0.005, 0.215, 1) forwards;
+        
+    }
+
+    .wing
+    {
+        width: 50%;
+        position : absolute;
+        top: 0;
+        bottom: 0;
+        background-color: $color4;
+        transition : all 0.6s cubic-bezier(0.38, 0.005, 0.215, 1);
+        &.left
+        {
+            left: 0;
+        }
+        &.right
+        {
+            right: 0;
+        }   
+    }
+
+    &.loaded
+    {
+        .left 
+        {
+            left: -50%;
+        }
+        .right 
+        {
+            right: -50%;
+        }
+    }
+    &.load
+    {
+        animation: preloader-out 0.6s cubic-bezier(0.38, 0.005, 0.215, 1) forwards reverse; 
+    }
+
 }

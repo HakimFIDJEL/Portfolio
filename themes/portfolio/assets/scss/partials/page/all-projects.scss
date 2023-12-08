@@ -2,8 +2,8 @@
 
 section#all-projects
 {
-    color: $color1;
-    background-color: $color5;
+    color: $color3;
+    background-color: $color2;
 
     .header-container
     {
@@ -21,7 +21,8 @@ section#all-projects
             left: 0;
             right: 0;
             bottom: 200px;
-            background : linear-gradient(to bottom, $color3, $color5);
+            // background : linear-gradient(to bottom, $color1, $color2);
+            background-color: $color2;
         }
 
         @keyframes continuous-scroll-title
@@ -126,7 +127,7 @@ section#all-projects
                 display: flex;
                 align-items: flex-start;
                 gap: 30px;
-                color: white;
+                color: $color3;
                 text-decoration: none;
                 cursor: pointer;
                 &:hover 
@@ -180,7 +181,7 @@ section#all-projects
 
                         bottom: -8px;
                         height: 1px;
-                        background-color: $color1;
+                        background-color: $color3;
 
                         
                     }
@@ -193,7 +194,7 @@ section#all-projects
 
     .content-container
     {
-        background-color: $color5;
+        background-color: $color2;
 
         .selector-container
         {
@@ -230,11 +231,11 @@ section#all-projects
 
                 &.appear
                 {
-                    animation : options-container-appear 0.2s ease-in-out forwards;
+                    animation : options-container-appear 0.2s cubic-bezier(0.38, 0.005, 0.215, 1) forwards;
                 }
                 &.disappear
                 {
-                    animation : options-container-disappear 0.2s ease-in-out forwards;
+                    animation : options-container-disappear 0.2s cubic-bezier(0.38, 0.005, 0.215, 1) forwards;
                 }
 
                 .option
@@ -248,7 +249,8 @@ section#all-projects
 
                     &:hover 
                     {
-                        background-color: $color4;
+                        background-color: $color3;
+                        color: $color2;
                     }
 
 
@@ -304,7 +306,7 @@ section#all-projects
                     left: 0;
                     right: 0;
                     height: 1px;
-                    background-color: $color1;
+                    background-color: $color3;
                     transition: 0.6s cubic-bezier(0.38, 0.005, 0.215, 1);
                 }
 
@@ -389,14 +391,27 @@ section#all-projects
                 
                 &.appear 
                 {
-                    animation : group-appear 0.5s ease-in-out forwards;
+                    animation : group-appear 0.6s cubic-bezier(0.38, 0.005, 0.215, 1) forwards;
+                    .img-container
+                    {
+                        animation : img-container-appear 1s cubic-bezier(0.38, 0.005, 0.215, 1) forwards;
+                    }
                 }
                 &.disappear
                 {
-                    animation : group-disappear 0.2s ease-in-out forwards;
+                    animation : group-disappear 0.2s cubic-bezier(0.38, 0.005, 0.215, 1) forwards;
                 }
 
-                
+                @keyframes img-container-appear 
+                {
+                    0%{
+                        background-size: 120%;
+                    }
+                    100%{
+                        background-size: 100%;
+                    }
+                    
+                }
 
                 @keyframes group-appear
                 {
@@ -454,7 +469,7 @@ section#all-projects
                         font-weight: 500;
                         font-size: var(--medium-size);
                         text-transform: uppercase;
-                        color: $color1;
+                        color: $color3;
                     }
                     .subtitle
                     {
@@ -462,7 +477,7 @@ section#all-projects
                         font-size: var(--small-size);
                         opacity: 0.7;
                         text-transform: uppercase;
-                        color: $color1;
+                        color: $color3;
 
                         @include responsive(phone)
                         {
