@@ -33,7 +33,6 @@
     <div class="content-container">
 
 
-        <div class="switch-cover"></div>
 
         <div class="selector-container">
             <div class="arrow left cursor-pointer" data-type="sticky">
@@ -66,14 +65,25 @@
             </div>
         </div>
 
+        <div class="progress-container">
+            
+        </div>
+
         <div class="switch-container">
+
+            
+
+            {% set counter_project = 0 %}
             {% for project in projects %}
-                <div class="switch-box">
-                    {% if project.images|length > 0 %}
-                        <div class="background" style="background-image: url('{{ project.images.first.getPath }}')"></div>
-                    {% else %}
-                        <div class="background">Pas d'image</div>
-                    {% endif %}
+
+                {% if counter_project == 0 %}
+                    <div class="switch-box active" style="z-index: {{ counter_project }};">
+                {% else %}
+                    <div class="switch-box"  style="z-index: {{ counter_project }};">
+                {% endif %}
+                    
+                    <div class="background" style="background-image: url('{{ project.images.first.getPath }}')"></div>
+                
 
                     <div data-src="{{ url('/project/' ~ project.id) }}" class="content cursor-pointer link-href" data-type="link">
                         <div class="subtitle">
@@ -89,6 +99,8 @@
                     
                     <div class="cover"></div>
                 </div>
+
+                {% set counter_project = counter_project + 1 %}
             {% endfor %}
         </div>
 
@@ -101,6 +113,8 @@
             <div class="dummy-project" data-ref="{{ counter_dot }}"></div>
             {% set counter_dot = counter_dot + 1 %}
         {% endfor %}
+
+
         
 
 

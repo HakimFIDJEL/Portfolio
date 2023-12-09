@@ -81,7 +81,6 @@
 
 body {
   overflow-x: hidden;
-  overflow-y: hidden;
 }
 
 html {
@@ -1562,9 +1561,24 @@ section#last-projects .header-container .text-container .click-to-scroll .scroll
   background-color: #FFFFFF;
 }
 section#last-projects .content-container {
-  background-color: #1C1D1F;
   overflow: hidden;
   position: relative;
+}
+section#last-projects .content-container .progress-container {
+  position: fixed;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.1s cubic-bezier(0.38, 0.005, 0.215, 1);
+  z-index: 10;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 0%;
+  height: 6px;
+  background-color: #1C1D1F;
+}
+section#last-projects .content-container .progress-container.active {
+  opacity: 1;
 }
 section#last-projects .content-container .switch-container {
   overflow: visible;
@@ -1572,6 +1586,7 @@ section#last-projects .content-container .switch-container {
   width: 100vw;
   height: 100vh;
   transition: transform 0.6s cubic-bezier(0.38, 0.005, 0.215, 1);
+  left: 0;
   position: absolute;
 }
 section#last-projects .content-container .switch-container.active {
@@ -1590,7 +1605,29 @@ section#last-projects .content-container .switch-container .switch-box {
   width: 100vw;
   height: 100vh;
   flex-shrink: 0;
-  position: relative;
+  position: absolute;
+  transition: 0.6s cubic-bezier(0.38, 0.005, 0.215, 1);
+  left: 100vw;
+  background-color: lightgreen;
+}
+section#last-projects .content-container .switch-container .switch-box .cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  background-color: rgba(15, 23, 42, 0.2);
+  pointer-events: none;
+}
+section#last-projects .content-container .switch-container .switch-box.active {
+  left: 0;
+}
+section#last-projects .content-container .switch-container .switch-box:first-child {
+  background-color: lightcoral;
+}
+section#last-projects .content-container .switch-container .switch-box:last-child {
+  background-color: lightblue;
 }
 section#last-projects .content-container .switch-container .switch-box .background {
   position: absolute;
@@ -1614,17 +1651,6 @@ section#last-projects .content-container .switch-container .switch-box .backgrou
   z-index: 1;
   background-color: rgba(15, 23, 42, 0.3);
   backdrop-filter: blur(2px);
-}
-section#last-projects .content-container .switch-container .switch-box .cover {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 1;
-  opacity: 0.7;
-  background: linear-gradient(223.43deg, rgba(15, 23, 42, 0) 58.22%, #0F172A 88.25%);
-  pointer-events: none;
 }
 section#last-projects .content-container .switch-container .switch-box .content {
   position: absolute;
@@ -1661,13 +1687,13 @@ section#last-projects .content-container .switch-container .switch-box .content 
   font-size: var(--small-size);
 }
 section#last-projects .content-container .switch-container .switch-box .content.appear .subtitle {
-  animation: content-appear 0.5s ease-out 0.5s forwards;
+  animation: content-appear 0.5s ease-out 0.2s forwards;
 }
 section#last-projects .content-container .switch-container .switch-box .content.appear .title {
-  animation: content-appear 0.5s ease-out 0.7s forwards;
+  animation: content-appear 0.5s ease-out 0.4s forwards;
 }
 section#last-projects .content-container .switch-container .switch-box .content.appear .text {
-  animation: content-appear 0.5s ease-out 0.9s forwards;
+  animation: content-appear 0.5s ease-out 0.6s forwards;
 }
 section#last-projects .content-container .switch-container .switch-box .content.disappear .text {
   animation: content-disappear 0.5s ease-out forwards;
@@ -1697,17 +1723,6 @@ section#last-projects .content-container .switch-container .switch-box .content.
     opacity: 0;
     top: 40px;
   }
-}
-section#last-projects .content-container .switch-cover {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  backdrop-filter: blur(0px);
-  z-index: 3;
-  pointer-events: none;
-  transition: all 0.5s ease-in-out;
 }
 section#last-projects .content-container .selector-container {
   position: fixed;
@@ -1824,6 +1839,12 @@ section#last-projects .content-container .selector-container .selector li input[
 section#last-projects .dummy-project {
   width: 100vw;
   height: 140vh;
+}
+section#last-projects .dummy-project:last-child {
+  height: 240vh;
+}
+section#last-projects .dummy-project:nth-child(2n) {
+  background-color: lightblue;
 }
 
 section#about {

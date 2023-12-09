@@ -131,10 +131,34 @@ section#last-projects
     .content-container
     {
         
-        background-color: $color3; 
 
         overflow: hidden;
         position: relative;
+
+       
+
+
+        .progress-container
+        {
+            position: fixed;
+            opacity: 0;
+            pointer-events: none;
+
+            &.active 
+            {
+                opacity: 1;
+            }
+
+            transition : 0.1s cubic-bezier(0.38, 0.005, 0.215, 1);
+
+            z-index: 10;
+            top: 0;
+            left: 0;
+            right: 0;
+            width: 0%;
+            height: 6px;
+            background-color: $color3;
+        }
 
         .switch-container
         {
@@ -145,9 +169,11 @@ section#last-projects
 
 
             transition : transform 0.6s cubic-bezier(0.38, 0.005, 0.215, 1);
+            left: 0;
 
             position: absolute;
 
+            
             &.active 
             {
                 position: fixed;
@@ -169,8 +195,42 @@ section#last-projects
                 width: 100vw;
                 height: 100vh;
                 flex-shrink : 0;
-                position: relative;
+                position: absolute;
 
+                transition : 0.6s cubic-bezier(0.38, 0.005, 0.215, 1);
+
+                left: 100vw;
+
+                .cover
+                {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    z-index: 1;
+        
+                    background-color: rgb(15, 23, 42, 0.2);
+        
+                    pointer-events: none;
+        
+                }
+
+                &.active
+                {
+                    left: 0;
+                }
+
+                &:first-child
+                {
+                    background-color: lightcoral;
+                }
+                &:last-child
+                {
+                    background-color: lightblue;
+                }
+
+                background-color: lightgreen;
                 
 
                 .background
@@ -205,20 +265,6 @@ section#last-projects
 
                 }
 
-                .cover 
-                {
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    right: 0;
-                    bottom: 0;
-                    z-index: 1;
-
-                    opacity: 0.7;
-                    background: linear-gradient(223.43deg, rgba(15, 23, 42, 0) 58.22%, #0F172A 88.25%);
-
-                    pointer-events: none;
-                }
 
                 .content
                 {
@@ -270,15 +316,15 @@ section#last-projects
                     {
                         .subtitle
                         {
-                            animation: content-appear 0.5s ease-out 0.5s forwards;
+                            animation: content-appear 0.5s ease-out 0.2s forwards;
                         }
                         .title 
                         {
-                            animation: content-appear 0.5s ease-out 0.7s  forwards;
+                            animation: content-appear 0.5s ease-out 0.4s  forwards;
                         }
                         .text
                         {
-                            animation: content-appear 0.5s ease-out 0.9s forwards;
+                            animation: content-appear 0.5s ease-out 0.6s forwards;
                         }  
                     }
 
@@ -330,21 +376,7 @@ section#last-projects
         }
         
 
-        .switch-cover
-        {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-
-            backdrop-filter: blur(0px);
-
-            z-index: 3;
-
-            pointer-events: none;
-            transition: all 0.50s ease-in-out;
-        }
+        
 
         .selector-container
         {
@@ -512,5 +544,13 @@ section#last-projects
     {
         width: 100vw;
         height: 140vh;
+        &:last-child 
+        {
+            height: 240vh;
+        }
+        &:nth-child(2n)
+        {
+            background-color: lightblue;
+        }
     }
 }

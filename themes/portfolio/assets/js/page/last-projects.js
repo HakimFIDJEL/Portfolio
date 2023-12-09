@@ -1,14 +1,24 @@
 $(document).ready(function()
 {
-    let container = $('#last-projects .content-container');
+
+    var windowTop = $(window).scrollTop();
+    var windowBottom = windowTop + $(window).height();
+
+    var container = $('#last-projects .content-container');
+    var containerTop = container.offset().top;
+    var containerBottom = containerTop + container.height();
+
+    var numberOfProjects = $('#last-projects .dummy-project').length;
+    var projectToShow = 0;
+    var tempProjectToShow = 0;
+
     let switch_container = $('#last-projects .switch-container');
     let switch_cover = $('#last-projects .switch-cover');
     let selector_container = $('#last-projects .selector-container');
-    let dummy;
-    let tempDummy;
-    let isOut;
+    let progressBar = $('#last-projects .progress-container');
 
-    // Vérification au rechargement de la page
+    let old_content;
+    let new_content;
 
     reload();
 
@@ -29,22 +39,10 @@ $(document).ready(function()
         let index = $(this).index();
         let balises = selector_container.find('.selector li');
 
-        if(index == 0)
-        {
-            $(window).scrollTop($('.dummy-project').eq(index).offset().top + 20);
-        }
-        else if (index == $('.dummy-project').length - 1)
-        {
-            $(window).scrollTop($('.dummy-project').eq(index).offset().top - 20);
-        }
-        else 
-        {
-            $(window).scrollTop($('.dummy-project').eq(index).offset().top);
-        }
+        $('html').css('scroll-behavior', 'auto');
+        $(window).scrollTop($('.dummy-project').eq(index).offset().top + 5);
+        $('html').css('scroll-behavior', 'smooth');
 
-
-
-        
         balises.each(function(i, e)
         {
             $(e).removeClass('active');
@@ -54,180 +52,164 @@ $(document).ready(function()
 
     $(document).on('click', '.selector-container .left', function()
     {
-        prev()
+        $('html').css('scroll-behavior', 'auto');
+        prev();
+        $('html').css('scroll-behavior', 'smooth');
     });
 
     $(document).on('click', '.selector-container .right', function()
     {
-        next()
+        $('html').css('scroll-behavior', 'auto');
+        next();
+        $('html').css('scroll-behavior', 'smooth');
     });
 
-   
-    $(window).on('scroll', function(e)
+
+
+
+
+    $(window).on('scroll', function()
     {
+        windowTop = $(window).scrollTop();
+        windowBottom = windowTop + $(window).height();
         if(isInContainer())
         {
-            // On ajoute la classe active si c'est pas déjà le cas (règle la position du container)
-            if(!switch_container.hasClass('active'))
-            {
-                switch_container.addClass('active');
-            }
-            if(!selector_container.hasClass('active'))
-            {
-                selectorAppear();
-            }
-            goTo(dummyAbove());
 
-            tempDummy = dummyAbove();
-            if(tempDummy != dummy)
+            // On stick le container
+            addActiveToSelector();
+
+            // On recupère le bon projet
+            getProjectToShow();
+
+            // On affiche le bon projet
+            new_content = $(".switch-box .content").eq(projectToShow);
+            if(!new_content.hasClass('appear'))
             {
-                dummy = tempDummy;
-                switch_cover.css('backdrop-filter', 'blur(20px)');
-                setTimeout(function()
-                {
-                    switch_cover.css('backdrop-filter', 'blur(0px)');
-                }, 500);
-                
+                slideAppear(new_content);
+            }
+
+            // On s'occupe de la barre de progression
+            progressBarLoad();
+
+            if(tempProjectToShow != projectToShow)
+            {
+                old_content = $(".switch-box .content").eq(tempProjectToShow);
+                new_content = $(".switch-box .content").eq(projectToShow);
+
+                slideDisappear(old_content);
+                slideAppear(new_content);
+
+                tempProjectToShow = projectToShow;
+                displayProject(projectToShow);
+                console.log('Changement');
             }
         }
         else 
         {
-            switch_container.removeClass('active');
-
-            if(selector_container.hasClass('active'))
-            {
-                selectorDisappear();
-
-            }
-
+            removeActiveToSelector();
+            old_content = $(".switch-box .content").eq(tempProjectToShow);
+            slideDisappear(old_content);
             arrowDisappear();
-            isAboveOrBelow();
+            
         }
     });
 
-    // Return true si le container est dans la fenêtre
+    // Check if the window is in the container
     function isInContainer()
     {
-        let window_top = $(window).scrollTop();
-        let window_bottom = window_top + $(window).height();
-        let container_top = container.offset().top;
-        let container_bottom = container_top + container.outerHeight();
-
-        return ((container_bottom >= window_bottom) && (container_top <= window_top));
+        return (windowTop > containerTop && windowBottom < containerBottom);
     }
 
-    // Ajoute la classe top ou bottom au container en fonction de la position de la fenêtre
-    function isAboveOrBelow()
+    // Returns the project to show according to window Top
+    function getProjectToShow()
     {
-        if($(window).scrollTop() < container.offset().top)
+        $(".dummy-project").each(function(index)
         {
-            switch_container.removeClass('active');
-            switch_container.removeClass('bottom');
-            switch_container.addClass('top');
-            dummy = 0;
-        }
-        else 
-        {
-            switch_container.removeClass('active');
-            switch_container.removeClass('top');
-            switch_container.addClass('bottom');
-            switch_container.css('transform', 'translateX(-' + ($('.dummy-project').length - 1) * 100 + '%)');
-            dummy = $('.dummy-project').length - 1;
-        }
-
-        $('.switch-box').eq(dummy).removeClass('active');
-        slideDisappear($('.switch-box').eq(dummy));
+            var projectTop = $(this).offset().top;
+            var projectBottom = projectTop + $(this).height();
+            if(windowTop > projectTop && windowTop < projectBottom)
+            {
+                projectToShow = index;
+            }
+        });
+        return projectToShow;
     }
 
-    // Fonction appelée au rechargement de la page
-    function reload()
+    // Adjust the selector position
+    function addActiveToSelector()
     {
-        if(isInContainer())
+        arrowVerify();
+        if(!switch_container.hasClass('active'))
         {
             switch_container.addClass('active');
         }
-        else 
+        if(!selector_container.hasClass('active'))
         {
-            isAboveOrBelow();
+            selector_container.addClass('active');
+            selector_container.find('.selector').removeClass('disappear');
+            selector_container.find('.selector').addClass('appear');
+        }
+        if(!progressBar.hasClass('active'))
+        {
+            progressBar.addClass('active');
         }
     }
 
-    // Retourne le div .dummy-project qui est le plus survolé par le fenêtre
-    function dummyAbove() 
+    // Adjust the selector position
+    function removeActiveToSelector()
     {
-        let window_top = $(window).scrollTop();
-        let window_bottom = window_top + $(window).height();
-        let dummy_projects = $('.dummy-project');
-        let mostVisibleDummy = null;
-        let maxVisibleHeight = 0;
-    
-        dummy_projects.each(function() {
-            let dummy_project_top = $(this).offset().top;
-            let dummy_project_height = $(this).outerHeight();
-            let dummy_project_bottom = dummy_project_top + dummy_project_height;
-    
-            // Calculer la hauteur visible
-            let visibleTop = Math.max(dummy_project_top, window_top);
-            let visibleBottom = Math.min(dummy_project_bottom, window_bottom);
-            let visibleHeight = Math.max(0, visibleBottom - visibleTop);
-    
-            // Mise à jour si cet élément est plus visible que les précédents
-            if (visibleHeight > maxVisibleHeight) {
-                maxVisibleHeight = visibleHeight;
-                mostVisibleDummy = $(this);
+        arrowVerify();
+        if(switch_container.hasClass('active'))
+        {
+            switch_container.removeClass('active');
+            if(windowTop > containerTop)
+            {
+                switch_container.css('bottom', 0);
+                switch_container.css('top', '');
             }
-        });
-    
-        return mostVisibleDummy.data('ref');
+            else 
+            {
+                switch_container.css('top', 0);
+                switch_container.css('bottom', '');
+            }
+        }
+        if(selector_container.hasClass('active'))
+        {
+            selector_container.removeClass('active');
+            selector_container.find('.selector').removeClass('appear');
+            selector_container.find('.selector').addClass('disappear');
+        }
+        if(progressBar.hasClass('active'))
+        {
+            progressBar.removeClass('active');
+        }
     }
 
-    // Déplace le container en fonction de l'index
-    function goTo(index)
+    // Display the correct project
+    function displayProject(index)
     {
+        console.log('displayProject');
+        var projectsAbove = $(".switch-box:lt(" + index + ")");
+        var projectsBelow = $(".switch-box:gt(" + index + ")");
+        var project = $(".switch-box:eq(" + index + ")");
+
+        project.addClass('active');
+        projectsBelow.removeClass('active');
+        projectsAbove.addClass('active');
         
+
         updateSelector();
-        
-        let children = switch_container.children();
-        let old_slide = children.filter('.active');
-        let new_slide = children.eq(index);
-
-        children.removeClass('active');
-        new_slide.addClass('active');
-
-        switch_container.css('transform', 'translateX(-' + index * 100 + '%)');
-
-        slideDisappear(old_slide);
-        slideAppear(new_slide);
-
         arrowVerify();
 
+        // console.log("projectsAbove", projectsAbove);
+        // console.log("projectsBelow", projectsBelow);
     }
 
-    // Fonction qui fait disparaitre le contenu d'un slide
-    function slideDisappear(old_slide)
-    {
-        let content = old_slide.find('.content');
-
-        if($(content).hasClass('appear'))
-        {
-            $(content).children().each(function(i, e)
-            {
-                $(e).css('opacity', '1');
-                $(e).css('top', '0px');
-            });
-            $(content).removeClass('appear');
-            $(content).addClass('disappear');
-        }
-
-        
-    }
-
-    // Fonction qui fait apparaitre le contenu d'un slide
-    function slideAppear(new_slide)
+    // Appear the content of the displayed project
+    function slideAppear(content)
     {
         if(switch_container.hasClass('active'))
         {
-            let content = new_slide.find('.content');
             $(content).children().each(function(i, e)
             {
                 $(e).css('opacity', '0');
@@ -238,31 +220,42 @@ $(document).ready(function()
         }
     }
 
-    // Fonction qui fait apparaitre le selecteur
-    function selectorAppear()
+    // Disappear the content of the displayed project
+    function slideDisappear(content)
     {
-        selector_container.addClass('active');
-        selector_container.find('.selector').removeClass('disappear');
-        selector_container.find('.selector').addClass('appear');
+        if($(content).hasClass('appear'))
+        {
+            $(content).children().each(function(i, e)
+            {
+                $(e).css('opacity', '1');
+                $(e).css('top', '0px');
+            });
+            $(content).removeClass('appear');
+            $(content).addClass('disappear');
+        }
     }
 
-    // Fonction qui fait disparaitre le selecteur
-    function selectorDisappear()
+    function progressBarLoad()
     {
-        selector_container.removeClass('active');
-        selector_container.find('.selector').removeClass('appear');
-        selector_container.find('.selector').addClass('disappear');
+        let dummyShown = $('.dummy-project').eq(projectToShow);
+        let dummyHeight = $('.dummy-project').eq(0).height();
+        let percent = (windowTop - dummyShown.offset().top) / dummyHeight * 100;
+
+        progressBar.css('width', percent + '%');
     }
+
 
     function arrowVerify()
     {
+        console.log('arrowVerify');
         if(switch_container.hasClass('active'))
         {
-            let index = dummyAbove();
             let arrow_left = $('.selector-container .left');
             let arrow_right = $('.selector-container .right');
+
+            console.log('index', getProjectToShow());
     
-            switch(index)
+            switch(getProjectToShow())
             {
                 case 0 :
                     if(arrow_left.css('opacity') != 0)
@@ -312,34 +305,47 @@ $(document).ready(function()
     
     function updateSelector()
     {
-        let index = dummyAbove();
         let balises = selector_container.find('.selector li');
         balises.each(function(i, e)
         {
             $(e).removeClass('active');
         });
-        balises.eq(index).addClass('active');
-        $(balises[index]).find('input').prop('checked', true);
+        balises.eq(getProjectToShow()).addClass('active');
+        $(balises[getProjectToShow()]).find('input').prop('checked', true);
     }
 
     function prev()
     {
-        let index = dummyAbove();
-        if(index == 0)
+        if(getProjectToShow() == 0)
         {
             return;
         }
-        $(window).scrollTop($('.dummy-project').eq(index - 1).offset().top + 20);
+        $(window).scrollTop($('.dummy-project').eq(getProjectToShow() - 1).offset().top + 5);
     }
     function next()
     {
-        let index = dummyAbove();
-        if(index == $('.dummy-project').length - 1)
+        if(getProjectToShow() == $('.dummy-project').length - 1)
         {
             return;
         }
-        $(window).scrollTop($('.dummy-project').eq(index + 1).offset().top - 20);
+        $(window).scrollTop($('.dummy-project').eq(getProjectToShow() + 1).offset().top + 5);
+    }
+
+    function reload()
+    {
+        if(isInContainer())
+        {
+            switch_container.addClass('active');
+        }
+        else 
+        {
+            if(windowBottom > containerBottom)
+            {
+                switch_container.css('bottom', 0);
+                $(".switch-box").addClass('active');
+            }
+        }
     }
  
-});
 
+});
