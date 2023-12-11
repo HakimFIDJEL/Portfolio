@@ -77,12 +77,20 @@ title = "Project"
         <div class="wrapper">
             <div class="delimiter"></div>
             <div class="techno-container">
-                <div class="techno">HTML</div>
-                <div class="techno">SCSS</div>
-                <div class="techno">jQuery</div>
-                <div class="techno">LARAVEL</div>
-                <div class="techno">MySQL</div>
-                <div class="techno">API</div>
+
+            {% set technos = [] %}
+                
+            {% for techno in project.technos %}
+                {% set technos = technos|merge([techno.name|upper]) %}
+            {% endfor %}
+
+            {% for techno in technos %}
+
+                <div class="techno">{{techno}}</div>
+
+            {% endfor %}
+
+               
             </div>
             <div class="delimiter"></div>
         </div>
@@ -90,7 +98,9 @@ title = "Project"
 
 
     <div class="description-container">
+       
         <div class="grade-container">
+            <div class="title"><span>Ma note pour le projet</span></div>
             <div class="circle" style="--p:0;--b:16" data-grade="{{project.grade}}">
                 <div class="round first"></div>
                 <div class="round second"></div>

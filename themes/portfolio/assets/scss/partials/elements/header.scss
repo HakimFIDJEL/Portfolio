@@ -138,7 +138,30 @@ header
             position: relative;
             padding: 4px 0;
             
+            &.active
+            {
+                &::before 
+                {
+                    left: 0;
+                    width: 100%;
+                }
+                a
+                {
+                    .first 
+                    {
+                        transform: translateY(-10px);
+                        opacity: 0;
+                    }
+                    .second
+                    {
+                        top: 0px;
+                        opacity: 1;
+                    
+                    }
+                }
+            }
 
+            
 
             a
             {

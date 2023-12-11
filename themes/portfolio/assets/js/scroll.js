@@ -30,6 +30,8 @@ $(document).ready(function()
     let slide_top;
     let slide_bottom;
 
+    let sectionScrolled  = "home";
+
 
     let home_top = $('#home').offset().top;
     let home_bottom = home_top + $('#home').height();
@@ -53,6 +55,7 @@ $(document).ready(function()
     $(window).on('scroll', function(e)
     {
 
+        sectionIsScrolled();
         
         window_top = $(window).scrollTop();
 
@@ -79,7 +82,33 @@ $(document).ready(function()
     });
 
 
-  
+    function sectionIsScrolled()
+    {
+        let tempScrolled = sectionScrolled;
+        if(window_top + window_height >= home_top && window_top <= home_bottom)
+        {
+            sectionScrolled = "home";
+        }
+        else if(window_top + window_height >= about_top && window_top <= about_bottom)
+        {
+            sectionScrolled = "about";
+        }
+        else if(window_top + window_height >= $("#all-projects").offset().top && window_top <= $("#all-projects").offset().top + $("#all-projects").height())
+        {
+            sectionScrolled = "all-projects";
+        }
+        else if(window_top + window_height >= $("#contact").offset().top && window_top <= $("#contact").offset().top + $("#contact").height())
+        {
+            sectionScrolled = "contact";
+        }
+
+
+        if(tempScrolled != sectionScrolled)
+        {
+            $(".nav li").removeClass('active');
+            $(".nav li a[data-ref='"+sectionScrolled+"']").parent().addClass('active');
+        }
+    }
    
     
 

@@ -27,10 +27,17 @@ class Project extends Model
             'table' => 'hakim_projects_project_category',
             'key'=>'project_id',
             'otherKey'=>'category_id',
+        ],
+        'technos' => [
+            'Hakim\Projects\Models\Techno',
+            'table' => 'hakim_projects_project_techno',
+            'key'=>'project_id',
+            'otherKey'=>'techno_id',
         ]
     ];
-
     
+    
+   
 
     
 

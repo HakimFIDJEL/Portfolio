@@ -245,6 +245,18 @@ header .nav li {
   position: relative;
   padding: 4px 0;
 }
+header .nav li.active::before {
+  left: 0;
+  width: 100%;
+}
+header .nav li.active a .first {
+  transform: translateY(-10px);
+  opacity: 0;
+}
+header .nav li.active a .second {
+  top: 0px;
+  opacity: 1;
+}
 header .nav li a {
   margin: 2px;
   display: block;
@@ -1949,9 +1961,34 @@ section#about .about-container .content-container {
     gap: 80px;
   }
 }
-section#about .about-container .content-container .image {
-  width: 200px;
-  height: 200px;
+section#about .about-container .content-container .image-container {
+  position: relative;
+}
+section#about .about-container .content-container .image-container::before {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  border-radius: 50%;
+  background-color: transparent;
+  outline: 1px solid #1C1D1F;
+  animation: grow 3s cubic-bezier(0.38, 0.005, 0.215, 1) infinite;
+}
+@keyframes grow {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+section#about .about-container .content-container .image-container .image {
+  width: 220px;
+  height: 220px;
   flex-shrink: 0;
 }
 section#about .about-container .content-container .text-container .text {
@@ -3091,6 +3128,16 @@ section#project .description-container {
 }
 section#project .description-container .grade-container {
   position: relative;
+}
+section#project .description-container .grade-container .title {
+  margin-bottom: 40px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: var(--xs-size);
+  position: absolute;
+  transform: rotate(-90deg) translateX(-100%) translateY(-30px);
+  transform-origin: top left;
+  font-weight: light;
+  text-transform: uppercase;
 }
 @media (min-width: 768px) and (max-width: 1023px) {
   section#project .description-container .grade-container {

@@ -101,7 +101,6 @@ $(document).ready(function()
 
                 tempProjectToShow = projectToShow;
                 displayProject(projectToShow);
-                console.log('Changement');
             }
         }
         else 
@@ -188,7 +187,6 @@ $(document).ready(function()
     // Display the correct project
     function displayProject(index)
     {
-        console.log('displayProject');
         var projectsAbove = $(".switch-box:lt(" + index + ")");
         var projectsBelow = $(".switch-box:gt(" + index + ")");
         var project = $(".switch-box:eq(" + index + ")");
@@ -201,8 +199,6 @@ $(document).ready(function()
         updateSelector();
         arrowVerify();
 
-        // console.log("projectsAbove", projectsAbove);
-        // console.log("projectsBelow", projectsBelow);
     }
 
     // Appear the content of the displayed project
@@ -247,13 +243,11 @@ $(document).ready(function()
 
     function arrowVerify()
     {
-        console.log('arrowVerify');
         if(switch_container.hasClass('active'))
         {
             let arrow_left = $('.selector-container .left');
             let arrow_right = $('.selector-container .right');
 
-            console.log('index', getProjectToShow());
     
             switch(getProjectToShow())
             {

@@ -9,7 +9,7 @@ layout = "layout"
 function onStart()
 {
     $this['projects'] = Hakim\Projects\Models\Project::all();
-    $this('lastprojects') = Hakim\Projects\Models\Project::orderBy('id', 'desc')->take(4)->get();
+    $this['lastprojects'] = Hakim\Projects\Models\Project::orderBy('id', 'desc')->take(4)->get();
     $success = session('success');
     if (null !== $success) 
     {

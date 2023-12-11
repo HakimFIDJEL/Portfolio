@@ -343,6 +343,21 @@ section#project
 
         .grade-container 
         {
+
+            .title 
+            {
+                margin-bottom: 40px;
+                color: rgb(255, 255, 255, 0.7);
+                font-size : var(--xs-size);
+                position: absolute;
+                transform : rotate(-90deg) translateX(-100%) translateY(-30px);
+                transform-origin: top left;
+                font-weight: light;
+                text-transform: uppercase;
+
+                
+            }
+
             position: relative;
             @include responsive(tablet)
             {

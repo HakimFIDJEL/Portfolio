@@ -53,3 +53,8 @@ fields:
         type: relation
         span: full
         nameFrom: description
+    technos:
+        label: Technos
+        type: relation
+        span: full
+        nameFrom: name
