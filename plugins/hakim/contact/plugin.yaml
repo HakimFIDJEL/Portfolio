@@ -1,0 +1,11 @@
+plugin:
+    name: 'hakim.contact::lang.plugin.name'
+    description: 'hakim.contact::lang.plugin.description'
+    author: Hakim
+    icon: oc-icon-adjust
+    homepage: ''
+navigation:
+    Contact:
+        label: Contact
+        url: /hakim/contact/contactcontroller
+        icon: icon-archive

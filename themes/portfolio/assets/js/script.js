@@ -36,7 +36,7 @@ $(document).ready(function()
         preloader.removeClass('loaded');
         setTimeout(function(){
             window.location.href = src;
-        }, 300);
+        }, 600);
 
     });
 

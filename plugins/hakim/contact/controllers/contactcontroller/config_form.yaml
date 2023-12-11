@@ -1,0 +1,11 @@
+name: ContactController
+modelClass: Hakim\Contact\Models\Message
+form: $/hakim/contact/models/message/fields.yaml
+defaultRedirect: hakim/contact/contactcontroller
+create:
+    redirect: 'hakim/contact/contactcontroller/update/:id'
+    redirectClose: hakim/contact/contactcontroller
+update:
+    redirect: hakim/contact/contactcontroller
+    redirectClose: hakim/contact/contactcontroller
+preview: {  }

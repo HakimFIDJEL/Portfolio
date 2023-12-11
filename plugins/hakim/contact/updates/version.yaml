@@ -1,0 +1,5 @@
+v1.0.1:
+    - 'Initialize plugin'
+v1.0.2:
+    - 'Created table hakim_contact_messages'
+    - builder_table_create_hakim_contact_messages.php

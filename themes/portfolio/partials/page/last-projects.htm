@@ -45,7 +45,7 @@
             <ul class="selector">
 
                 {% set counter_dot = 0 %}
-                {% for project in projects %}
+                {% for project in lastprojects %}
                     <li class="{% if counter_dot == 0 %} active {% endif %}">
                         <input type="radio" name="last-projects" {% if counter_dot == 0 %} checked {% endif %}>
                     </li>
@@ -74,7 +74,7 @@
             
 
             {% set counter_project = 0 %}
-            {% for project in projects %}
+            {% for project in lastprojects %}
 
                 {% if counter_project == 0 %}
                     <div class="switch-box active" style="z-index: {{ counter_project }};">
@@ -109,7 +109,7 @@
 
         
          {% set counter_dot = 0 %}
-        {% for project in projects %}
+        {% for project in lastprojects %}
             <div class="dummy-project" data-ref="{{ counter_dot }}"></div>
             {% set counter_dot = counter_dot + 1 %}
         {% endfor %}
