@@ -27,29 +27,31 @@
     <div class="text-block">
 
         
-        <div class="text">
-            Des études commençant au 
-            <span class="cursor-pointer" data-type="link" >
-                lycée Angelier
-            </span> 
-            en passant à l’école de centrale Lille 
-            <span class="cursor-pointer" data-type="link" >
-                ig2i
-            </span>  
-            pour finir en alternance au 
-            <span class="cursor-pointer" data-type="link" >réservoir digital</span> 
+        <div class="text" >
+            <p id="about-cta-reveal">
+                Des études commençant au 
+                <span class="cursor-pointer" data-type="link" >
+                    lycée Angelier
+                </span> 
+                en passant à l’école de centrale Lille 
+                <span class="cursor-pointer" data-type="link" >
+                    ig2i
+                </span>  
+                pour finir en alternance au 
+                <span class="cursor-pointer" data-type="link" >réservoir digital</span> 
+            </p>
         </div>
     </div>
 
 
     <div class="experience-container">
-        <div class="block-group-title">
+        <div class="block-group-title" id="about-block-group-title-first">
             <div class="text">
                 expérience professionnelle
             </div>
         </div>
 
-        <div class="accordeon-container">
+        <div class="accordeon-container" id="accordeon-container">
 
             <div class="accordeon">
                 <div class="group-title">
@@ -162,7 +164,7 @@ L'alternance a été une aventure enrichissante, me permettant de lier théorie 
     </div>
 
     <div class="competences-container">
-        <div class="block-group-title">
+        <div class="block-group-title" id="about-block-group-title-second">
             <div class="text">
                 Compétences informatiques
             </div>
@@ -172,23 +174,23 @@ L'alternance a été une aventure enrichissante, me permettant de lier théorie 
             <div class="block-container">
 
 
-                <div class="wrapper">
+                <div class="wrapper about-wrapper">
                     <div class="logo">
                         <svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M0 100V31.25H31.25V0H100V100H0ZM68.75 93.75H93.75V6.25H37.5V31.25H68.75V93.75ZM37.5 93.75H62.5V37.5H37.5V93.75ZM6.25 93.75H31.25V37.5H6.25V93.75Z" fill="black"/>
                         </svg>
 
                     </div>
-                    <div class="text animation-opacity">
+                    <div class="text ">
                         <div class="title">
                             Toujours responsive
                         </div>
-                        <div class="subtitle">
+                        <div class="subtitle about-wrapper-subtitle">
                             J'assure une expérience utilisateur fluide sur divers appareils, grâce à ma maîtrise du responsive design.
                         </div>
                     </div>
                 </div>
-                <div class="wrapper">
+                <div class="wrapper about-wrapper">
                     <div class="logo">
                         <svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M36.3636 13.6364L47.7273 38.6364L72.7273 50L47.7273 61.3636L36.3636 86.3636L25 61.3636L0 50L25 38.6364L36.3636 13.6364ZM36.3636 35.5909L31.8182 45.4545L21.9545 50L31.8182 54.5455L36.3636 64.4091L40.9091 54.5455L50.7727 50L40.9091 45.4545L36.3636 35.5909ZM81.8182 36.3636L76.0909 23.9091L63.6364 18.1818L76.0909 12.5L81.8182 0L87.5 12.5L100 18.1818L87.5 23.9091L81.8182 36.3636ZM81.8182 100L76.0909 87.5455L63.6364 81.8182L76.0909 76.1364L81.8182 63.6364L87.5 76.1364L100 81.8182L87.5 87.5455L81.8182 100Z" fill="black"/>
@@ -196,27 +198,27 @@ L'alternance a été une aventure enrichissante, me permettant de lier théorie 
 
 
                     </div>
-                    <div class="text animation-opacity">
+                    <div class="text">
                         <div class="title">
                             Solutions créatives
                         </div>
-                        <div class="subtitle">
+                        <div class="subtitle about-wrapper-subtitle">
                             Ma créativité me permet de développer des solutions innovantes et originales en développement web.
                         </div>
                     </div>
                 </div>
-                <div class="wrapper">
+                <div class="wrapper about-wrapper">
                     <div class="logo">
                         <svg width="100" height="83" viewBox="0 0 100 83" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M2.24301 18.3238L1.98694 12.7692C1.98694 9.38262 3.33589 6.13472 5.73703 3.74002C8.13818 1.34533 11.3948 0 14.7906 0H38.298C41.6935 0.000723216 44.9496 1.34652 47.3502 3.74138L52.6509 9.02785C55.0515 11.4227 58.3076 12.7685 61.703 12.7692H87.1951C88.9742 12.769 90.734 13.1387 92.3619 13.8546C93.9899 14.5704 95.4504 15.6168 96.6503 16.927C97.8501 18.2372 98.763 19.7824 99.3307 21.4641C99.8984 23.1457 100.108 24.9269 99.9475 26.6941L95.8695 71.3864C95.5804 74.559 94.1127 77.5093 91.7544 79.658C89.3962 81.8067 86.3178 82.9987 83.1235 83H16.8775C13.6833 82.9987 10.6049 81.8067 8.24661 79.658C5.88836 77.5093 4.42062 74.559 4.13154 71.3864L0.0535883 26.6941C-0.219217 23.7366 0.555452 20.7773 2.24301 18.3302V18.3238ZM12.806 19.1538C11.9167 19.1538 11.0371 19.3385 10.2234 19.6963C9.40964 20.054 8.67956 20.5769 8.07967 21.2317C7.47978 21.8864 7.02326 22.6586 6.73919 23.4991C6.45513 24.3395 6.34976 25.2298 6.42979 26.1131L10.5077 70.8054C10.6515 72.3917 11.3846 73.8672 12.5631 74.9421C13.7416 76.0171 15.2805 76.6139 16.8775 76.6154H83.1235C84.7206 76.6139 86.2594 76.0171 87.438 74.9421C88.6165 73.8672 89.3496 72.3917 89.4933 70.8054L93.5713 26.1131C93.6513 25.2298 93.5459 24.3395 93.2619 23.4991C92.9778 22.6586 92.5213 21.8864 91.9214 21.2317C91.3215 20.5769 90.5914 20.054 89.7777 19.6963C88.9639 19.3385 88.0844 19.1538 87.1951 19.1538H12.806ZM42.8305 8.25531C42.2354 7.66164 41.5288 7.19083 40.751 6.86984C39.9733 6.54884 39.1397 6.38396 38.298 6.38462H14.7906C13.1136 6.38431 11.5034 7.0403 10.3063 8.21153C9.10913 9.38277 8.42061 10.9757 8.38875 12.6479L8.42716 13.5354C9.79715 13.0374 11.2696 12.7692 12.806 12.7692H47.3502L42.8305 8.25531Z" fill="black"/>
                         </svg>
 
                     </div>
-                    <div class="text animation-opacity">
+                    <div class="text">
                         <div class="title">
                             Pilotage de projet
                         </div>
-                        <div class="subtitle">
+                        <div class="subtitle about-wrapper-subtitle">
                             Mon expertise en gestion de projet se traduit par des livraisons ponctuelles et des solutions de qualité.
                         </div>
                     </div>
@@ -225,120 +227,13 @@ L'alternance a été une aventure enrichissante, me permettant de lier théorie 
 
 
             </div>
-            <div class="skills-container">
-
-                <div class="skill">
-                    <div class="name">
-                        HTML
-                    </div>
-                    <div class="progression-container">
-                        <div class="progression">
-
-                        </div>
-                        <div class="pourcentage" data-value="80">
-                            0%
-                        </div>
-                    </div>
-                </div>
-                <div class="skill">
-                    <div class="name">
-                        SCSS
-                    </div>
-                    <div class="progression-container">
-                        <div class="progression">
-
-                        </div>
-                        <div class="pourcentage" data-value="70">
-                            0%
-                        </div>
-                    </div>
-                </div>
-                <div class="skill">
-                    <div class="name">
-                        jQuery
-                    </div>
-                    <div class="progression-container">
-                        <div class="progression">
-
-                        </div>
-                        <div class="pourcentage" data-value="60">
-                            0%
-                        </div>
-                    </div>
-                </div>
-                <div class="skill">
-                    <div class="name">
-                        nodeJs
-                    </div>
-                    <div class="progression-container">
-                        <div class="progression">
-
-                        </div>
-                        <div class="pourcentage" data-value="20">
-                            0%
-                        </div>
-                    </div>
-                </div>
-                <div class="skill">
-                    <div class="name">
-                        JS
-                    </div>
-                    <div class="progression-container">
-                        <div class="progression">
-
-                        </div>
-                        <div class="pourcentage" data-value="65">
-                            0%
-                        </div>
-                    </div>
-                </div>
-                <div class="skill">
-                    <div class="name">
-                        Laravel
-                    </div>
-                    <div class="progression-container">
-                        <div class="progression">
-
-                        </div>
-                        <div class="pourcentage" data-value="50">
-                            0%
-                        </div>
-                    </div>
-                </div>
-                <div class="skill">
-                    <div class="name">
-                        Figma
-                    </div>
-                    <div class="progression-container">
-                        <div class="progression">
-
-                        </div>
-                        <div class="pourcentage" data-value="50">
-                            0%
-                        </div>
-                    </div>
-                </div>
-                <div class="skill">
-                    <div class="name">
-                        Github
-                    </div>
-                    <div class="progression-container">
-                        <div class="progression">
-
-                        </div>
-                        <div class="pourcentage" data-value="40">
-                            0%
-                        </div>
-                    </div>
-                </div>
-
-            </div>
+            
         </div>
 
     </div>
 
     <div class="about-container">
-        <div class="block-group-title">
+        <div class="block-group-title" id="about-block-group-title-third">
             <div class="text">
                 A propos de moi
             </div>
@@ -366,11 +261,8 @@ L'alternance a été une aventure enrichissante, me permettant de lier théorie 
             </div>
         
             <div class="text-container">
-                <div class="text animation-opacity">
+                <div class="text" id="about-last-text">
                     Apprendre de nouvelles technologies est essentiel pour moi. Passionné de développement web, je m'adapte constamment pour rester à la pointe de l'innovation.
-                </div>
-                <div class="small-text animation-translate">
-                    (Du moins j'essaye)
                 </div>
             </div>
         </div>

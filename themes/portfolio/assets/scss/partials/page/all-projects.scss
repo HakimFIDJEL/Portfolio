@@ -65,7 +65,7 @@ section#all-projects
             {
                 overflow: visible;
                 transition: 0.1s ease-out;
-                transform: translate(-30%, 0);
+                transform: translate(0%, 0);
             }
         }
         .text-container
@@ -87,6 +87,16 @@ section#all-projects
                 font-size: var(--medium-size);
                 text-transform: uppercase;
                 font-weight: 300;
+                span
+                {
+                    transition : 0.2s cubic-bezier(0.38, 0.005, 0.215, 1);
+                    color: hsl(0, 0%, 0%, 0.2);
+    
+                    background-image: linear-gradient(90deg, $color3, $color3);
+                    background-size: 0% 100%;
+                    background-repeat: no-repeat;
+                    background-clip: text;
+                }
             }
         }
 
@@ -130,6 +140,32 @@ section#all-projects
                 color: $color3;
                 text-decoration: none;
                 cursor: pointer;
+                position: relative;
+                transform : translate(-30px, 0);
+                opacity: 0;
+                &::after 
+                {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    height: 100%;
+                    left: 0;
+                    right: 0;
+                    background-color: $color2;
+                    transition: 0.6s cubic-bezier(0.38, 0.005, 0.215, 1) 0.3s;
+                }
+
+                &.active 
+                {
+                    transform : translate(0, 0);
+                    opacity: 1;
+                    &::after 
+                    {
+                        height: 0%;
+                    }
+                }
+
+
                 &:hover 
                 {
                     .scroll-text::before 

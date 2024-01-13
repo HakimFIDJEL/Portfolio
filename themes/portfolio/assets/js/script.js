@@ -6,7 +6,7 @@ var last_projects_status = true;
 // On document load
 $(window).on('load', function()
 {
-    $(window).scrollTop(0);
+    // $(window).scrollTop(0);
 
     setTimeout(function(){
         let preloader = $('aside.preloader');
