@@ -4,43 +4,14 @@ $(document).ready(function()
     let window_height = $(window).height();
     let lastScrollTop = 0;
     let header = $('header');
-    let header_fonts = $("header .nav a");
-    let header_logo = $("header .socials a svg");
- 
-    let home_section = $('#home .section');
-    let home_title = $('#home .title');
-    let home_subtitle = $('#home .subtitle');
     let allprojects_groups = $(".group-container");
-    let about_blockTitles = $("#about .block-group-title");
-   
-    // let about_parallax_top = $("#about .hero-container").offset().top;
-    // let about_parallax_height = $("#about .hero-container").height();
-    let about_parallax = $("#about .parallax");
-    let about_title = $("#about .group-title .title");
-    let about_title_top = about_title.offset().top;
-    // let about_title_height = about_title.height();
-    // let about_subtitle = $("#about .group-title .subtitle");
-    // let about_subtitle_top = about_subtitle.offset().top;
-    // let about_subtitle_height = about_subtitle.height();
-    let about_timer = 0;
-    
-
     let sectionScrolled  = "home";
-
-
     let home_top = $('#home').offset().top;
     let home_bottom = home_top + $('#home').height();
-
     let about_top = $('#about .experience-container').offset().top;
     let about_bottom = $('#about .about-container').offset().top + $('#about .about-container').height();
-    
-    let animation_opacity = $('.animation-opacity');
-    let animation_translate = $('.animation-translate');
-
     let burgerContainer = $(".burger-container");
-    let nav = $("nav");
-
-    let mouseCursor = $(".mouse-cursor");
+ 
     
     $(window).on('resize', function()
     {
@@ -58,12 +29,7 @@ $(document).ready(function()
         HeaderColor();
 
         
-
-        // Home_scroll();
-
         AllProjects_checkOnScreen();
-
-        // About_parallaxAnimation();
 
         
 

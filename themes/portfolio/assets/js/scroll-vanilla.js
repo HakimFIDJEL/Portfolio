@@ -2,6 +2,10 @@
 
 document.addEventListener('DOMContentLoaded', function() {
 
+
+
+    const sections = document.querySelectorAll('section');
+
     function scrollFunction() 
     {
         const home_groupAbout = document.getElementById('home-group-about');
@@ -120,6 +124,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
     // Fonctions utiles
+    
+    
 
     function isElementInViewport(element) {
         var rect = element.getBoundingClientRect();
@@ -242,11 +248,17 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+   
+
+      
+
+      
+
+
     window.addEventListener('wheel', switchFunction, { passive: false });
     switch_container_last_projects.addEventListener('scroll', onScrollEnd);
 
     window.addEventListener('scroll', scrollFunction);
     
-  
     
 });
