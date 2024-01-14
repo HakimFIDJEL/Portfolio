@@ -15,8 +15,24 @@ document.addEventListener('DOMContentLoaded', function() {
         if (isElementInViewport(home_button) && !home_button.classList.contains('active')) {
             home_button.classList.add('active');
         }
-        // Mettre à jour le background-size de #home-first-span
-        updateBackgroundSize(home_firstSpan);
+        if(isElementInViewport(home_firstSpan)) {
+            updateBackgroundSize(home_firstSpan);
+        }
+
+        // Section last projects
+        const slide_title_last_projects = document.getElementById('slide-title-last-projects');
+        const text_reveal_last_projects = document.getElementById('text-reveal-last-projects');
+        const arrow_right_last_projects = document.getElementById('arrow-right-last-projects');
+        if(isElementInViewport(slide_title_last_projects)) {
+            updateTranslateX(slide_title_last_projects);
+        }
+        if(isElementInViewport(text_reveal_last_projects)) {
+            updateBackgroundSize(text_reveal_last_projects);
+        }
+        if(isElementInViewport(arrow_right_last_projects) && !arrow_right_last_projects.classList.contains('active')) {
+            arrow_right_last_projects.classList.add('active');
+        }
+        
 
 
         // Section Portfolio
@@ -28,7 +44,10 @@ document.addEventListener('DOMContentLoaded', function() {
         if(isElementInViewport(slide_title_portfolio)) {
             updateTranslateX(slide_title_portfolio);
         }
-        updateBackgroundSize(text_reveal_portfolio);
+        if(isElementInViewport(text_reveal_portfolio))
+        {
+            updateBackgroundSize(text_reveal_portfolio);
+        }
 
         if(isElementInViewport(arrow_left_portfolio) && !arrow_left_portfolio.classList.contains('active')) {
             arrow_left_portfolio.classList.add('active');
@@ -132,9 +151,9 @@ document.addEventListener('DOMContentLoaded', function() {
         element_children.style.transform = `translate(${translateValue}%)`;
     }
 
-    function accordeonAppear(accordeon_container)
+    function accordeonAppear(element)
     {
-        const accordeon_items = accordeon_container.children;
+        const accordeon_items = element.children;
         for (let i = 0; i < accordeon_items.length; i++) {
             const accordeon_item = accordeon_items[i];
             if(!accordeon_item.classList.contains('appear')) {
@@ -143,7 +162,91 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    function LastProjectsDisappear(index)
+    {
+        const switch_container = document.getElementById('switch-container-last-projects');
+        // const switch_container_children = switch_container.children;
+        const switch_container_children = switch_container.querySelectorAll('.switch-box');
+        const switch_container_child = switch_container_children[index];
+
+        switch_container_child.children[0].classList.remove('active');
+
+
+    }
+
+    function LastProjectsAppear(index)
+    {
+        const switch_container = document.getElementById('switch-container-last-projects');
+        // const switch_container_children = switch_container.children;
+        const switch_container_children = switch_container.querySelectorAll('.switch-box');
+        const switch_container_child = switch_container_children[index];
+
+        // wait 0.1s
+        setTimeout(function(){
+            switch_container_child.children[0].classList.add('active');
+        }, 100);
+    }
+
+
+    
+    const switch_container_last_projects = document.getElementById('switch-container-last-projects');
+    const snapPoints = [...switch_container_last_projects.children].map(child => child.offsetLeft);
+    const dummyProjects = document.querySelectorAll('.dummy-project');
+    const progression_container = document.getElementById('progression-container');
+    let isScrolling;
+    var temp_SnapPoint = 0;
+
+    function onScrollEnd() {
+        const currentScrollPos = switch_container_last_projects.scrollLeft;
+        var currentSnapPoint = snapPoints.findIndex(point => point > currentScrollPos);
+        if(currentSnapPoint < 0) {
+            currentSnapPoint = snapPoints.length;
+        }
+        console.log("Current snap point index:", currentSnapPoint - 1);
+        isScrolling = false;
+        if(currentSnapPoint - 1 != temp_SnapPoint) {
+
+            progression_container.innerText = `${currentSnapPoint} / ${snapPoints.length}`;
+            window.scrollTo({
+                top: dummyProjects[currentSnapPoint -1].offsetTop - 20,
+                behavior: 'smooth'
+            })
+            LastProjectsDisappear(temp_SnapPoint);
+            LastProjectsAppear(currentSnapPoint - 1);
+            temp_SnapPoint = currentSnapPoint - 1;
+
+        }
+    }
+
+    function switchFunction(e) {
+        if(isElementInViewport(switch_container_last_projects)) {
+            if(!switch_container_last_projects.classList.contains('active')) {
+                switch_container_last_projects.classList.add('active');
+            }
+            if (!isScrolling) {
+                switch_container_last_projects.scrollBy({
+                    left: e.deltaY,
+                    behavior: 'smooth'
+                });
+                isScrolling = true;
+            }
+            clearTimeout(isScrolling);
+            isScrolling = setTimeout(onScrollEnd, 150); // Temps de réaction plus court
+        }
+        else 
+        {
+            if(switch_container_last_projects.classList.contains('active')) {
+                switch_container_last_projects.classList.remove('active');
+            }
+        
+        }
+    }
+
+    window.addEventListener('wheel', switchFunction, { passive: false });
+    switch_container_last_projects.addEventListener('scroll', onScrollEnd);
 
     window.addEventListener('scroll', scrollFunction);
-
+    
+  
+    
 });

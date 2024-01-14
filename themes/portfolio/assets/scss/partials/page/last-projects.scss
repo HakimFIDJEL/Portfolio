@@ -1,0 +1,394 @@
+section#last-projects
+{
+    background-color: $color3;
+    color : $color1;
+
+    @include responsive(phone)
+    {
+        display: none;
+    }
+
+    .header-container
+    {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+
+      
+
+        .slide-title
+        {
+
+            
+
+
+            margin: 55px 0;
+            font-size: var(--slide-title);
+            font-weight: bold;
+            text-transform: uppercase;
+            width: 100%;
+            
+            white-space: nowrap;
+
+            display: flex;
+            overflow: hidden;
+            .group
+            {
+                overflow: visible;
+                transition: 0.1s ease-out;
+                transform: translate(0%, 0);
+            }
+        }
+        .text-container
+        {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            padding: 60px 40px;
+            box-sizing: border-box;
+
+         
+
+            .text 
+            {
+                font-size: var(--medium-size);
+                text-transform: uppercase;
+                font-weight: 300;
+                span
+                {
+                    transition : 0.2s cubic-bezier(0.38, 0.005, 0.215, 1);
+                    color: hsl(0, 0%, 0%, 0.2);
+    
+                    background-image: linear-gradient(90deg, $color1, $color1);
+                    background-size: 0% 100%;
+                    background-repeat: no-repeat;
+                    background-clip: text;
+                }
+            }
+
+            .click-to-scroll
+            {
+                display: flex;
+                align-items: flex-start;
+                gap: 30px;
+                color: $color1;
+                text-decoration: none;
+                cursor: pointer;
+                position: relative;
+                transform : translate(-30px, 0);
+                opacity: 0;
+                &::after 
+                {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    height: 100%;
+                    left: 0;
+                    right: 0;
+                    background-color: $color3;
+                    transition: 0.6s cubic-bezier(0.38, 0.005, 0.215, 1) 0.3s;
+                }
+
+                &.active 
+                {
+                    transform : translate(0, 0);
+                    opacity: 1;
+                    &::after 
+                    {
+                        height: 0%;
+                    }
+                }
+
+
+                &:hover 
+                {
+                    .scroll-text::before 
+                    {
+                        width: 100%;
+                        left: 0;
+                    }
+
+                    &.first 
+                    {
+                        .scroll-icon 
+                        {
+                            transform: rotate(-45deg);
+                        }
+                    }
+                    &.second 
+                    {
+                        .scroll-icon 
+                        {
+                            transform: rotate(45deg);
+                        }
+                    }
+
+                    
+                }
+                .scroll-icon 
+                {
+                    transition: 0.6s cubic-bezier(0.38, 0.005, 0.215, 1);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+                .scroll-text
+                {
+                    font-size: var(--medium-size);
+                    line-height: 16px;
+                    text-transform: uppercase;
+                    font-weight: 300;
+                    position: relative;
+
+                    &::before 
+                    {
+                        transition: 0.6s cubic-bezier(0.38, 0.005, 0.215, 1);
+                        content : '';
+                        position: absolute;
+                        
+                        width: 0;
+                        right: 0;
+
+                        bottom: -8px;
+                        height: 1px;
+                        background-color: $color1;
+
+                        
+                    }
+                }
+            }
+        }
+    }
+
+
+    .content-container
+    {
+        
+
+        .scroll-container
+        {
+            position: sticky;
+            top: 0;
+            bottom: 0;
+            height: 100vh;
+            width: 100vw;
+            pointer-events: none;
+
+            .scroll-wrapper
+            {
+                position: absolute;
+                bottom : 3rem;
+                right: 4rem;
+                left: 4rem;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                pointer-events: all;
+                .progression-container
+                {
+                    color: white;
+                    text-transform: uppercase;
+                    font-size: var(--xs-size);
+    
+                }
+
+                .scroll-indicator
+                {
+                    color: white;
+                    text-transform: uppercase;
+                    font-size: var(--xs-size);
+    
+                    display: flex;
+                    align-items: center;
+                    gap: 14px;
+                }
+            }
+
+        }
+       
+        
+
+        .switch-container
+        {
+            overflow-y: hidden;
+            overflow-x : scroll;
+
+            scroll-snap-type: x mandatory;
+            // scroll-snap-type: x proximity;
+
+            &::-webkit-scrollbar {
+                display: none;
+            }
+            scrollbar-width : none;
+
+            display: flex;
+            height: 100vh;
+
+
+            transition : transform 0.6s cubic-bezier(0.38, 0.005, 0.215, 1);
+            left: 0;
+
+            position: sticky;
+            top: 0;
+            bottom: 0;
+
+           
+
+           
+            &.top 
+            {
+                top: 0;
+                bottom: auto;
+            }
+            &.bottom 
+            {
+                top: auto;
+                bottom: 0;
+            }
+
+            .switch-box
+            {
+                width: 100vw;
+                height: 100vh;
+                flex-shrink : 0;
+                position: relative;
+
+                scroll-snap-align: center;
+
+
+
+                &.active
+                {
+                    left: 0;
+                }
+
+               
+                background-color: $color3;
+                
+
+                .background
+                {
+                    position: absolute;
+                    top: 8rem;
+                    right: 10rem;
+                    bottom: 12rem;
+                    background-color: red;
+                    max-width: 60%;
+                    width: 55%;
+                }
+               
+
+
+                .content
+                {
+                    position: absolute;
+                    z-index: 2;
+                    bottom: 24%;
+                    left: 4rem;
+
+                
+                    display: block;
+                    max-width: 400px;
+
+                    text-decoration: none;
+
+                    &.active 
+                    {
+                        span 
+                        {
+                            transform: translate(0, 0);
+                            &::after 
+                            {
+                                bottom : 100%;
+                            }
+                        }
+                    }
+
+
+                    span 
+                    {
+                        position: relative;
+                        display:inline-block;
+                        transform: translate(0, 10px);
+                        line-height: 1;
+                        overflow :hidden;
+                       
+
+                        &::after 
+                        {
+                            content: '';
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            right: 0;
+                            bottom: 0;
+                            background-color: $color3;
+                            transform: scale(1);
+                        }
+                        
+
+                        &.title 
+                        {
+                            font-size: var(--last-project-title);
+                            color: #ffffff;
+                            font-weight: bold;
+                            text-transform: uppercase;
+                            
+                            transition: 0.6s cubic-bezier(0.38, 0.005, 0.215, 1) 0.1s;
+                            &::after 
+                            {
+                                transition: 0.6s cubic-bezier(0.38, 0.005, 0.215, 1) 0.1s;
+                            }
+                        }
+                        &.subtitle, &.text
+                        {
+                            font-weight: 300;
+                            color: #ffffff;
+                        }
+                        &.subtitle 
+                        {
+                            font-size: var(--xs-size);
+                            text-transform: uppercase;
+                            transition: 0.6s cubic-bezier(0.38, 0.005, 0.215, 1);
+                            &::after 
+                            {
+                                transition: 0.6s cubic-bezier(0.38, 0.005, 0.215, 1);
+                            }
+                        }
+                        &.text 
+                        {
+                            font-size: var(--small-size);
+                            transition: 0.6s cubic-bezier(0.38, 0.005, 0.215, 1) 0.2s;
+                            &::after 
+                            {
+                                transition: 0.6s cubic-bezier(0.38, 0.005, 0.215, 1) 0.2s;
+                            }
+                        }
+                    }
+
+
+                 
+
+
+                    
+
+                }
+
+
+
+
+            }
+        }
+       
+        
+    }
+
+    .dummy-project
+    {
+        width: 100vw;
+        height: 100vh;
+        
+    }
+}

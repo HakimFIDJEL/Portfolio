@@ -214,6 +214,7 @@ section#about
                 {
                     gap: 60px;
                     width: 100%;
+                    flex-direction: column;
                 }
 
                 .wrapper
@@ -580,7 +581,7 @@ section#about
 
             &:hover 
             {
-                background-color: $color1;
+                background-color: $color2;
                 outline: 1px solid $color3;
                 a 
                 {

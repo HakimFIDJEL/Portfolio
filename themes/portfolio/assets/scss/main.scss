@@ -123,6 +123,7 @@ body
 {
     overflow-x: hidden;
     // overflow-y: hidden;
+    // overflow: hidden;
 }
 
 html 
@@ -229,7 +230,7 @@ html
 
 @import './partials/page/home.scss';
 @import './partials/page/all-projects.scss';
-// @import './partials/page/last-projects.scss';
+@import './partials/page/last-projects.scss';
 @import './partials/page/about.scss';
 @import './partials/page/contact.scss';
 

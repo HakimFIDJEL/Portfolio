@@ -41,38 +41,41 @@ $(document).ready(function()
     });
 
 
-    if(getOrientation() == 'landscape') {
-        $('.follow-cursor').mouseenter(function(){
-
-            $(this).mousemove(function(event){
-                var deltaX = event.pageX - $(this).offset().left - $(this).outerWidth() / 2;
-                var deltaY = event.pageY - $(this).offset().top - $(this).outerHeight() / 2;
-                var distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
     
-                if(distance < 100) {
-                    $(this).css({'left': deltaX + 'px', 'top': deltaY + 'px'});
-                } else {
-                    $(this).css({'left': '', 'top': ''});
-                }
+    if(getOrientation() === 'landscape') {
+        document.querySelectorAll('.follow-cursor').forEach(elem => {
+            elem.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.2)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                }, 100);
+    
+                const onMouseMove = (event) => {
+                    const rect = this.getBoundingClientRect();
+                    const deltaX = event.clientX - rect.left - this.offsetWidth / 2;
+                    const deltaY = event.clientY - rect.top - this.offsetHeight / 2;
+                    const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+    
+                    if(distance < 100) {
+                        this.style.left = deltaX + 'px';
+                        this.style.top = deltaY + 'px';
+                    } else {
+                        this.style.left = '';
+                        this.style.top = '';
+                    }
+                };
+    
+                this.addEventListener('mousemove', onMouseMove);
+    
+                this.addEventListener('mouseleave', () => {
+                    this.removeEventListener('mousemove', onMouseMove);
+                    this.style.left = '0px';
+                    this.style.top = '0px';
+                }, { once: true });
             });
-    
-            
-    
-            $(this).mouseleave(function(){
-                $(this).off('mousemove');
-                $(this).css({'left': '0px', 'top': '0px'});
-            });
-        });
-    
-        $('.follow-cursor').mouseenter(function(){
-            var $this = $(this); // Sauvegarde de la référence à $(this)
-            $this.css('transform', 'scale(1.2)');
-        
-            setTimeout(function(){
-                $this.css('transform', 'scale(1)');
-            }, 100);
         });
     }
+    
 
     
     

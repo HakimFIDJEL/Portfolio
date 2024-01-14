@@ -7,6 +7,8 @@ footer
     justify-content: space-between;
     border-top: 1px solid white;
     background-color: $color3;
+    position: relative;
+    z-index: 2;
 
     @include responsive('tablet')
     {

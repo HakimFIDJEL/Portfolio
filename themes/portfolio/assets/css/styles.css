@@ -515,6 +515,8 @@ footer {
   justify-content: space-between;
   border-top: 1px solid white;
   background-color: #1C1D1F;
+  position: relative;
+  z-index: 2;
 }
 @media (min-width: 768px) and (max-width: 1023px) {
   footer {
@@ -1637,6 +1639,259 @@ section#all-projects .content-container .container .group-container .text-contai
   }
 }
 
+section#last-projects {
+  background-color: #1C1D1F;
+  color: #FFFFFF;
+}
+@media (max-width: 767px) {
+  section#last-projects {
+    display: none;
+  }
+}
+section#last-projects .header-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+section#last-projects .header-container .slide-title {
+  margin: 55px 0;
+  font-size: var(--slide-title);
+  font-weight: bold;
+  text-transform: uppercase;
+  width: 100%;
+  white-space: nowrap;
+  display: flex;
+  overflow: hidden;
+}
+section#last-projects .header-container .slide-title .group {
+  overflow: visible;
+  transition: 0.1s ease-out;
+  transform: translate(0%, 0);
+}
+section#last-projects .header-container .text-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 60px 40px;
+  box-sizing: border-box;
+}
+section#last-projects .header-container .text-container .text {
+  font-size: var(--medium-size);
+  text-transform: uppercase;
+  font-weight: 300;
+}
+section#last-projects .header-container .text-container .text span {
+  transition: 0.2s cubic-bezier(0.38, 0.005, 0.215, 1);
+  color: hsla(0, 0%, 0%, 0.2);
+  background-image: linear-gradient(90deg, #FFFFFF, #FFFFFF);
+  background-size: 0% 100%;
+  background-repeat: no-repeat;
+  background-clip: text;
+}
+section#last-projects .header-container .text-container .click-to-scroll {
+  display: flex;
+  align-items: flex-start;
+  gap: 30px;
+  color: #FFFFFF;
+  text-decoration: none;
+  cursor: pointer;
+  position: relative;
+  transform: translate(-30px, 0);
+  opacity: 0;
+}
+section#last-projects .header-container .text-container .click-to-scroll::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  height: 100%;
+  left: 0;
+  right: 0;
+  background-color: #1C1D1F;
+  transition: 0.6s cubic-bezier(0.38, 0.005, 0.215, 1) 0.3s;
+}
+section#last-projects .header-container .text-container .click-to-scroll.active {
+  transform: translate(0, 0);
+  opacity: 1;
+}
+section#last-projects .header-container .text-container .click-to-scroll.active::after {
+  height: 0%;
+}
+section#last-projects .header-container .text-container .click-to-scroll:hover .scroll-text::before {
+  width: 100%;
+  left: 0;
+}
+section#last-projects .header-container .text-container .click-to-scroll:hover.first .scroll-icon {
+  transform: rotate(-45deg);
+}
+section#last-projects .header-container .text-container .click-to-scroll:hover.second .scroll-icon {
+  transform: rotate(45deg);
+}
+section#last-projects .header-container .text-container .click-to-scroll .scroll-icon {
+  transition: 0.6s cubic-bezier(0.38, 0.005, 0.215, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+section#last-projects .header-container .text-container .click-to-scroll .scroll-text {
+  font-size: var(--medium-size);
+  line-height: 16px;
+  text-transform: uppercase;
+  font-weight: 300;
+  position: relative;
+}
+section#last-projects .header-container .text-container .click-to-scroll .scroll-text::before {
+  transition: 0.6s cubic-bezier(0.38, 0.005, 0.215, 1);
+  content: "";
+  position: absolute;
+  width: 0;
+  right: 0;
+  bottom: -8px;
+  height: 1px;
+  background-color: #FFFFFF;
+}
+section#last-projects .content-container .scroll-container {
+  position: sticky;
+  top: 0;
+  bottom: 0;
+  height: 100vh;
+  width: 100vw;
+  pointer-events: none;
+}
+section#last-projects .content-container .scroll-container .scroll-wrapper {
+  position: absolute;
+  bottom: 3rem;
+  right: 4rem;
+  left: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  pointer-events: all;
+}
+section#last-projects .content-container .scroll-container .scroll-wrapper .progression-container {
+  color: white;
+  text-transform: uppercase;
+  font-size: var(--xs-size);
+}
+section#last-projects .content-container .scroll-container .scroll-wrapper .scroll-indicator {
+  color: white;
+  text-transform: uppercase;
+  font-size: var(--xs-size);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+section#last-projects .content-container .switch-container {
+  overflow-y: hidden;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  display: flex;
+  height: 100vh;
+  transition: transform 0.6s cubic-bezier(0.38, 0.005, 0.215, 1);
+  left: 0;
+  position: sticky;
+  top: 0;
+  bottom: 0;
+}
+section#last-projects .content-container .switch-container::-webkit-scrollbar {
+  display: none;
+}
+section#last-projects .content-container .switch-container.top {
+  top: 0;
+  bottom: auto;
+}
+section#last-projects .content-container .switch-container.bottom {
+  top: auto;
+  bottom: 0;
+}
+section#last-projects .content-container .switch-container .switch-box {
+  width: 100vw;
+  height: 100vh;
+  flex-shrink: 0;
+  position: relative;
+  scroll-snap-align: center;
+  background-color: #1C1D1F;
+}
+section#last-projects .content-container .switch-container .switch-box.active {
+  left: 0;
+}
+section#last-projects .content-container .switch-container .switch-box .background {
+  position: absolute;
+  top: 8rem;
+  right: 10rem;
+  bottom: 12rem;
+  background-color: red;
+  max-width: 60%;
+  width: 55%;
+}
+section#last-projects .content-container .switch-container .switch-box .content {
+  position: absolute;
+  z-index: 2;
+  bottom: 24%;
+  left: 4rem;
+  display: block;
+  max-width: 400px;
+  text-decoration: none;
+}
+section#last-projects .content-container .switch-container .switch-box .content.active span {
+  transform: translate(0, 0);
+}
+section#last-projects .content-container .switch-container .switch-box .content.active span::after {
+  bottom: 100%;
+}
+section#last-projects .content-container .switch-container .switch-box .content span {
+  position: relative;
+  display: inline-block;
+  transform: translate(0, 10px);
+  line-height: 1;
+  overflow: hidden;
+}
+section#last-projects .content-container .switch-container .switch-box .content span::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #1C1D1F;
+  transform: scale(1);
+}
+section#last-projects .content-container .switch-container .switch-box .content span.title {
+  font-size: var(--last-project-title);
+  color: #ffffff;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: 0.6s cubic-bezier(0.38, 0.005, 0.215, 1) 0.1s;
+}
+section#last-projects .content-container .switch-container .switch-box .content span.title::after {
+  transition: 0.6s cubic-bezier(0.38, 0.005, 0.215, 1) 0.1s;
+}
+section#last-projects .content-container .switch-container .switch-box .content span.subtitle, section#last-projects .content-container .switch-container .switch-box .content span.text {
+  font-weight: 300;
+  color: #ffffff;
+}
+section#last-projects .content-container .switch-container .switch-box .content span.subtitle {
+  font-size: var(--xs-size);
+  text-transform: uppercase;
+  transition: 0.6s cubic-bezier(0.38, 0.005, 0.215, 1);
+}
+section#last-projects .content-container .switch-container .switch-box .content span.subtitle::after {
+  transition: 0.6s cubic-bezier(0.38, 0.005, 0.215, 1);
+}
+section#last-projects .content-container .switch-container .switch-box .content span.text {
+  font-size: var(--small-size);
+  transition: 0.6s cubic-bezier(0.38, 0.005, 0.215, 1) 0.2s;
+}
+section#last-projects .content-container .switch-container .switch-box .content span.text::after {
+  transition: 0.6s cubic-bezier(0.38, 0.005, 0.215, 1) 0.2s;
+}
+section#last-projects .dummy-project {
+  width: 100vw;
+  height: 100vh;
+}
+
 section#about {
   width: 100vw;
   position: relative;
@@ -1808,6 +2063,7 @@ section#about .competences-container .content-container .block-container {
   section#about .competences-container .content-container .block-container {
     gap: 60px;
     width: 100%;
+    flex-direction: column;
   }
 }
 section#about .competences-container .content-container .block-container .wrapper {
@@ -2072,7 +2328,7 @@ section#about .experience-container .cv-container {
   transition: 0.4s cubic-bezier(0.38, 0.005, 0.215, 1);
 }
 section#about .experience-container .cv-container:hover {
-  background-color: #FFFFFF;
+  background-color: #F0F0F0;
   outline: 1px solid #1C1D1F;
 }
 section#about .experience-container .cv-container:hover a {
@@ -2647,22 +2903,11 @@ section#contact .content-container .wrapper form button .spinner {
 section#project {
   width: 100%;
   height: 100%;
-  background: linear-gradient(180deg, #FFFFFF 0%, #1C1D1F 50.36%);
-  box-sizing: border-box;
-  padding: 240px 40px 100px 40px;
+  background-color: #F0F0F0;
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-@media (max-width: 767px) {
-  section#project {
-    padding: 240px 20px 100px 20px;
-  }
-}
-@media (min-width: 768px) and (max-width: 1023px) {
-  section#project {
-    padding: 240px 30px 100px 30px;
-  }
+  position: relative;
 }
 section#project .header {
   display: flex;
@@ -2673,7 +2918,7 @@ section#project .header {
   width: 250px;
   height: 200px;
   position: fixed;
-  top: -175px;
+  top: -100px;
   font-size: var(--small-size);
   border-radius: 50%;
   z-index: 999;
@@ -2682,119 +2927,167 @@ section#project .header {
   cursor: pointer;
 }
 section#project .header.active {
-  top: -100px;
+  height: 50px;
+  align-items: center;
+  top: 10px;
+  padding-bottom: 0;
+  border-radius: 40px;
 }
 section#project .header.dark {
   background-color: #1C1D1F;
-  color: #FFFFFF;
+  color: #F0F0F0;
+}
+section#project .header.dark:hover {
+  background-color: #F0F0F0;
+  color: #1C1D1F;
+  outline: 1px solid #1C1D1F;
 }
 section#project .header.light {
-  background-color: #FFFFFF;
+  background-color: #F0F0F0;
   color: #1C1D1F;
 }
-section#project .main-title {
+section#project .header.light:hover {
+  background-color: #1C1D1F;
+  color: #F0F0F0;
+  outline: 1px solid #F0F0F0;
+}
+section#project .light-container {
+  background: #F0F0F0;
+  box-sizing: border-box;
+  padding: 140px 100px 20px 100px;
   width: 100%;
+}
+@media (max-width: 767px) {
+  section#project .light-container {
+    padding: 180px 40px 40px 40px;
+  }
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+  section#project .light-container {
+    padding: 160px 60px 30px 60px;
+  }
+}
+section#project .light-container .group-title {
   display: flex;
   flex-direction: column;
-}
-@keyframes main-title-span {
-  0% {
-    width: 0%;
-  }
-  100% {
-    width: 100%;
-  }
-}
-@keyframes main-title-categorie {
-  0% {
-    opacity: 0;
-    bottom: 180%;
-  }
-  100% {
-    opacity: 1;
-    bottom: 120%;
-  }
-}
-@keyframes main-title-subtitle {
-  0% {
-    opacity: 0;
-    transform: translateY(-30px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0px);
-  }
-}
-section#project .main-title .group-title {
-  width: 100%;
-  display: grid;
-  grid-template-columns: auto 1fr;
-}
-@media (max-width: 767px) {
-  section#project .main-title .group-title {
-    grid-template-columns: 1fr;
-  }
-}
-section#project .main-title .group-title .title {
-  font-size: var(--hero-title-size);
-  font-weight: 300;
-  text-transform: uppercase;
-  color: #1C1D1F;
-  line-height: var(--line-height-hero);
-}
-section#project .main-title .group-title span {
-  animation: main-title-span 1s ease-out forwards;
-  width: 0%;
-  white-space: nowrap;
-  background-color: #1C1D1F;
+  gap: 60px;
   position: relative;
-  height: 3px;
-  align-self: flex-end;
+  width: 100%;
+}
+section#project .light-container .group-title .title, section#project .light-container .group-title .subtitle {
+  transition: 1s cubic-bezier(0.38, 0.005, 0.215, 1);
+  max-width: 50%;
+}
+@media (max-width: 767px) {
+  section#project .light-container .group-title .title, section#project .light-container .group-title .subtitle {
+    max-width: 80%;
+  }
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+  section#project .light-container .group-title .title, section#project .light-container .group-title .subtitle {
+    max-width: 60%;
+  }
+}
+section#project .light-container .group-title .title {
+  font-size: var(--hero-title-size);
+  color: #1C1D1F;
+  font-weight: 700;
+  text-transform: uppercase;
+  position: relative;
+  line-height: 1;
   display: flex;
-  justify-content: flex-end;
+  align-items: flex-start;
+  flex-direction: column;
 }
-@media (max-width: 767px) {
-  section#project .main-title .group-title span {
-    height: 2px;
-  }
-}
-section#project .main-title .group-title span .categorie {
-  animation: main-title-categorie 0.6s ease-out 1s forwards;
+section#project .light-container .group-title .title span {
+  transform: translate(0px, 50px);
+  position: relative;
   opacity: 0;
-  bottom: 180%;
+  transition-duration: 1s;
+}
+section#project .light-container .group-title .title span:nth-child(1) {
+  transition-delay: 0s;
+}
+section#project .light-container .group-title .title span:nth-child(1):after {
+  transition: 1.2s cubic-bezier(0.38, 0.005, 0.215, 1) 0s;
+}
+section#project .light-container .group-title .title span:nth-child(2) {
+  transition-delay: 0.2s;
+}
+section#project .light-container .group-title .title span:nth-child(2)::after {
+  transition: 1.2s cubic-bezier(0.38, 0.005, 0.215, 1) 0.15s;
+}
+section#project .light-container .group-title .title span:nth-child(3) {
+  transition-delay: 0.4s;
+}
+section#project .light-container .group-title .title span:nth-child(3)::after {
+  transition: 1.2s cubic-bezier(0.38, 0.005, 0.215, 1) 0.3s;
+}
+section#project .light-container .group-title .title span::after {
   position: absolute;
-  bottom: 120%;
-  text-align: right;
-  text-transform: uppercase;
-  font-size: var(--small-size);
-  color: #1C1D1F;
-  font-weight: 300;
+  content: "";
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #F0F0F0;
 }
-@media (max-width: 767px) {
-  section#project .main-title .group-title span .categorie {
-    display: none;
+section#project .light-container .group-title .title.active span {
+  transform: translate(0px, 0px);
+  opacity: 1;
+}
+section#project .light-container .group-title .title.active span::after {
+  bottom: 100%;
+}
+@keyframes home-title {
+  0% {
+    transform: translate(0px, 50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(0px, 0px);
+    opacity: 1;
   }
 }
-section#project .main-title .subtitle {
-  color: #1C1D1F;
-  text-transform: uppercase;
+section#project .light-container .group-title .subtitle {
   font-size: var(--hero-subtitle-size);
-  margin-top: 12px;
-  font-weight: 300;
+  color: #1C1D1F;
+  font-weight: 500;
+  text-transform: uppercase;
+  position: relative;
   opacity: 0;
-  transform: translateY(-30px);
-  animation: main-title-subtitle 0.3s ease-out 1.6s forwards;
+  transform: translate(0px, -50px);
 }
-section#project .card-container {
-  margin-top: 200px;
+section#project .light-container .group-title .subtitle::after {
+  content: "";
+  position: absolute;
+  background-color: #F0F0F0;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  transition: 1s cubic-bezier(0.38, 0.005, 0.215, 1);
+}
+section#project .light-container .group-title .subtitle.active {
+  opacity: 1;
+  transform: translate(0px, 0px);
+}
+section#project .light-container .group-title .subtitle.active::after {
+  bottom: 100%;
+}
+section#project .light-container .card-container {
+  margin: 140px 0 200px 0;
   width: 100%;
   gap: 30px;
   display: flex;
   justify-content: space-between;
-  height: 500px;
+  height: 600px;
+  position: relative;
+  z-index: 1;
+  bottom: 0;
 }
 @media (min-width: 768px) and (max-width: 1023px) {
-  section#project .card-container {
+  section#project .light-container .card-container {
     margin-top: 170px;
     flex-wrap: wrap;
     height: auto;
@@ -2802,16 +3095,16 @@ section#project .card-container {
   }
 }
 @media (max-width: 767px) {
-  section#project .card-container {
+  section#project .light-container .card-container {
     flex-direction: column;
     height: auto;
     gap: 50px;
     margin-top: 140px;
   }
 }
-section#project .card-container .card {
+section#project .light-container .card-container .card {
   height: 100%;
-  background-color: #FFFFFF;
+  background-color: lightblue;
   transition: 0.6s cubic-bezier(0.38, 0.005, 0.215, 1);
   flex-grow: 1;
   position: relative;
@@ -2823,61 +3116,79 @@ section#project .card-container .card {
   background-repeat: no-repeat;
 }
 @media (min-width: 768px) and (max-width: 1023px) {
-  section#project .card-container .card {
+  section#project .light-container .card-container .card {
     width: 40%;
     flex-grow: 1;
     height: 300px;
   }
 }
 @media (max-width: 767px) {
-  section#project .card-container .card {
+  section#project .light-container .card-container .card {
     width: 100%;
     aspect-ratio: 16/9;
   }
 }
-section#project .card-container .card .text-container {
+section#project .light-container .card-container .card .text-container {
   position: absolute;
   bottom: -30px;
   left: 0;
-  color: rgba(255, 255, 255, 0.7);
+  color: #1C1D1F;
   font-size: var(--small-size);
   pointer-events: none;
 }
-section#project .card-container .card:hover {
-  flex-grow: 3;
+section#project .light-container .card-container .card:hover {
+  flex-grow: 4;
 }
-section#project .techno-used {
+section#project .dark-container {
+  position: relative;
+  z-index: 1;
+  background: #1C1D1F;
+  box-sizing: border-box;
+  padding: 80px 100px 80px 100px;
+  width: 100%;
+}
+@media (max-width: 767px) {
+  section#project .dark-container {
+    padding: 240px 20px 100px 20px;
+  }
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+  section#project .dark-container {
+    padding: 240px 30px 100px 30px;
+  }
+}
+section#project .dark-container .techno-used {
   margin-top: 200px;
   width: 100%;
   display: flex;
   flex-direction: column;
 }
-section#project .techno-used .title {
+section#project .dark-container .techno-used .title {
   font-size: var(--small-size);
   color: #FFFFFF;
   font-weight: 300;
   text-transform: uppercase;
 }
 @media (max-width: 767px) {
-  section#project .techno-used .title {
+  section#project .dark-container .techno-used .title {
     margin-bottom: 24px;
   }
 }
-section#project .techno-used .wrapper {
+section#project .dark-container .techno-used .wrapper {
   display: flex;
   align-items: center;
   gap: 32px;
 }
-section#project .techno-used .wrapper .techno-container {
+section#project .dark-container .techno-used .wrapper .techno-container {
   display: flex;
 }
 @media (max-width: 767px) {
-  section#project .techno-used .wrapper .techno-container {
+  section#project .dark-container .techno-used .wrapper .techno-container {
     flex-wrap: wrap;
     justify-content: center;
   }
 }
-section#project .techno-used .wrapper .techno-container .techno {
+section#project .dark-container .techno-used .wrapper .techno-container .techno {
   border-left: 1px solid #FFFFFF;
   padding: 0 12px;
   font-size: var(--small-size);
@@ -2886,20 +3197,20 @@ section#project .techno-used .wrapper .techno-container .techno {
   text-transform: uppercase;
   box-sizing: border-box;
 }
-section#project .techno-used .wrapper .techno-container .techno:first-child {
+section#project .dark-container .techno-used .wrapper .techno-container .techno:first-child {
   border-left: none;
 }
-section#project .techno-used .wrapper .delimiter {
+section#project .dark-container .techno-used .wrapper .delimiter {
   height: 2px;
   flex-grow: 1;
   background-color: #FFFFFF;
 }
 @media (max-width: 767px) {
-  section#project .techno-used .wrapper .delimiter {
+  section#project .dark-container .techno-used .wrapper .delimiter {
     display: none;
   }
 }
-section#project .description-container {
+section#project .dark-container .description-container {
   margin-top: 240px;
   width: 100%;
   box-sizing: border-box;
@@ -2909,40 +3220,49 @@ section#project .description-container {
   gap: 100px;
 }
 @media (min-width: 768px) and (max-width: 1023px) {
-  section#project .description-container {
+  section#project .dark-container .description-container {
     flex-direction: column-reverse;
     padding: 0px 30px 160px 30px;
     gap: 120px;
   }
 }
 @media (max-width: 767px) {
-  section#project .description-container {
+  section#project .dark-container .description-container {
     flex-direction: column-reverse;
     padding: 0px 20px 160px 20px;
     gap: 120px;
   }
 }
-section#project .description-container .grade-container {
+section#project .dark-container .description-container .grade-container {
   position: relative;
 }
-section#project .description-container .grade-container .title {
+section#project .dark-container .description-container .grade-container .title {
   margin-bottom: 40px;
   color: rgba(255, 255, 255, 0.7);
   font-size: var(--xs-size);
   position: absolute;
-  transform: rotate(-90deg) translateX(-100%) translateY(-30px);
-  transform-origin: top left;
   font-weight: light;
   text-transform: uppercase;
+  margin-bottom: 20px;
+}
+@media (max-width: 767px) {
+  section#project .dark-container .description-container .grade-container .title {
+    top: 0;
+  }
 }
 @media (min-width: 768px) and (max-width: 1023px) {
-  section#project .description-container .grade-container {
+  section#project .dark-container .description-container .grade-container .title {
+    top: 0;
+  }
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+  section#project .dark-container .description-container .grade-container {
     display: flex;
     gap: 60px;
   }
 }
 @media (max-width: 767px) {
-  section#project .description-container .grade-container {
+  section#project .dark-container .description-container .grade-container {
     display: flex;
     flex-direction: column;
     gap: 60px;
@@ -2950,7 +3270,7 @@ section#project .description-container .grade-container .title {
     padding-top: 320px;
   }
 }
-section#project .description-container .grade-container .circle {
+section#project .dark-container .description-container .grade-container .circle {
   --w: 300px;
   width: var(--w);
   aspect-ratio: 1/1;
@@ -2958,42 +3278,42 @@ section#project .description-container .grade-container .circle {
   position: relative;
   display: inline-grid;
   place-content: center;
-  margin: 5px;
+  margin: 80px 0 40px 0;
   font-size: 25px;
   font-weight: bold;
   font-family: sans-serif;
   background: conic-gradient(#FFFFFF calc(var(--p) * 1%), rgba(0, 0, 0, 0) 0);
 }
 @media (min-width: 768px) and (max-width: 1023px) {
-  section#project .description-container .grade-container .circle {
+  section#project .dark-container .description-container .grade-container .circle {
     flex-shrink: 0;
   }
 }
 @media (max-width: 767px) {
-  section#project .description-container .grade-container .circle {
+  section#project .dark-container .description-container .grade-container .circle {
     position: absolute;
     top: 0;
     left: 50%;
     transform: translateX(-50%);
   }
 }
-section#project .description-container .grade-container .circle .round {
+section#project .dark-container .description-container .grade-container .circle .round {
   width: calc(var(--b) / 2 * 1%);
   aspect-ratio: 1/1;
   border-radius: 50%;
   background: #FFFFFF;
   position: absolute;
 }
-section#project .description-container .grade-container .circle .round.first {
+section#project .dark-container .description-container .grade-container .circle .round.first {
   top: 0px;
   left: calc(50% - 12px);
 }
-section#project .description-container .grade-container .circle .round.second {
+section#project .dark-container .description-container .grade-container .circle .round.second {
   inset: calc(50% - var(--b) / 2 * 1% + 12px) 0px 0px calc(50% - var(--b) / 2 * 1% + 12px);
   background: #FFFFFF;
   transform: rotate(calc(var(--p) * 3.6deg)) translateY(calc(50% - var(--w) / 2));
 }
-section#project .description-container .grade-container .circle .grade {
+section#project .dark-container .description-container .grade-container .circle .grade {
   position: absolute;
   top: 0;
   left: 0;
@@ -3005,7 +3325,7 @@ section#project .description-container .grade-container .circle .grade {
   justify-content: center;
   color: #FFFFFF;
 }
-section#project .description-container .grade-container .circle::before {
+section#project .dark-container .description-container .grade-container .circle::before {
   content: "";
   position: absolute;
   top: calc(var(--b) / 2 * 1%);
@@ -3015,7 +3335,7 @@ section#project .description-container .grade-container .circle::before {
   border-radius: 50%;
   background-color: #1C1D1F;
 }
-section#project .description-container .grade-container .subtitle {
+section#project .dark-container .description-container .grade-container .subtitle {
   font-size: var(--xs-size);
   color: #FFFFFF;
   font-weight: 300;
@@ -3024,16 +3344,18 @@ section#project .description-container .grade-container .subtitle {
   width: 300px;
 }
 @media (min-width: 768px) and (max-width: 1023px) {
-  section#project .description-container .grade-container .subtitle {
+  section#project .dark-container .description-container .grade-container .subtitle {
     width: 100%;
+    margin-top: 60px;
   }
 }
 @media (max-width: 767px) {
-  section#project .description-container .grade-container .subtitle {
+  section#project .dark-container .description-container .grade-container .subtitle {
     width: 100%;
+    margin-top: 100px;
   }
 }
-section#project .description-container .grade-container .links {
+section#project .dark-container .description-container .grade-container .links {
   display: flex;
   align-items: center;
   gap: 30px;
@@ -3041,13 +3363,13 @@ section#project .description-container .grade-container .links {
   margin-top: 30px;
 }
 @media (min-width: 768px) and (max-width: 1023px) {
-  section#project .description-container .grade-container .links {
+  section#project .dark-container .description-container .grade-container .links {
     position: absolute;
     bottom: 0px;
     right: 0;
   }
 }
-section#project .description-container .grade-container .links .link {
+section#project .dark-container .description-container .grade-container .links .link {
   padding: 10px 20px;
   box-sizing: border-box;
   align-self: flex-end;
@@ -3069,30 +3391,34 @@ section#project .description-container .grade-container .links .link {
   overflow: hidden;
   text-decoration: none;
 }
-section#project .description-container .grade-container .links .link svg {
+section#project .dark-container .description-container .grade-container .links .link.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+section#project .dark-container .description-container .grade-container .links .link svg {
   position: relative;
   z-index: 1;
 }
-section#project .description-container .grade-container .links .link svg path {
+section#project .dark-container .description-container .grade-container .links .link svg path {
   stroke: #1C1D1F;
   transition: 0.6s cubic-bezier(0.38, 0.005, 0.215, 1);
 }
-section#project .description-container .grade-container .links .link:hover, section#project .description-container .grade-container .links .link:focus {
+section#project .dark-container .description-container .grade-container .links .link:hover, section#project .dark-container .description-container .grade-container .links .link:focus {
   outline: 1px solid white;
 }
-section#project .description-container .grade-container .links .link:hover .text-button, section#project .description-container .grade-container .links .link:focus .text-button {
+section#project .dark-container .description-container .grade-container .links .link:hover .text-button, section#project .dark-container .description-container .grade-container .links .link:focus .text-button {
   color: white;
 }
-section#project .description-container .grade-container .links .link:hover path, section#project .description-container .grade-container .links .link:focus path {
+section#project .dark-container .description-container .grade-container .links .link:hover path, section#project .dark-container .description-container .grade-container .links .link:focus path {
   stroke: white;
 }
-section#project .description-container .grade-container .links .link:hover::before, section#project .description-container .grade-container .links .link:focus::before {
+section#project .dark-container .description-container .grade-container .links .link:hover::before, section#project .dark-container .description-container .grade-container .links .link:focus::before {
   top: 0;
 }
-section#project .description-container .grade-container .links .link:hover::after, section#project .description-container .grade-container .links .link:focus::after {
+section#project .dark-container .description-container .grade-container .links .link:hover::after, section#project .dark-container .description-container .grade-container .links .link:focus::after {
   top: 0;
 }
-section#project .description-container .grade-container .links .link::before {
+section#project .dark-container .description-container .grade-container .links .link::before {
   content: "";
   position: absolute;
   top: 100%;
@@ -3106,7 +3432,7 @@ section#project .description-container .grade-container .links .link::before {
   z-index: 0;
   opacity: 0.5;
 }
-section#project .description-container .grade-container .links .link::after {
+section#project .dark-container .description-container .grade-container .links .link::after {
   content: "";
   position: absolute;
   top: 100%;
@@ -3120,41 +3446,70 @@ section#project .description-container .grade-container .links .link::after {
   transition-delay: 0.15s;
   z-index: 0;
 }
-section#project .description-container .wrapper {
+section#project .dark-container .description-container .wrapper {
   width: 750px;
   display: flex;
   flex-direction: column;
   gap: 55px;
 }
 @media (min-width: 768px) and (max-width: 1023px) {
-  section#project .description-container .wrapper {
+  section#project .dark-container .description-container .wrapper {
     width: 100%;
   }
 }
 @media (max-width: 767px) {
-  section#project .description-container .wrapper {
+  section#project .dark-container .description-container .wrapper {
     width: 100%;
   }
 }
-section#project .description-container .wrapper .description {
+section#project .dark-container .description-container .wrapper .description span {
   font-size: var(--medium-size);
   font-weight: 600;
   text-transform: uppercase;
-  color: #FFFFFF;
   text-align: justify;
+  transition: 0.2s cubic-bezier(0.38, 0.005, 0.215, 1);
+  color: hsla(0, 0%, 0%, 0.2);
+  background-image: linear-gradient(90deg, #FFFFFF, #FFFFFF);
+  background-size: 0% 100%;
+  background-repeat: no-repeat;
+  background-clip: text;
+  display: inline;
 }
-section#project .description-container .wrapper .group-question {
+section#project .dark-container .description-container .wrapper .group-question {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
-section#project .description-container .wrapper .group-question .question {
+section#project .dark-container .description-container .wrapper .group-question .question, section#project .dark-container .description-container .wrapper .group-question .answer {
+  position: relative;
+  opacity: 0;
+  transform: translate(0, -30px);
+  transition: 0.8s cubic-bezier(0.38, 0.005, 0.215, 1);
+}
+section#project .dark-container .description-container .wrapper .group-question .question::after, section#project .dark-container .description-container .wrapper .group-question .answer::after {
+  background-color: #1C1D1F;
+  top: 0;
+  height: 100%;
+  left: 0;
+  right: 0;
+  content: "";
+  position: absolute;
+  transition: 0.8s cubic-bezier(0.38, 0.005, 0.215, 1);
+}
+section#project .dark-container .description-container .wrapper .group-question .question.active, section#project .dark-container .description-container .wrapper .group-question .answer.active {
+  opacity: 1;
+  transform: translate(0, 0px);
+}
+section#project .dark-container .description-container .wrapper .group-question .question.active::after, section#project .dark-container .description-container .wrapper .group-question .answer.active::after {
+  height: 0%;
+}
+section#project .dark-container .description-container .wrapper .group-question .question {
   font-size: var(--small-size);
   color: #FFFFFF;
   font-weight: 300;
   text-transform: uppercase;
 }
-section#project .description-container .wrapper .group-question .answer {
+section#project .dark-container .description-container .wrapper .group-question .answer {
   font-size: var(--xs-size);
   color: rgba(255, 255, 255, 0.7);
   font-weight: 300;

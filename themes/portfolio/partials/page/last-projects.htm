@@ -1,0 +1,119 @@
+<section id="last-projects" >
+    <div class="header-container">
+
+        <div class="slide-title" id="slide-title-last-projects">
+            
+            <div class="group">
+                &nbsp; Mes derniers projets &mdash; Mes derniers projets &mdash; Mes derniers projets &mdash; Mes derniers projets &mdash; Mes derniers projets &mdash; Mes derniers projets &mdash; Mes derniers projets &mdash; Mes derniers projets &mdash;
+            </div>
+
+
+        </div>
+
+
+        <div class="text-container">
+            <div class="text">
+                <span id="text-reveal-last-projects">
+                    Pour que vous puissiez jeter un <br> oeil à mes derniers projets.
+                </span>
+            </div>
+            <a href="#all-projects" class="click-to-scroll go-to second cursor-pointer" id="arrow-right-last-projects" data-type="sticky">
+                <div class="scroll-text">
+                    <p>Passer cette partie</p>
+                </div>
+                <div class="scroll-icon">
+                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1 1L21 21M21 21V1.8M21 21H1.8" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+            </a>
+        </div>
+
+    </div>
+
+
+    <div class="content-container" >
+
+        <div class="switch-container" id="switch-container-last-projects">
+
+            {% set counter_project = 0 %}
+            {% for project in lastprojects %}
+
+                
+                
+                <div class="switch-box">
+                    
+                
+                {% if counter_project == 0 %}
+                    <div data-src="{{ url('/project/' ~ project.id) }}" class="content cursor-pointer link-href active" data-type="link">
+                {% else %}
+                    <div data-src="{{ url('/project/' ~ project.id) }}" class="content cursor-pointer link-href" data-type="link">
+                {% endif %}
+
+
+                        <span class="subtitle">
+                                {{ project.subtitle }}
+                        </span>
+                        </br>
+                        <span class="title">
+                                {{ project.name }}
+                        </span>
+                    </br>
+                        <span class="text">
+                                {{ project.libelle }}
+                        </span>
+                    </div>
+                
+                    <div class="background" style="background-image: url('{{ project.images.first.getPath }}')"></div>
+
+                </div>
+
+                {% set counter_project = counter_project + 1 %}
+            {% endfor %}
+
+          
+           
+        </div>
+
+        
+        
+        
+        
+        
+        
+        
+        
+        {% set counter_dot = 0 %}
+        {% for project in lastprojects %}
+        <div class="dummy-project" data-ref="{{ counter_dot }}"></div>
+        {% set counter_dot = counter_dot + 1 %}
+        {% endfor %}
+        
+        
+        <div class="scroll-container">
+            <div class="scroll-wrapper">
+                <div class="progression-container" id="progression-container">
+                    1 / {{ lastprojects|length }}
+                </div>
+                <div class="scroll-indicator">
+                    <span>
+                        SCROLL
+                    </span>
+                    <svg width="18" height="16" viewBox="0 0 28 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0.85791 13H26.3138M26.3138 13L14.0949 0.781195M26.3138 13L14.0949 25.2188" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                        
+                </div>
+            </div>
+        </div>
+        
+
+
+       
+
+    </div>
+
+
+    
+
+</section>
