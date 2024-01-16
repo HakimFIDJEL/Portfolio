@@ -361,14 +361,13 @@ nav .container.active .content {
 }
 nav .container .content {
   position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 40%;
+  top: 12px;
+  left: 24px;
+  bottom: 12px;
   z-index: 1;
   opacity: 0;
-  background-color: rgba(255, 255, 255, 0.8);
-  border-radius: 0 50px 50px 0;
+  background-color: #F0F0F0;
+  border-radius: 50px;
   transform: translateX(-100%);
   transition: 0.3s ease-out 0s;
   overflow: hidden;
@@ -383,40 +382,27 @@ nav .container .content .wrapper {
   padding: 100px 20px;
   display: flex;
   flex-direction: column;
-  gap: 60px;
-}
-nav .container .content .wrapper .nav-title {
-  font-size: var(--medium-size);
-  text-transform: uppercase;
-  font-weight: 300;
-  color: #1C1D1F;
-  margin-bottom: 20px;
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  position: relative;
-}
-nav .container .content .wrapper .nav-title::after {
-  position: absolute;
-  content: "";
-  width: 100%;
-  height: 1px;
-  bottom: -4px;
-  background-color: #1C1D1F;
-  margin-top: 10px;
+  gap: 80px;
 }
 nav .container .content .wrapper ul {
+  margin: 0 12px;
   list-style: none;
 }
+nav .container .content .wrapper ul li.active a {
+  box-shadow: 0px 4px 24px 0px rgba(135, 152, 173, 0.2);
+  background-color: #FFFFFF;
+}
 nav .container .content .wrapper ul li a {
+  transition: 0.6s cubic-bezier(0.38, 0.005, 0.215, 1);
+  width: 40px;
+  height: 40px;
+  border-radius: 6px;
+  background-color: #F0F0F0;
   color: #1C1D1F;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  font-size: var(--medium-size);
-  text-decoration: none;
-  margin-bottom: 12px;
+  justify-content: center;
+  margin-bottom: 24px;
 }
 nav .container .cover {
   position: absolute;
@@ -446,7 +432,7 @@ nav .burger-container {
   transition: 0.6s cubic-bezier(0.38, 0.005, 0.215, 1);
 }
 nav .burger-container.dark {
-  background-color: rgba(255, 255, 255, 0.6);
+  background-color: #F0F0F0;
 }
 nav .burger-container.dark span {
   background-color: #1C1D1F;
@@ -1035,7 +1021,7 @@ section#home .container .content {
 section#home .container .content .group-title {
   display: flex;
   flex-direction: column;
-  gap: 60px;
+  gap: 100px;
   position: relative;
 }
 section#home .container .content .group-title .title, section#home .container .content .group-title .subtitle {
@@ -1397,7 +1383,7 @@ section#all-projects .header-container .click-container .click-to-scroll .scroll
   justify-content: center;
 }
 section#all-projects .header-container .click-container .click-to-scroll .scroll-text {
-  font-size: var(--medium-size);
+  font-size: var(--small-size);
   line-height: 16px;
   text-transform: uppercase;
   font-weight: 300;
@@ -1735,7 +1721,7 @@ section#last-projects .header-container .text-container .click-to-scroll .scroll
   justify-content: center;
 }
 section#last-projects .header-container .text-container .click-to-scroll .scroll-text {
-  font-size: var(--medium-size);
+  font-size: var(--small-size);
   line-height: 16px;
   text-transform: uppercase;
   font-weight: 300;
@@ -1752,12 +1738,19 @@ section#last-projects .header-container .text-container .click-to-scroll .scroll
   background-color: #FFFFFF;
 }
 section#last-projects .content-container .scroll-container {
-  position: sticky;
+  position: fixed;
   top: 0;
   bottom: 0;
   height: 100vh;
   width: 100vw;
   pointer-events: none;
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.8s cubic-bezier(0.38, 0.005, 0.215, 1) 0.2s;
+}
+section#last-projects .content-container .scroll-container.active {
+  visibility: visible;
+  opacity: 1;
 }
 section#last-projects .content-container .scroll-container .scroll-wrapper {
   position: absolute;
@@ -1783,20 +1776,8 @@ section#last-projects .content-container .scroll-container .scroll-wrapper .scro
   gap: 14px;
 }
 section#last-projects .content-container .switch-container {
-  overflow-y: hidden;
-  overflow-x: scroll;
-  scroll-snap-type: x mandatory;
-  scrollbar-width: none;
   display: flex;
-  height: 100vh;
-  transition: transform 0.6s cubic-bezier(0.38, 0.005, 0.215, 1);
-  left: 0;
-  position: sticky;
-  top: 0;
-  bottom: 0;
-}
-section#last-projects .content-container .switch-container::-webkit-scrollbar {
-  display: none;
+  flex-direction: column;
 }
 section#last-projects .content-container .switch-container.top {
   top: 0;
@@ -1808,10 +1789,8 @@ section#last-projects .content-container .switch-container.bottom {
 }
 section#last-projects .content-container .switch-container .switch-box {
   width: 100vw;
-  height: 100vh;
-  flex-shrink: 0;
+  min-height: 300vh;
   position: relative;
-  scroll-snap-align: center;
   background-color: #1C1D1F;
 }
 section#last-projects .content-container .switch-container .switch-box.active {
@@ -1819,36 +1798,40 @@ section#last-projects .content-container .switch-container .switch-box.active {
 }
 section#last-projects .content-container .switch-container .switch-box .background {
   position: absolute;
-  top: 8rem;
-  right: 10rem;
+  top: 40%;
+  right: 8rem;
   bottom: 12rem;
   background-color: red;
   max-width: 60%;
-  width: 55%;
+  width: 55vw;
+  aspect-ratio: 16/9;
 }
-section#last-projects .content-container .switch-container .switch-box .content {
-  position: absolute;
-  z-index: 2;
-  bottom: 24%;
+section#last-projects .content-container .switch-container .switch-box .content-wrapper {
+  position: sticky;
+  top: 80%;
+}
+section#last-projects .content-container .switch-container .switch-box .content-wrapper .content {
+  position: relative;
+  bottom: 12rem;
   left: 4rem;
   display: block;
   max-width: 400px;
   text-decoration: none;
 }
-section#last-projects .content-container .switch-container .switch-box .content.active span {
+section#last-projects .content-container .switch-container .switch-box .content-wrapper .content.active span {
   transform: translate(0, 0);
 }
-section#last-projects .content-container .switch-container .switch-box .content.active span::after {
+section#last-projects .content-container .switch-container .switch-box .content-wrapper .content.active span::after {
   bottom: 100%;
 }
-section#last-projects .content-container .switch-container .switch-box .content span {
+section#last-projects .content-container .switch-container .switch-box .content-wrapper .content span {
   position: relative;
   display: inline-block;
   transform: translate(0, 10px);
   line-height: 1;
   overflow: hidden;
 }
-section#last-projects .content-container .switch-container .switch-box .content span::after {
+section#last-projects .content-container .switch-container .switch-box .content-wrapper .content span::after {
   content: "";
   position: absolute;
   top: 0;
@@ -1858,38 +1841,34 @@ section#last-projects .content-container .switch-container .switch-box .content 
   background-color: #1C1D1F;
   transform: scale(1);
 }
-section#last-projects .content-container .switch-container .switch-box .content span.title {
+section#last-projects .content-container .switch-container .switch-box .content-wrapper .content span.title {
   font-size: var(--last-project-title);
   color: #ffffff;
   font-weight: bold;
   text-transform: uppercase;
   transition: 0.6s cubic-bezier(0.38, 0.005, 0.215, 1) 0.1s;
 }
-section#last-projects .content-container .switch-container .switch-box .content span.title::after {
+section#last-projects .content-container .switch-container .switch-box .content-wrapper .content span.title::after {
   transition: 0.6s cubic-bezier(0.38, 0.005, 0.215, 1) 0.1s;
 }
-section#last-projects .content-container .switch-container .switch-box .content span.subtitle, section#last-projects .content-container .switch-container .switch-box .content span.text {
+section#last-projects .content-container .switch-container .switch-box .content-wrapper .content span.subtitle, section#last-projects .content-container .switch-container .switch-box .content-wrapper .content span.text {
   font-weight: 300;
   color: #ffffff;
 }
-section#last-projects .content-container .switch-container .switch-box .content span.subtitle {
+section#last-projects .content-container .switch-container .switch-box .content-wrapper .content span.subtitle {
   font-size: var(--xs-size);
   text-transform: uppercase;
   transition: 0.6s cubic-bezier(0.38, 0.005, 0.215, 1);
 }
-section#last-projects .content-container .switch-container .switch-box .content span.subtitle::after {
+section#last-projects .content-container .switch-container .switch-box .content-wrapper .content span.subtitle::after {
   transition: 0.6s cubic-bezier(0.38, 0.005, 0.215, 1);
 }
-section#last-projects .content-container .switch-container .switch-box .content span.text {
+section#last-projects .content-container .switch-container .switch-box .content-wrapper .content span.text {
   font-size: var(--small-size);
   transition: 0.6s cubic-bezier(0.38, 0.005, 0.215, 1) 0.2s;
 }
-section#last-projects .content-container .switch-container .switch-box .content span.text::after {
+section#last-projects .content-container .switch-container .switch-box .content-wrapper .content span.text::after {
   transition: 0.6s cubic-bezier(0.38, 0.005, 0.215, 1) 0.2s;
-}
-section#last-projects .dummy-project {
-  width: 100vw;
-  height: 100vh;
 }
 
 section#about {
@@ -2613,7 +2592,7 @@ section#contact .header-container .text-container .click-to-scroll .scroll-icon 
   justify-content: center;
 }
 section#contact .header-container .text-container .click-to-scroll .scroll-text {
-  font-size: var(--medium-size);
+  font-size: var(--small-size);
   line-height: 16px;
   text-transform: uppercase;
   font-weight: 300;

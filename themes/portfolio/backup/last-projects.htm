@@ -44,25 +44,25 @@
                 <div class="switch-box">
                     
                 
-                    <div class="content-wrapper">
+                {% if counter_project == 0 %}
+                    <div data-src="{{ url('/project/' ~ project.id) }}" class="content cursor-pointer link-href active" data-type="link">
+                {% else %}
+                    <div data-src="{{ url('/project/' ~ project.id) }}" class="content cursor-pointer link-href" data-type="link">
+                {% endif %}
 
 
-                        <div data-src="{{ url('/project/' ~ project.id) }}" class="content cursor-pointer link-href" data-type="link">
-                            <span class="subtitle">
-                                    {{ project.subtitle }}
-                            </span>
-                            </br>
-                            <span class="title">
-                                    {{ project.name }}
-                            </span>
+                        <span class="subtitle">
+                                {{ project.subtitle }}
+                        </span>
                         </br>
-                            <span class="text">
-                                    {{ project.libelle }}
-                            </span>
-                        </div>
+                        <span class="title">
+                                {{ project.name }}
+                        </span>
+                    </br>
+                        <span class="text">
+                                {{ project.libelle }}
+                        </span>
                     </div>
-
-
                 
                     <div class="background" style="background-image: url('{{ project.images.first.getPath }}')"></div>
 
@@ -71,17 +71,26 @@
                 {% set counter_project = counter_project + 1 %}
             {% endfor %}
 
-
-
           
            
         </div>
 
         
         
-       
         
-        <div class="scroll-container" id="scroll-container">
+        
+        
+        
+        
+        
+        {% set counter_dot = 0 %}
+        {% for project in lastprojects %}
+        <div class="dummy-project" data-ref="{{ counter_dot }}"></div>
+        {% set counter_dot = counter_dot + 1 %}
+        {% endfor %}
+        
+        
+        <div class="scroll-container">
             <div class="scroll-wrapper">
                 <div class="progression-container" id="progression-container">
                     1 / {{ lastprojects|length }}

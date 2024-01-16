@@ -37,7 +37,6 @@ document.addEventListener('DOMContentLoaded', function() {
             if(isElementInViewport(arrow_right_last_projects) && !arrow_right_last_projects.classList.contains('active')) {
                 arrow_right_last_projects.classList.add('active');
             }
-            parallaxFunction();
         }
 
 
@@ -139,8 +138,6 @@ document.addEventListener('DOMContentLoaded', function() {
         );
     }
 
-    
-
     function updateBackgroundSize(element) {
         const rect = element.getBoundingClientRect();
         const windowHeight = window.innerHeight || document.documentElement.clientHeight;
@@ -172,118 +169,86 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-   
-
-   
-
-    const container = document.querySelector('#switch-container-last-projects'); 
-    function isViewportInElement(element) {
-        
-        var rect = element.getBoundingClientRect();
-        return (
-            rect.top <= 0 &&
-            rect.left <= 0 &&
-            rect.bottom >= (window.innerHeight || document.documentElement.clientHeight) &&
-            rect.right >= (window.innerWidth || document.documentElement.clientWidth)
-        );
-    }
-
-
-    function calculerPositionViewport() {
-        const rect = container.getBoundingClientRect();
-        const topDistance = -rect.top;
-        const totalScrollableDistance = rect.height - window.innerHeight;
-        const scrollPercentage = (topDistance / totalScrollableDistance) * 100;
-        return Math.min(100, Math.max(0, scrollPercentage));
-    }
-
-
-    var temp_child = -1;
-    const progression = document.getElementById('progression-container');
-    const scroll_container = document.getElementById('scroll-container');
-    function parallaxFunction()
+    function LastProjectsDisappear(index)
     {
-        // if the window is fully in elem 
-        if(isViewportInElement(container)) {
+        const switch_container = document.getElementById('switch-container-last-projects');
+        // const switch_container_children = switch_container.children;
+        const switch_container_children = switch_container.querySelectorAll('.switch-box');
+        const switch_container_child = switch_container_children[index];
 
-            
-            if(!container.classList.contains('active')) {
-                container.classList.add('active');
-            }
-            if(!scroll_container.classList.contains('active')) {
-                scroll_container.classList.add('active');
-            }
-
-            // On récupère les enfants de container
-            const container_children = container.children;
-
-            // On récupère le pourcentage de scroll dans le container
-            let position = calculerPositionViewport();
-
-            // On récupère le nombre d'enfants
-            let nb_children = container_children.length;
-            
-
-            // On récupère l'enfant a afficher en fonction de la position 
-            let index = Math.floor(position / (100 / nb_children));
-            
-
-            if(index != temp_child) {
+        switch_container_child.children[0].classList.remove('active');
 
 
-                // On affiche l'enfant et on cache les autres
-                for (let i = 0; i < nb_children; i++) {
-                    const container_child = container_children[i];
-                    const content = container_child.children[0].children[0];
-                    if(i == index) {
-                        if(!content.classList.contains('active')) {
-                            content.classList.add('active');
-                        }
-                    } else {
-                        if(content.classList.contains('active')) {
-                            content.classList.remove('active');
-                        }
-                    }
-                }
-
-                temp_child = index;
-                progression.innerText = `${index + 1} / ${nb_children}`;
-
-
-
-            }
-            
-           
-
-          
-           
-           
-
-            
-            
-
-        }
-
-        // if the window is not fully in elem 
-        else {
-            temp_child = -1;
-            if(container.classList.contains('active')) {
-                container.classList.remove('active');
-                // get all .content childs
-                container.querySelectorAll('.content').forEach(function(element) {
-                    if(element.classList.contains('active')) {
-                        element.classList.remove('active');
-                    }
-                });
-            }
-            if(scroll_container.classList.contains('active')) {
-                scroll_container.classList.remove('active');
-            }
-        }
     }
+
+    function LastProjectsAppear(index)
+    {
+        const switch_container = document.getElementById('switch-container-last-projects');
+        // const switch_container_children = switch_container.children;
+        const switch_container_children = switch_container.querySelectorAll('.switch-box');
+        const switch_container_child = switch_container_children[index];
+
+        // wait 0.1s
+        setTimeout(function(){
+            switch_container_child.children[0].classList.add('active');
+        }, 100);
+    }
+
 
     
+    const switch_container_last_projects = document.getElementById('switch-container-last-projects');
+    const snapPoints = [...switch_container_last_projects.children].map(child => child.offsetLeft);
+    const dummyProjects = document.querySelectorAll('.dummy-project');
+    const progression_container = document.getElementById('progression-container');
+    let isScrolling;
+    var temp_SnapPoint = 0;
 
+    function onScrollEnd() {
+        const currentScrollPos = switch_container_last_projects.scrollLeft;
+        var currentSnapPoint = snapPoints.findIndex(point => point > currentScrollPos);
+        if(currentSnapPoint < 0) {
+            currentSnapPoint = snapPoints.length;
+        }
+        isScrolling = false;
+        if(currentSnapPoint - 1 != temp_SnapPoint) {
+
+            progression_container.innerText = `${currentSnapPoint} / ${snapPoints.length}`;
+            window.scrollTo({
+                top: dummyProjects[currentSnapPoint -1].offsetTop - 20,
+                behavior: 'smooth'
+            })
+            LastProjectsDisappear(temp_SnapPoint);
+            LastProjectsAppear(currentSnapPoint - 1);
+            temp_SnapPoint = currentSnapPoint - 1;
+
+        }
+    }
+
+    function switchFunction(e) {
+        if(isElementInViewport(switch_container_last_projects)) {
+            if(!switch_container_last_projects.classList.contains('active')) {
+                switch_container_last_projects.classList.add('active');
+            }
+            if (!isScrolling) {
+                switch_container_last_projects.scrollBy({
+                    left: e.deltaY,
+                    behavior: 'smooth'
+                });
+                isScrolling = true;
+            }
+            clearTimeout(isScrolling);
+            isScrolling = setTimeout(onScrollEnd, 150); // Temps de réaction plus court
+        }
+        else 
+        {
+            if(switch_container_last_projects.classList.contains('active')) {
+                switch_container_last_projects.classList.remove('active');
+            }
+        
+        }
+    }
+
+   
     function getOrientation()
     {
         if(window.innerHeight > window.innerWidth) {
@@ -296,9 +261,12 @@ document.addEventListener('DOMContentLoaded', function() {
       
 
       
-    
+    if(getOrientation() == 'landscape') {
+        window.addEventListener('wheel', switchFunction, { passive: false });
+        switch_container_last_projects.addEventListener('scroll', onScrollEnd);
+    }
 
-    window.addEventListener('scroll', scrollFunction);
+        window.addEventListener('scroll', scrollFunction);
 
     
     

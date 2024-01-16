@@ -169,22 +169,12 @@ section#last-projects
 
         .scroll-container
         {
-            position: fixed;
+            position: sticky;
             top: 0;
             bottom: 0;
             height: 100vh;
             width: 100vw;
             pointer-events: none;
-            visibility: hidden;
-            opacity: 0;
-
-            transition: 0.8s cubic-bezier(0.38, 0.005, 0.215, 1) 0.2s;
-
-            &.active 
-            {
-                visibility: visible;
-                opacity: 1;
-            }
 
             .scroll-wrapper
             {
@@ -222,11 +212,29 @@ section#last-projects
 
         .switch-container
         {
+            overflow-y: hidden;
+            overflow-x : scroll;
 
+            scroll-snap-type: x mandatory;
+            // scroll-snap-type: x proximity;
+
+            &::-webkit-scrollbar {
+                display: none;
+            }
+            scrollbar-width : none;
 
             display: flex;
-            flex-direction: column;
+            height: 100vh;
 
+
+            transition : transform 0.6s cubic-bezier(0.38, 0.005, 0.215, 1);
+            left: 0;
+
+            position: sticky;
+            top: 0;
+            bottom: 0;
+
+           
 
            
             &.top 
@@ -243,11 +251,11 @@ section#last-projects
             .switch-box
             {
                 width: 100vw;
-                min-height: 300vh;
+                height: 100vh;
+                flex-shrink : 0;
                 position: relative;
 
-
-              
+                scroll-snap-align: center;
 
 
 
@@ -263,123 +271,110 @@ section#last-projects
                 .background
                 {
                     position: absolute;
-                    top: 40%;
-                    right: 8rem;
+                    top: 8rem;
+                    right: 10rem;
                     bottom: 12rem;
                     background-color: red;
                     max-width: 60%;
-                    width: 55vw;
-                    aspect-ratio: 16/9;
+                    width: 55%;
                 }
                
 
 
-                    .content-wrapper
+                .content
+                {
+                    position: absolute;
+                    z-index: 2;
+                    bottom: 24%;
+                    left: 4rem;
+
+                
+                    display: block;
+                    max-width: 400px;
+
+                    text-decoration: none;
+
+                    &.active 
                     {
-                        position: sticky;
-                        top: 80%;
-                        
-                        
-                        .content
+                        span 
                         {
-                            // position: absolute;
-                            // z-index: 2;
-                            // bottom: 24%;
-                            position: relative;
-                            bottom: 12rem;
-                            left: 4rem;
-                            
-                            
-        
-                        
-                            display: block;
-                            max-width: 400px;
-        
-                            text-decoration: none;
-        
-                            &.active 
+                            transform: translate(0, 0);
+                            &::after 
                             {
-                                span 
-                                {
-                                    transform: translate(0, 0);
-                                    &::after 
-                                    {
-                                        bottom : 100%;
-                                    }
-                                }
+                                bottom : 100%;
                             }
-        
-        
-                            span 
-                            {
-                                position: relative;
-                                display:inline-block;
-                                transform: translate(0, 10px);
-                                line-height: 1;
-                                overflow :hidden;
-                               
-        
-                                &::after 
-                                {
-                                    content: '';
-                                    position: absolute;
-                                    top: 0;
-                                    left: 0;
-                                    right: 0;
-                                    bottom: 0;
-                                    background-color: $color3;
-                                    transform: scale(1);
-                                }
-                                
-        
-                                &.title 
-                                {
-                                    font-size: var(--last-project-title);
-                                    color: #ffffff;
-                                    font-weight: bold;
-                                    text-transform: uppercase;
-                                    
-                                    transition: 0.6s cubic-bezier(0.38, 0.005, 0.215, 1) 0.1s;
-                                    &::after 
-                                    {
-                                        transition: 0.6s cubic-bezier(0.38, 0.005, 0.215, 1) 0.1s;
-                                    }
-                                }
-                                &.subtitle, &.text
-                                {
-                                    font-weight: 300;
-                                    color: #ffffff;
-                                }
-                                &.subtitle 
-                                {
-                                    font-size: var(--xs-size);
-                                    text-transform: uppercase;
-                                    transition: 0.6s cubic-bezier(0.38, 0.005, 0.215, 1);
-                                    &::after 
-                                    {
-                                        transition: 0.6s cubic-bezier(0.38, 0.005, 0.215, 1);
-                                    }
-                                }
-                                &.text 
-                                {
-                                    font-size: var(--small-size);
-                                    transition: 0.6s cubic-bezier(0.38, 0.005, 0.215, 1) 0.2s;
-                                    &::after 
-                                    {
-                                        transition: 0.6s cubic-bezier(0.38, 0.005, 0.215, 1) 0.2s;
-                                    }
-                                }
-                            }
-        
-        
-                         
-        
-        
-                            
-        
                         }
                     }
-                
+
+
+                    span 
+                    {
+                        position: relative;
+                        display:inline-block;
+                        transform: translate(0, 10px);
+                        line-height: 1;
+                        overflow :hidden;
+                       
+
+                        &::after 
+                        {
+                            content: '';
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            right: 0;
+                            bottom: 0;
+                            background-color: $color3;
+                            transform: scale(1);
+                        }
+                        
+
+                        &.title 
+                        {
+                            font-size: var(--last-project-title);
+                            color: #ffffff;
+                            font-weight: bold;
+                            text-transform: uppercase;
+                            
+                            transition: 0.6s cubic-bezier(0.38, 0.005, 0.215, 1) 0.1s;
+                            &::after 
+                            {
+                                transition: 0.6s cubic-bezier(0.38, 0.005, 0.215, 1) 0.1s;
+                            }
+                        }
+                        &.subtitle, &.text
+                        {
+                            font-weight: 300;
+                            color: #ffffff;
+                        }
+                        &.subtitle 
+                        {
+                            font-size: var(--xs-size);
+                            text-transform: uppercase;
+                            transition: 0.6s cubic-bezier(0.38, 0.005, 0.215, 1);
+                            &::after 
+                            {
+                                transition: 0.6s cubic-bezier(0.38, 0.005, 0.215, 1);
+                            }
+                        }
+                        &.text 
+                        {
+                            font-size: var(--small-size);
+                            transition: 0.6s cubic-bezier(0.38, 0.005, 0.215, 1) 0.2s;
+                            &::after 
+                            {
+                                transition: 0.6s cubic-bezier(0.38, 0.005, 0.215, 1) 0.2s;
+                            }
+                        }
+                    }
+
+
+                 
+
+
+                    
+
+                }
 
 
 
@@ -390,5 +385,10 @@ section#last-projects
         
     }
 
-   
+    .dummy-project
+    {
+        width: 100vw;
+        height: 100vh;
+        
+    }
 }

@@ -58,11 +58,13 @@ $(document).ready(function()
         }
 
 
+
         if(tempScrolled != sectionScrolled)
         {
             $(".nav li").removeClass('active');
             $(".nav li a[data-ref='"+sectionScrolled+"']").parent().addClass('active');
         }
+
     }
    
     
