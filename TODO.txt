@@ -1,6 +1,0 @@
-TODO : 
-
-- Effet de Paralax Home Hero & About Hero
-- S'occuper de la superposition du header
-- Revoir l'animation des nav du header
-- LastProjects mettre tout le texte cliquable
