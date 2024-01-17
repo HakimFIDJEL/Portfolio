@@ -43,7 +43,9 @@ class Project extends Model
 
    
     public $attachMany = [
-        'images' => ['System\Models\File']
+        'images' => ['System\Models\File'],
+        'parallax' => ['System\Models\File'],
     ];
+
 
 }

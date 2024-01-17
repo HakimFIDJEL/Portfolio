@@ -1530,6 +1530,8 @@ section#all-projects .content-container .container .group-container {
   opacity: 0;
   filter: blur(10px);
   transform: scale(0.9);
+  transition: 0.2s cubic-bezier(0.38, 0.005, 0.215, 1);
+  visibility: hidden;
 }
 @media (min-width: 768px) and (max-width: 1023px) {
   section#all-projects .content-container .container .group-container {
@@ -1542,14 +1544,14 @@ section#all-projects .content-container .container .group-container {
     margin: 20px 0;
   }
 }
-section#all-projects .content-container .container .group-container.appear {
-  animation: group-appear 0.6s cubic-bezier(0.38, 0.005, 0.215, 1) forwards;
+section#all-projects .content-container .container .group-container.active {
+  opacity: 1;
+  filter: blur(0px);
+  transform: scale(1);
+  visibility: visible;
 }
-section#all-projects .content-container .container .group-container.appear .img-container {
+section#all-projects .content-container .container .group-container.active .img-container {
   animation: img-container-appear 1s cubic-bezier(0.38, 0.005, 0.215, 1) forwards;
-}
-section#all-projects .content-container .container .group-container.disappear {
-  animation: group-disappear 0.2s cubic-bezier(0.38, 0.005, 0.215, 1) forwards;
 }
 @keyframes img-container-appear {
   0% {
@@ -1789,7 +1791,7 @@ section#last-projects .content-container .switch-container.bottom {
 }
 section#last-projects .content-container .switch-container .switch-box {
   width: 100vw;
-  min-height: 300vh;
+  min-height: 200vh;
   position: relative;
   background-color: #1C1D1F;
 }
@@ -1801,10 +1803,13 @@ section#last-projects .content-container .switch-container .switch-box .backgrou
   top: 40%;
   right: 8rem;
   bottom: 12rem;
-  background-color: red;
   max-width: 60%;
   width: 55vw;
-  aspect-ratio: 16/9;
+  aspect-ratio: 1/1;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  overflow: visible;
 }
 section#last-projects .content-container .switch-container .switch-box .content-wrapper {
   position: sticky;

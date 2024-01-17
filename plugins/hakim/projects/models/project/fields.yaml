@@ -43,11 +43,17 @@ fields:
         label: 'Grade text'
         span: auto
         type: textarea
+    parallax:
+        label: Parallax
+        type: fileupload
+        mode: image
+        span: auto
     images:
         label: Images
         type: fileupload
         mode: image
         useCaption: true
+        span: auto
     categories:
         label: Categories
         type: relation

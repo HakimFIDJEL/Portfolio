@@ -243,13 +243,8 @@ section#last-projects
             .switch-box
             {
                 width: 100vw;
-                min-height: 300vh;
+                min-height: 200vh;
                 position: relative;
-
-
-              
-
-
 
                 &.active
                 {
@@ -266,10 +261,14 @@ section#last-projects
                     top: 40%;
                     right: 8rem;
                     bottom: 12rem;
-                    background-color: red;
                     max-width: 60%;
                     width: 55vw;
-                    aspect-ratio: 16/9;
+                    aspect-ratio: 1/1;
+
+                    background-size: contain;
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    overflow: visible;
                 }
                
 

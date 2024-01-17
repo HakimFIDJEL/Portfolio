@@ -9,6 +9,7 @@ title = "Project"
     {
         $id = $this->param('id');
         $project = Hakim\Projects\Models\Project::find($id);
+        
 
         if (!$project) {
             return \Redirect::to('/');
@@ -43,12 +44,20 @@ title = "Project"
     
     
         <div class="card-container">
-    
+   
+            {% set count_image = 0 %}
             {% for image in project.images %}
+
+                {% if count_image < 4 %}
     
-                <div class="card cursor-pointer" data-type="image" style="background-image : url('{{image.getPath}}')">
-                    <div class="text-container"> {{ image.title }} </div>
-                </div>
+                    <div class="card cursor-pointer" data-type="image" style="background-image : url('{{image.getPath}}')">
+                        <div class="text-container"> {{ image.title }} </div>
+                    </div>
+
+                {% endif %}
+
+                {% set count_image = count_image + 1 %}
+
     
             {% endfor %}
     

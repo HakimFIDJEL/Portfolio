@@ -24,3 +24,9 @@ v1.0.8:
 v1.0.9:
     - 'Created table hakim_projects_project_techno'
     - builder_table_create_hakim_projects_project_techno.php
+v1.0.10:
+    - 'Updated table hakim_projects_projects'
+    - builder_table_update_hakim_projects_projects_2.php
+v1.0.11:
+    - 'Created table hakim_projects_projects_parallax'
+    - builder_table_create_hakim_projects_projects_parallax.php

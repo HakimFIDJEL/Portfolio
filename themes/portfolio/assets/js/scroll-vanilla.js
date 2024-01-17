@@ -1,13 +1,70 @@
 // Vanilla JS
 
+
 document.addEventListener('DOMContentLoaded', function() {
 
 
 
-    const sections = document.querySelectorAll('section');
+    let current_section = "home";
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                current_section = entry.target.id;
+                updateHeader(current_section);
+
+            }
+        });
+    }, { threshold: 0.2 });
+
+    // Ajouter chaque section à l'observer
+    ["home", "about","last-projects", "all-projects", "contact"].forEach(section => {
+        observer.observe(document.getElementById(section));
+    });
+
+    
+
+    function updateHeader(current_section) {
+        // Définition des classes pour chaque section
+        const sectionClasses = {
+            'home': 'dark',
+            'about': 'dark',
+            'all-projects': 'dark',
+            'last-projects': 'light',
+            'contact': 'light'
+        };
+    
+        // Récupération de la classe à appliquer en fonction de la section actuelle
+        const classToApply = sectionClasses[current_section] || 'light';
+    
+        // Mise à jour du header
+        if(classToApply === 'dark') {
+            headerDark();
+        } else {
+            headerLight();
+        }
+    
+        // Mise à jour de la navigation active
+        $(".nav li").removeClass('active');
+        $(".nav li a[data-ref='" + current_section + "']").parent().addClass('active');
+    }
+    
+    function headerDark() {
+        header.removeClass('light').addClass('dark');
+        burgerContainer.removeClass('light').addClass('dark');
+    }
+    
+    function headerLight() {
+        header.removeClass('dark').addClass('light');
+        burgerContainer.removeClass('dark').addClass('light');
+    }
+    
+
 
     function scrollFunction() 
     {
+
+
         const home_groupAbout = document.getElementById('home-group-about');
         const home_firstSpan = document.getElementById('home-first-span');
         const home_button = document.getElementById('home-group-know-more'); 
@@ -37,7 +94,6 @@ document.addEventListener('DOMContentLoaded', function() {
             if(isElementInViewport(arrow_right_last_projects) && !arrow_right_last_projects.classList.contains('active')) {
                 arrow_right_last_projects.classList.add('active');
             }
-            parallaxFunction();
         }
 
 
@@ -46,6 +102,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const text_reveal_portfolio = document.getElementById('text-reveal-portfolio');
         const arrow_left_portfolio  = document.getElementById('arrow-left-portfolio');
         const arrow_right_portfolio = document.getElementById('arrow-right-portfolio');
+        const groups = document.getElementsByClassName('group-container');
 
         if(isElementInViewport(slide_title_portfolio)) {
             updateTranslateX(slide_title_portfolio);
@@ -53,6 +110,12 @@ document.addEventListener('DOMContentLoaded', function() {
         if(isElementInViewport(text_reveal_portfolio))
         {
             updateBackgroundSize(text_reveal_portfolio);
+        }
+        for (let i = 0; i < groups.length; i++) {
+            const group = groups[i];
+            if(isElementInViewport(group) && !group.classList.contains('active')) {
+                group.classList.add('active');
+            }
         }
 
         if(isElementInViewport(arrow_left_portfolio) && !arrow_left_portfolio.classList.contains('active')) {
@@ -126,9 +189,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
     // Fonctions utiles
-    
-    
-
     function isElementInViewport(element) {
         var rect = element.getBoundingClientRect();
         return (
@@ -138,8 +198,6 @@ document.addEventListener('DOMContentLoaded', function() {
             rect.right <= (window.innerWidth || document.documentElement.clientWidth)
         );
     }
-
-    
 
     function updateBackgroundSize(element) {
         const rect = element.getBoundingClientRect();
@@ -172,117 +230,71 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    
    
 
-   
+    
 
-    const container = document.querySelector('#switch-container-last-projects'); 
-    function isViewportInElement(element) {
-        
-        var rect = element.getBoundingClientRect();
-        return (
-            rect.top <= 0 &&
-            rect.left <= 0 &&
-            rect.bottom >= (window.innerHeight || document.documentElement.clientHeight) &&
-            rect.right >= (window.innerWidth || document.documentElement.clientWidth)
-        );
-    }
-
-
-    function calculerPositionViewport() {
-        const rect = container.getBoundingClientRect();
-        const topDistance = -rect.top;
-        const totalScrollableDistance = rect.height - window.innerHeight;
-        const scrollPercentage = (topDistance / totalScrollableDistance) * 100;
-        return Math.min(100, Math.max(0, scrollPercentage));
-    }
-
-
-    var temp_child = -1;
+    const container = document.querySelector('#switch-container-last-projects');
     const progression = document.getElementById('progression-container');
     const scroll_container = document.getElementById('scroll-container');
-    function parallaxFunction()
-    {
-        // if the window is fully in elem 
-        if(isViewportInElement(container)) {
+    var temp_child = -1;
 
-            
-            if(!container.classList.contains('active')) {
-                container.classList.add('active');
-            }
-            if(!scroll_container.classList.contains('active')) {
-                scroll_container.classList.add('active');
-            }
+    function isViewportInElement(element, scrollTop) {
+        var top = $(element).offset().top;
+        var bottom = top + $(element).outerHeight();
+        var windowHeight = window.innerHeight || document.documentElement.clientHeight;
+        
+        return (
+            scrollTop >= top &&
+            scrollTop + windowHeight <= bottom
+        );
+    }
+    
 
-            // On récupère les enfants de container
+    function calculerPositionViewport(scrollTop) {
+        var elementTop = $(container).offset().top;
+        var elementHeight = $(container).outerHeight();
+        var distanceParcourue = scrollTop - elementTop;
+        var totalScrollableDistance = elementHeight - window.innerHeight;
+        var scrollPercentage = (distanceParcourue / totalScrollableDistance) * 100;
+        return Math.min(100, Math.max(0, scrollPercentage));
+    }
+    
+
+    function parallaxFunction(scrollTop) {
+        if(isViewportInElement(container, scrollTop)) {
+            container.classList.add('active');
+            scroll_container.classList.add('active');
+
             const container_children = container.children;
-
-            // On récupère le pourcentage de scroll dans le container
-            let position = calculerPositionViewport();
-
-            // On récupère le nombre d'enfants
+            let position = calculerPositionViewport(scrollTop);
             let nb_children = container_children.length;
-            
-
-            // On récupère l'enfant a afficher en fonction de la position 
             let index = Math.floor(position / (100 / nb_children));
-            
 
             if(index != temp_child) {
-
-
-                // On affiche l'enfant et on cache les autres
                 for (let i = 0; i < nb_children; i++) {
                     const container_child = container_children[i];
                     const content = container_child.children[0].children[0];
-                    if(i == index) {
-                        if(!content.classList.contains('active')) {
-                            content.classList.add('active');
-                        }
-                    } else {
-                        if(content.classList.contains('active')) {
-                            content.classList.remove('active');
-                        }
-                    }
+                    content.classList.toggle('active', i === index);
                 }
 
                 temp_child = index;
                 progression.innerText = `${index + 1} / ${nb_children}`;
-
-
-
             }
-            
-           
-
-          
-           
-           
-
-            
-            
-
-        }
-
-        // if the window is not fully in elem 
-        else {
+        } else {
             temp_child = -1;
-            if(container.classList.contains('active')) {
-                container.classList.remove('active');
-                // get all .content childs
-                container.querySelectorAll('.content').forEach(function(element) {
-                    if(element.classList.contains('active')) {
-                        element.classList.remove('active');
-                    }
-                });
-            }
-            if(scroll_container.classList.contains('active')) {
-                scroll_container.classList.remove('active');
-            }
+            container.classList.remove('active');
+            scroll_container.classList.remove('active');
+            container.querySelectorAll('.content').forEach(element => element.classList.remove('active'));
         }
     }
 
-    
+    lenis.on('scroll', (e) => {
+        parallaxFunction(e.scroll);
+    });
+
+
 
     function getOrientation()
     {
@@ -294,10 +306,50 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
       
-
-      
     
+    
+    const burgerContainer = $(".burger-container");
+    const header = $('header');
+    const nav_container = $('nav .container');
+    const switch_container = $(".switch-container");
+    function HeaderAnimation(e)
+    {
+        // On va vers le bas
+        if(e.deltaY > 0)
+        {
+            if(header.hasClass('active'))
+            {
+                header.removeClass('active');
+            }
+            if(burgerContainer.hasClass('active') && !nav_container.hasClass('active'))
+            {
+                burgerContainer.removeClass('active');
+            }
+        }
+        else 
+        {
+            if(!switch_container.hasClass('active'))
+            {
+                if(!header.hasClass('active'))
+                {
+                    header.addClass('active');
+                }
+            }
+            else 
+            {
+                if(header.hasClass('active'))
+                {
+                    header.removeClass('active');
+                }
+            }
+            if(!burgerContainer.hasClass('active'))
+            {
+                burgerContainer.addClass('active');
+            }
+        }
+    }
 
+    window.addEventListener('wheel', HeaderAnimation);
     window.addEventListener('scroll', scrollFunction);
 
     

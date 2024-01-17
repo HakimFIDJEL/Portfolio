@@ -58,32 +58,20 @@ $(document).ready(function()
         groups.each(function() {
             let group = $(this);
 
-            
-            // Convertir la valeur de l'attribut data-cat en tableau JavaScript
             let categories = JSON.parse(group.attr('data-cat'));
             
-            // Vérifier si option.text() fait partie de ce tableau
             if(categories.includes(option.data('cat')) || option.data('cat') == 'ALL') {
-                console.log('on rentre');
-
-                if(group.css('display') == 'none')
+                if(group.css('visibility') == 'hidden')
                 {
-                    group.css('display', 'flex');
-                    group.removeClass('disappear');
-                    group.addClass('appear');
+                    group.css('visibility', 'visible');
+                    group.addClass('active');
                 }
-
-
-
-
-                
             } else {
-                group.removeClass('appear');
-                group.addClass('disappear');
+                group.removeClass('active');
 
                 setTimeout(function()
                 {
-                    group.css('display', 'none');
+                    group.css('visibility', 'hidden');
                 }, 200);
                 
             }
