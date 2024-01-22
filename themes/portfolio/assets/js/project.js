@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         $("#project .title").addClass('active');
         $("#project .subtitle").addClass('active');
-    }, 2000);
+    }, 1500);
 
 
     const header = document.getElementById("header");
@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function() {
         {
             animationCircle();
         }
-        if(isWindowInsideElement(dark_container) || isElementInViewport(footer))
+        if(isWindowInsideElement(dark_container) || isElementInViewport(footer) || isElementInViewport(dark_container))
         {
             console.log("dark");
             if(header.classList.contains("dark"))

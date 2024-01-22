@@ -50,7 +50,8 @@ title = "Project"
 
                 {% if count_image < 4 %}
     
-                    <div class="card cursor-pointer" data-type="image" style="background-image : url('{{image.getPath}}')">
+                    <div class="card cursor-pointer" data-type="image" >
+                        <div class="image-container" style="background-image : url('{{image.getPath}}')"></div>
                         <div class="text-container"> {{ image.title }} </div>
                     </div>
 
@@ -114,7 +115,9 @@ title = "Project"
                             <path d="M11.9167 9.08333L19 2M19 2H14.2778M19 2V6.72222M19 12.3889V17.1111C19 17.6121 18.801 18.0925 18.4468 18.4468C18.0925 18.801 17.6121 19 17.1111 19H3.88889C3.38792 19 2.90748 18.801 2.55324 18.4468C2.19901 18.0925 2 17.6121 2 17.1111V3.88889C2 3.38792 2.19901 2.90748 2.55324 2.55324C2.90748 2.19901 3.38792 2 3.88889 2H8.61111" stroke="#333333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>  
                     </a>
-                    <a href="" class="link cursor-pointer" data-type="link">
+
+
+                    <a href="{{ project.source_code }}" target="_blank" class="link cursor-pointer {% if (project.source_code == null) %} disabled {%endif%} " data-type="link">
                         <svg width="22" height="22" viewBox="0 0 22 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path class="stroke" d="M13.8125 2H16.625C17.5201 2 18.3786 2.39509 19.0115 3.09835C19.6444 3.80161 20 4.75544 20 5.75V18.25C20 19.2446 19.6444 20.1984 19.0115 20.9017C18.3786 21.6049 17.5201 22 16.625 22H5.375C4.47989 22 3.62145 21.6049 2.98851 20.9017C2.35558 20.1984 2 19.2446 2 18.25V12M4.25 3.25L2 5.75L4.25 8.25" stroke="#333333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             <path class="stroke" d="M9.20001 8L11 5.5L9.20001 3" stroke="#333333" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>

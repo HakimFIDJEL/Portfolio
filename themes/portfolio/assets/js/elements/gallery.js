@@ -31,7 +31,7 @@ $(document).ready(function()
     {
         let images_url = [];
         let index = $(this).index();
-        let images = $(this).parent().find('.cursor-pointer[data-type="image"]');
+        let images = $(this).parent().find('.image-container');
         images.each(function()
         {
             images_url.push($(this).css('background'));

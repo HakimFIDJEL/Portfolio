@@ -64,7 +64,7 @@
 
 
                 
-                    <div class="background" style="background-image: url('{{ project.images.last.getPath }}')"></div>
+                    <div data-src="{{ url('/project/' ~ project.id) }}" class="background cursor-pointer link-href" data-type="link" style="background-image: url('{{ project.images.last.getPath }}')"></div>
 
                 </div>
 
